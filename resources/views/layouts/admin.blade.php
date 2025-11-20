@@ -29,7 +29,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="logo">
                             <a href="{{ url('/admin')}}">
-                                <img src="./assets/compiled/svg/favicon.svg" alt="Logo" srcset="">
+                                <img src="{{ url('/assets/compiled/svg/favicon.svg')}}" alt="Logo" srcset="">
                                 Rick
                             </a>
                         </div>
@@ -74,13 +74,20 @@
                         <li class="sidebar-title">Menu</li>
 
                         <li class="sidebar-item active ">
-                            <a href="index.html" class='sidebar-link'>
+                            <a href="{{ url('/admin')}}" class='sidebar-link'>
                                 <i class="bi bi-house-fill"></i>
                                 <span>Inicio</span>
                             </a>
                         </li>
-
+                        
                         <li class="sidebar-title">Ajustes</li>
+                        
+                        <li class="sidebar-item">
+                            <a href="{{ url('/admin/ajustes')}}" class='sidebar-link'>
+                                <i class="bi bi-gear-fill"></i>
+                                <span>Configuración</span>
+                            </a>
+                        </li>
 
                         <li class="sidebar-item has-sub">
                             <a href="#" class='sidebar-link'>
@@ -126,7 +133,7 @@
             </header>
 
             <div class="page-heading">
-                <h3>Sistema de Ecommerce</h3>
+                <h3>Dashboard</h3>
             </div>
             <div class="page-content">
                 @yield('content')
