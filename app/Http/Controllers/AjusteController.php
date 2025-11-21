@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ajuste;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\TryCatch;
 
 class AjusteController extends Controller
 {
@@ -12,7 +13,21 @@ class AjusteController extends Controller
      */
     public function index()
     {
-        return view('admin.ajustes.index');
+        try {
+            $jsonData = @file_get_contents('https://api.hilariweb.com/divisas');
+
+            if ($jsonData === false) {
+                // No hay internet o API caída
+                $divisas = null;
+            } else {
+                $divisas = json_decode($jsonData, true);
+            }
+
+        } catch (\Throwable $th) {
+            // Cualquier error inesperado
+            $divisas = null;
+        }
+        return view('admin.ajustes.index', compact('divisas'));
     }
 
     /**
