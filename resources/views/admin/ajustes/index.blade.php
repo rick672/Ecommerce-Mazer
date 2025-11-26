@@ -10,7 +10,8 @@
                     <h4>Configuraciones del Sistema</h4>
                 </div>
                 <div class="card-body">
-                    <form action="">
+                    <form action="{{ url('/admin/ajustes/create') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="row">
                             <div class="col-md-9">
                                 <div class="row">
@@ -25,7 +26,8 @@
                                                     @error('nombre')
                                                         is-invalid
                                                     @enderror
-                                                    value="{{ old('nombre') }}" required
+                                                    value="{{ old('nombre', $ajuste->nombre ?? '') }}"
+                                                    required
                                                     placeholder="Nombre de la empresa ..."
                                                 >
                                                 @error('nombre')
@@ -47,7 +49,8 @@
                                                     @error('descripcion')
                                                         is-invalid
                                                     @enderror
-                                                    value="{{ old('descripcion') }}" required
+                                                    value="{{ old('descripcion', $ajuste->descripcion ?? '') }}"
+                                                    required
                                                     placeholder="Breve descripción de la empresa ..."
                                                 >
                                                 @error('descripcion')
@@ -69,7 +72,8 @@
                                                     @error('sucursal')
                                                         is-invalid
                                                     @enderror
-                                                    value="{{ old('sucursal') }}" required
+                                                    value="{{ old('sucursal', $ajuste->sucursal ?? '') }}"
+                                                    required
                                                     placeholder="Ej: Sucursal de la ciudad ..."
                                                 >
                                                 @error('sucursal')
@@ -91,9 +95,10 @@
                                                     @error('direccion')
                                                         is-invalid
                                                     @enderror
-                                                    placeholder="Calle, Numero, Ciudad y País ..."
-                                                    value="{{ old('direccion') }}" required
-                                                >{{ old('direccion') }}</textarea>
+                                                    placeholder="Calle, Numero, Ciudad y País ..." required
+                                                >
+                                                    {{ old('direccion', $ajuste->direccion ?? '') }}
+                                                </textarea>
                                                 @error('direccion')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
@@ -111,7 +116,8 @@
                                                     @error('telefonos')
                                                         is-invalid
                                                     @enderror
-                                                    value="{{ old('telefonos') }}" required
+                                                    value="{{ old('telefonos', $ajuste->telefono ?? '') }}"
+                                                    required
                                                     placeholder="Ej: +591 76543210"
                                                 >
                                                 @error('telefonos')
@@ -133,7 +139,8 @@
                                                     @error('email')
                                                         is-invalid
                                                     @enderror
-                                                    value="{{ old('email') }}" required
+                                                    value="{{ old('email', $ajuste->email ?? '') }}"
+                                                    required
                                                     placeholder="Ej: info@miempresa.com"
                                                 >
                                                 @error('email')
@@ -150,12 +157,15 @@
                                                 <select 
                                                     name="divisa" id="divisa"
                                                     class="form-select"
-                                                    value="{{ old('divisa') }}" required
+                                                    required
                                                 >
                                                     <option value="">-- Selecciona una divisa --</option>
                                                     @if(is_array($divisas))
                                                         @foreach($divisas as $divisa)
-                                                            <option value="{{ $divisa['symbol'] }}">
+                                                            <option 
+                                                                value="{{ $divisa['symbol'] }}"
+                                                                {{ old('divisa', $ajuste->divisa ?? '') == $divisa['symbol'] ? 'selected' : '' }}
+                                                            >
                                                                 {{ $divisa['name'] }} ({{ $divisa['symbol'] }})
                                                             </option>
                                                         @endforeach
@@ -180,7 +190,7 @@
                                                     @error('pagina_web')
                                                         is-invalid
                                                     @enderror
-                                                    value="{{ old('pagina_web') }}"
+                                                    value="{{ old('pagina_web', $ajuste->pagina_web ?? '') }}"
                                                     placeholder="Ej: https://www.miempresa.com"
                                                 >
                                                 @error('pagina_web')
@@ -196,7 +206,10 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="logo" class="form-label">Logo (*)</label>
+                                            <label for="logo" class="form-label">
+                                                Logo 
+                                                @if (!isset($ajuste) || !$ajuste->logo) (*) @else @endif 
+                                            </label>
                                             <div class="input-group">
                                                 <span class="input-group-text"><i class="bi-image-fill"></i></span>
                                                 <input 
@@ -205,13 +218,18 @@
                                                     @error('logo')
                                                         is-invalid
                                                     @enderror
-                                                    accept="image/*" required
+                                                    accept="image/*" 
+                                                    @if (!isset($ajuste) || !$ajuste->logo) required @else @endif
                                                 >
                                                 @error('logo')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
                                             </div>
-                                            <img src="" id="preview1" style="max-width: 230px; margin-top: 10px"  alt="">
+                                            @if (isset($ajuste) && $ajuste->logo)
+                                                <img src="{{ asset('storage/'. $ajuste->logo) }}" id="preview1" style="max-width: 230px; margin-top: 10px" alt="Logo Empresa">
+                                            @else
+                                                <img src="" id="preview1" style="max-width: 230px; margin-top: 10px"  alt="">
+                                            @endif
                                             <script>
                                                 const mostrarImagen = e => {
                                                     document.getElementById('preview1').src = URL.createObjectURL(e.target.files[0]);
@@ -221,7 +239,10 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="imagen_login" class="form-label">Imagen de Login (*)</label>
+                                            <label for="imagen_login" class="form-label">
+                                                Imagen de Login 
+                                                @if (!isset($ajuste) || !$ajuste->imagen_login) (*) @else @endif
+                                            </label>
                                             <div class="input-group">
                                                 <span class="input-group-text"><i class="bi-image-fill"></i></span>
                                                 <input 
@@ -230,13 +251,18 @@
                                                     @error('imagen_login')
                                                         is-invalid
                                                     @enderror
-                                                    accept="image/*" required
+                                                    accept="image/*" 
+                                                    @if (!isset($ajuste) || !$ajuste->imagen_login) required @else @endif
                                                 >
                                                 @error('imagen_login')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
                                             </div>
-                                            <img src="" id="preview2" style="max-width: 230px; margin-top: 10px"  alt="">
+                                            @if (isset($ajuste) && $ajuste->imagen_login)
+                                                <img src="{{ asset('storage/'. $ajuste->imagen_login) }}" id="preview2" style="max-width: 230px; margin-top: 10px" alt="Logo del Login">
+                                            @else
+                                                <img src="" id="preview2" style="max-width: 230px; margin-top: 10px"  alt="">
+                                            @endif
                                             <script>
                                                 const mostrarImagen2 = e => {
                                                     document.getElementById('preview2').src = URL.createObjectURL(e.target.files[0]);
