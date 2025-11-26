@@ -96,9 +96,7 @@
                                                         is-invalid
                                                     @enderror
                                                     placeholder="Calle, Numero, Ciudad y País ..." required
-                                                >
-                                                    {{ old('direccion', $ajuste->direccion ?? '') }}
-                                                </textarea>
+                                                >{{ old('direccion', $ajuste->direccion ?? '') }}</textarea>
                                                 @error('direccion')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
