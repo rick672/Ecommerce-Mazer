@@ -30,9 +30,9 @@
                                     <td>{{ $nro++ }}</td>
                                     <td>{{ $role->name }}</td>
                                     <td>
-                                        <a href="" class="btn btn-info btn-sm"><i class="bi-eye-fill"></i></a>
-                                        <a href="{{ url('/admin/roles/edit/'. $role->id) }}" class="btn btn-warning btn-sm"><i class="bi-pen-fill"></i></a>
-                                        <form action="" method="POST" style="display: inline-block">
+                                        <a href="{{ url('/admin/rol/'.$role->id) }}" class="btn btn-info btn-sm"><i class="bi-eye-fill"></i></a>
+                                        <a href="{{ url('/admin/rol/'.$role->id.'/edit') }}" class="btn btn-warning btn-sm"><i class="bi-pen-fill"></i></a>
+                                        <form action="{{ url('/admin/rol/'.$role->id) }}" method="POST" style="display: inline-block">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm">

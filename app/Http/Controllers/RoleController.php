@@ -43,32 +43,44 @@ class RoleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $rol = Role::find($id);
+        return view('admin.roles.show', compact('rol'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $rol = Role::find($id);
+        return view('admin.roles.edit', compact('rol'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:30|unique:roles,name,'.$id,
+        ]);
+        $rol = Role::find($id);
+        $rol->name = ucfirst(strtolower($request->name));
+        $rol->save();
+
+        return redirect()->route('admin.roles.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $rol = Role::find($id);
+        $rol->delete();
+
+        return redirect()->route('admin.roles.index');
     }
 }
