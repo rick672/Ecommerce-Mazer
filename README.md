@@ -5,3 +5,4 @@ TECNOLOGIAS
 *   Mazer
 *   Login con laravel ui con bootstrap
 *   Usamos Spatie Permission para gestionar los roles
+*   Para las alertas usamos sweetalert2 en CDN

@@ -22,6 +22,8 @@
 
 <body>
     <script src="{{ asset('assets/static/js/initTheme.js')}}"></script>
+    {{-- Via CDN sweetalert2 --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <div id="app">
         <div id="sidebar">
             <div class="sidebar-wrapper active">
@@ -143,7 +145,9 @@
                 <h3>Dashboard</h3>
             </div>
             <div class="page-content">
-                @yield('content')
+                @yield('content')  {{-- Aquí va el contenido HTML --}}
+                
+                @stack('scripts')   {{-- Aquí se acumulan TODOS los scripts --}}
             </div>
         </div>
     </div>
@@ -160,7 +164,27 @@
     {{-- <script src="{{ url('/assets/static/js/pages/dashboard.js')}}"></script> --}}
     @yield('scripts')
 
-
+    @if (($mensaje = Session::get('message')) && ($icono = Session::get('icon')))
+        <script>
+            @php
+                $tiempos = [
+                    'success' => 1500,  // Eliminación más rápida
+                    'error' => 3000,    // Errores más visibles
+                    'warning' => 2500,  // Advertencias
+                    'info' => 2000      // Información general
+                ];
+                $timer = $tiempos[$icono] ?? 2000; // Por defecto 2 segundos
+            @endphp
+            Swal.fire({
+                position: "center",
+                icon: "{{ $icono }}",
+                title: "{{ $mensaje }}",
+                showConfirmButton: false,
+                timer: {{ $timer }}
+            });
+        </script>
+    @endif
+    
 </body>
 
 </html>

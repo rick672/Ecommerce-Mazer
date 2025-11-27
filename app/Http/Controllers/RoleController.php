@@ -37,7 +37,9 @@ class RoleController extends Controller
         $rol->name = ucfirst(strtolower($request->name));
         $rol->save();
 
-        return redirect()->route('admin.roles.index');
+        return redirect()->route('admin.roles.index')
+                        ->with('message', 'Rol creado exitosamente !!!')
+                        ->with('icon', 'success');
     }
 
     /**
@@ -70,7 +72,9 @@ class RoleController extends Controller
         $rol->name = ucfirst(strtolower($request->name));
         $rol->save();
 
-        return redirect()->route('admin.roles.index');
+        return redirect()->route('admin.roles.index')
+                        ->with('message', 'Rol actualizado exitosamente !!!')
+                        ->with('icon', 'success');
     }
 
     /**
@@ -81,6 +85,8 @@ class RoleController extends Controller
         $rol = Role::find($id);
         $rol->delete();
 
-        return redirect()->route('admin.roles.index');
+        return redirect()->route('admin.roles.index')
+                        ->with('message', 'Rol eliminado exitosamente !!!')
+                        ->with('icon', 'success');
     }
 }

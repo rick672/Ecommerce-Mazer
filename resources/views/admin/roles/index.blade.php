@@ -32,10 +32,10 @@
                                     <td>
                                         <a href="{{ url('/admin/rol/'.$role->id) }}" class="btn btn-info btn-sm"><i class="bi-eye-fill"></i></a>
                                         <a href="{{ url('/admin/rol/'.$role->id.'/edit') }}" class="btn btn-warning btn-sm"><i class="bi-pen-fill"></i></a>
-                                        <form action="{{ url('/admin/rol/'.$role->id) }}" method="POST" style="display: inline-block">
+                                        <form action="{{ url('/admin/rol/'.$role->id) }}" class="delete-form" method="POST" style="display: inline-block">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">
+                                            <button type="button" class="btn btn-danger btn-sm delete-btn">
                                                 <i class="bi-trash-fill"></i>
                                             </button>
                                         </form>
@@ -53,10 +53,43 @@
                                 {{ $roles->links('pagination::bootstrap-4') }}
                             </div>
                         </div>
-                        
                     @endif
                 </div>
             </div>
         </div>
     </div>
 @endsection
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Seleccionar todos los botones de eliminar
+        const deleteButtons = document.querySelectorAll('.delete-btn');
+        
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const form = this.closest('.delete-form');
+                
+                Swal.fire({
+                    title: "¿Está seguro de borrar?",
+                    text: "No podrá revertir esta acción!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Sí, eliminar",
+                    cancelButtonText: "No, cancelar",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Si confirma, enviar el formulario
+                        form.submit();
+                    }
+                    // Si cancela, no hacer nada
+                });
+            });
+        });
+    });
+</script>
+@endpush
