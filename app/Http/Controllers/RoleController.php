@@ -12,7 +12,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view('admin.roles.index');
+        $roles = Role::paginate(5);
+        return view('admin.roles.index', compact('roles'));
     }
 
     /**
@@ -33,7 +34,7 @@ class RoleController extends Controller
         ]);
 
         $rol = new Role();
-        $rol->name = $request->name;
+        $rol->name = ucfirst(strtolower($request->name));
         $rol->save();
 
         return redirect()->route('admin.roles.index');
