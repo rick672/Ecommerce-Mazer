@@ -89,6 +89,13 @@
                             </a>
                         </li>
                         
+                        <li class="sidebar-item {{ request()->is('admin/usuario*') ? 'active' : '' }}">
+                            <a href="{{ url('/admin/usuarios')}}" class='sidebar-link'>
+                                <i class="bi bi-person-fill-add"></i>
+                                <span>Usuarios</span>
+                            </a>
+                        </li>
+                        
                         <li class="sidebar-title">Ajustes</li>
                         
                         <li class="sidebar-item {{ request()->is('admin/ajuste*') ? 'active' : '' }}">
@@ -160,9 +167,9 @@
 
 
     <!-- Need: Apexcharts -->
-    <script src="{{ url('/assets/extensions/apexcharts/apexcharts.min.js')}}"></script>
+    {{-- <script src="{{ url('/assets/extensions/apexcharts/apexcharts.min.js')}}"></script> --}}
     {{-- <script src="{{ url('/assets/static/js/pages/dashboard.js')}}"></script> --}}
-    @yield('scripts')
+    {{-- @yield('scripts') --}}
 
     @if (($mensaje = Session::get('message')) && ($icono = Session::get('icon')))
         <script>
