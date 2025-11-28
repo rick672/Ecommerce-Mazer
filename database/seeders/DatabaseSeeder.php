@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Ajuste;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,9 +19,28 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        User::create([
+            'name' => 'Super Admin',
+            'email' => 'superadmin@example.com',
+            'password' => bcrypt('password'),
         ]);
+
+        Ajuste::create([
+            'nombre' => 'NexusMarket Pro',
+            'descripcion' => 'Plataforma de ecommerce integral para negocios digitales',
+            'sucursal' => 'Sede Central',
+            'direccion' => 'Av. Digital 123, Distrito Tecnológico',
+            'telefono' => '+1 234 567 8900',
+            'logo' => 'logos/tt5sp0Yc9pbwM6GPBZ5uJXOf7tc4jydQW4xzPAa3.png',
+            'imagen_login' => 'imagenes_login/6KBkt9mJEEnBjgx3ZW25j57N5CEpQbpLIZ4GWnXu.png',
+            'email' => 'aliagaricardo316@gmail.com',
+            'divisa' => 'Bs',
+            'pagina_web' => 'https://www.nexusmarketpro.com',
+        ]);
+
+        Role::create(['name' => 'Superadmin']);
+        Role::create(['name' => 'Administrador']);
+        Role::create(['name' => 'Vendedor']);
+        Role::create(['name' => 'Cliente']);
     }
 }

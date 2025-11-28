@@ -23,20 +23,20 @@
         <div class="row h-100">
             <div class="col-lg-4 col-md-5 col-12 p-0 d-flex justify-content-center align-items-center">
                 <div id="auth-left">
-                    <div class="text-center" style="margin-bottom: 2.5rem">
+                    <div class="text-center" style="margin-bottom: 1rem">
                         <a href="{{ url('/') }}">
-                            <img src="{{ ($ajuste && $ajuste->logo) ? asset('storage/'.$ajuste->logo) : asset('assets/compiled/svg/logo.svg') }}" width="100" alt="Logo">
+                            <img src="{{ ($ajuste && $ajuste->logo) ? asset('storage/'.$ajuste->logo) : asset('assets/compiled/svg/logo.svg') }}" width="60" alt="Logo">
                         </a>
                     </div>
-                    <h1 class="text-center">¡Bienvenido!</h1>
+                    <h2 class="text-center">¡Bienvenid@!</h2>
                     <p class="mb-5 text-center" style="color: #74788d;">
-                        Inicia sesión para continuar en {{ $ajuste->name ?? env('APP_NAME') }}
+                        Inicia sesión para continuar en {{ $ajuste->nombre ?? env('APP_NAME') }}
                     </p>
 
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-                        <label class="form-label" for="email">Correo electrónico</label>
-                        <div class="form-group position-relative has-icon-left mb-3">
+                        <label class="form-label m-0" for="email">Correo electrónico</label>
+                        <div class="form-group position-relative has-icon-left mb-2">
                             <input id="email" type="email"
                                 class="form-control @error('email') is-invalid @enderror" name="email"
                                 value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -50,8 +50,8 @@
                                 <i class="bi bi-person"></i>
                             </div>
                         </div>
-                        <label class="form-label" for="password">Contraseña</label>
-                        <div class="form-group position-relative has-icon-left mb-3">
+                        <label class="form-label m-0" for="password">Contraseña</label>
+                        <div class="form-group position-relative has-icon-left mb-2">
                             <input id="password" type="password"
                                 class="form-control @error('password') is-invalid @enderror" name="password" required
                                 autocomplete="current-password">
@@ -76,7 +76,7 @@
                         </button>
                     </form>
                     <div class="text-center mt-5 text-lg">
-                        <p class="text-gray-600">
+                        <p class="text-gray-600" style="margin-bottom: .3rem">
                             ¿No tienes cuenta? <a href="{{ route('register') }}" class="font-bold">Regístrate ahora.</a>
                         </p>
                         <p><a class="font-bold" href="{{ route('password.request') }}">¿Has olvidado tu contraseña?</a></p>
