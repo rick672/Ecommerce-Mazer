@@ -11,9 +11,16 @@ class UsuarioController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $usuarios = User::paginate(10);
+        $buscar = $request->get('buscar');
+        $query = User::query();
+        if ($buscar) {
+            $query->where('name', 'like', '%'.$buscar.'%')
+                ->orWhere('email', 'like', '%'.$buscar.'%');
+        }
+
+        $usuarios = $query->paginate(10);
         return view('admin.usuarios.index', compact('usuarios'));
     }
 

@@ -13,41 +13,58 @@
                     </h4>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nombre</th>
-                                <th>Email</th>
-                                <th>Rol</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @php
-                                $nro = ($usuarios->currentPage() - 1 ) * $usuarios->perPage() + 1;
-                            @endphp
-                            @foreach($usuarios as $usuario)
+                    <div class="row" style="justify-content: end">
+                        <div class="col-md-4 col-sm-6 col-12">
+                            <form action="{{ url('/admin/usuarios') }}" method="GET" class="m-3">
+                                <div class="input-group">
+                                    <input type="text" name="buscar" class="form-control" placeholder="Buscar ..." value="{{ $_REQUEST['buscar'] ?? '' }}">
+                                    @if (isset($_REQUEST['buscar']))
+                                    <a href="{{ url('/admin/usuarios') }}" class="btn btn-light">
+                                        <i class="bi-trash-fill"></i>
+                                    </a>
+                                    @endif
+                                    <button type="submit" class="btn btn-primary"><i class="bi-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead>
                                 <tr>
-                                    <td>{{ $nro++ }}</td>
-                                    <td>{{ $usuario->name }}</td>
-                                    <td>{{ $usuario->email }}</td>
-                                    <td>{{ $usuario->rol->name ?? 'Sin asignar' }}</td>
-                                    <td>
-                                        <a href="{{ url('/admin/usuario/'.$usuario->id) }}" class="btn btn-info btn-sm"><i class="bi-eye-fill"></i></a>
-                                        <a href="{{ url('/admin/usuario/'.$usuario->id.'/edit') }}" class="btn btn-warning btn-sm"><i class="bi-pen-fill"></i></a>
-                                        <form action="{{ url('/admin/usuario/'.$usuario->id) }}" class="delete-form" method="POST" style="display: inline-block">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="button" class="btn btn-danger btn-sm delete-btn">
-                                                <i class="bi-trash-fill"></i>
-                                            </button>
-                                        </form>
-                                    </td>
+                                    <th>#</th>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Rol</th>
+                                    <th>Acciones</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @php
+                                    $nro = ($usuarios->currentPage() - 1 ) * $usuarios->perPage() + 1;
+                                @endphp
+                                @foreach($usuarios as $usuario)
+                                    <tr>
+                                        <td>{{ $nro++ }}</td>
+                                        <td>{{ $usuario->name }}</td>
+                                        <td>{{ $usuario->email }}</td>
+                                        <td>{{ $usuario->rol->name ?? 'Sin asignar' }}</td>
+                                        <td>
+                                            <a href="{{ url('/admin/usuario/'.$usuario->id) }}" class="btn btn-info btn-sm"><i class="bi-eye-fill"></i></a>
+                                            <a href="{{ url('/admin/usuario/'.$usuario->id.'/edit') }}" class="btn btn-warning btn-sm"><i class="bi-pen-fill"></i></a>
+                                            <form action="{{ url('/admin/usuario/'.$usuario->id) }}" class="delete-form" method="POST" style="display: inline-block">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="button" class="btn btn-danger btn-sm delete-btn">
+                                                    <i class="bi-trash-fill"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                     @if ($usuarios->hasPages())
                         <div class="d-flex justify-content-between aling-items-center mt-4 px-3">
                             <div class="text-muted">
