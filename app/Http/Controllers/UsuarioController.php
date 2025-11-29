@@ -72,24 +72,52 @@ class UsuarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $usuario = User::find($id);
+        $roles = Role::all();
+        return view('admin.usuarios.edit', compact('usuario', 'roles'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'rol' => 'required',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,'.$id,
+            'password' => 'nullable|string|min:8|confirmed',
+        ]);
+
+        $usuario = User::find($id);
+        $usuario->name = $request->name;
+        $usuario->email = $request->email;
+        if ($request->password) {
+            $usuario->password = Hash::make($request->password);
+        }
+        $usuario->save();
+
+        $usuario->syncRoles($request->rol);
+
+        return redirect()->route('admin.usuarios.index')
+                        ->with('message', 'Usuario actualizado correctamente')
+                        ->with('icon', 'success');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $usuario = User::find($id);
+        $usuario->estado = false;
+        $usuario->save();
+        $usuario->delete();
+
+        return redirect()->route('admin.usuarios.index')
+                        ->with('message', 'Usuario eliminado correctamente')
+                        ->with('icon', 'success');
     }
 }

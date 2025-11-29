@@ -52,13 +52,39 @@
                                         <td>
                                             <a href="{{ url('/admin/usuario/'.$usuario->id) }}" class="btn btn-info btn-sm"><i class="bi-eye-fill"></i></a>
                                             <a href="{{ url('/admin/usuario/'.$usuario->id.'/edit') }}" class="btn btn-warning btn-sm"><i class="bi-pen-fill"></i></a>
-                                            <form action="{{ url('/admin/usuario/'.$usuario->id) }}" class="delete-form" method="POST" style="display: inline-block">
+                                            <form action="{{ url('/admin/usuario/'.$usuario->id) }}" 
+                                                class="delete-form" method="POST" 
+                                                style="display: inline-block"
+                                                id="miFormulario{{ $usuario->id }}"
+                                            >
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="button" class="btn btn-danger btn-sm delete-btn">
+                                                <button type="submit" class="btn btn-danger btn-sm"
+                                                    onclick="preguntar{{ $usuario->id }}(event)"
+                                                > 
                                                     <i class="bi-trash-fill"></i>
                                                 </button>
                                             </form>
+                                            <script>
+                                                function preguntar{{ $usuario->id }}(event) {
+                                                    event.preventDefault();
+
+                                                    Swal.fire({
+                                                        title: "¿Está seguro de borrar?",
+                                                        text: "No podrá revertir esta acción!",
+                                                        icon: "question",
+                                                        showDenyButton: true,
+                                                        confirmButtonText: "Sí, eliminar",
+                                                        confirmButtonColor: "#3085d6",
+                                                        denyButtonText: "No, cancelar",
+                                                        denyButtonColor: "#d33",
+                                                    }).then((result) => {
+                                                        if (result.isConfirmed) {
+                                                            document.getElementById("miFormulario{{ $usuario->id }}").submit();
+                                                        }
+                                                    });
+                                                }
+                                            </script>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -80,37 +106,3 @@
         </div>
     </div>
 @endsection
-
-@push('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Seleccionar todos los botones de eliminar
-        const deleteButtons = document.querySelectorAll('.delete-btn');
-        
-        deleteButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const form = this.closest('.delete-form');
-                
-                Swal.fire({
-                    title: "¿Está seguro de borrar?",
-                    text: "No podrá revertir esta acción!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Sí, eliminar",
-                    cancelButtonText: "No, cancelar",
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Si confirma, enviar el formulario
-                        form.submit();
-                    }
-                    // Si cancela, no hacer nada
-                });
-            });
-        });
-    });
-</script>
-@endpush
