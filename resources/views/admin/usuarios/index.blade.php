@@ -36,6 +36,7 @@
                                     <th>Nombre</th>
                                     <th>Email</th>
                                     <th>Rol</th>
+                                    <th>Estado</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -50,41 +51,81 @@
                                         <td>{{ $usuario->email }}</td>
                                         <td>{{ $usuario->roles->pluck('name')->implode(', ') }}</td>
                                         <td>
-                                            <a href="{{ url('/admin/usuario/'.$usuario->id) }}" class="btn btn-info btn-sm"><i class="bi-eye-fill"></i></a>
-                                            <a href="{{ url('/admin/usuario/'.$usuario->id.'/edit') }}" class="btn btn-warning btn-sm"><i class="bi-pen-fill"></i></a>
-                                            <form action="{{ url('/admin/usuario/'.$usuario->id) }}" 
-                                                class="delete-form" method="POST" 
-                                                style="display: inline-block"
-                                                id="miFormulario{{ $usuario->id }}"
-                                            >
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm"
-                                                    onclick="preguntar{{ $usuario->id }}(event)"
-                                                > 
-                                                    <i class="bi-trash-fill"></i>
-                                                </button>
-                                            </form>
-                                            <script>
-                                                function preguntar{{ $usuario->id }}(event) {
-                                                    event.preventDefault();
+                                            @if ($usuario->estado)
+                                                <span class="badge bg-success">Activo</span>
+                                            @else
+                                                <span class="badge bg-danger">Inactivo</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($usuario->estado == 1)
+                                                <a href="{{ url('/admin/usuario/'.$usuario->id) }}" class="btn btn-info btn-sm"><i class="bi-eye-fill"></i></a>
+                                                <a href="{{ url('/admin/usuario/'.$usuario->id.'/edit') }}" class="btn btn-warning btn-sm"><i class="bi-pen-fill"></i></a>
+                                                <form action="{{ url('/admin/usuario/'.$usuario->id) }}" method="POST" 
+                                                    class="d-inline"
+                                                    id="miFormulario{{ $usuario->id }}"
+                                                >
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm"
+                                                        onclick="preguntar{{ $usuario->id }}(event)"
+                                                    > 
+                                                        <i class="bi-trash-fill"></i>
+                                                    </button>
+                                                </form>
+                                                <script>
+                                                    function preguntar{{ $usuario->id }}(event) {
+                                                        event.preventDefault();
 
-                                                    Swal.fire({
-                                                        title: "¿Está seguro de borrar?",
-                                                        text: "No podrá revertir esta acción!",
-                                                        icon: "question",
-                                                        showDenyButton: true,
-                                                        confirmButtonText: "Sí, eliminar",
-                                                        confirmButtonColor: "#3085d6",
-                                                        denyButtonText: "No, cancelar",
-                                                        denyButtonColor: "#d33",
-                                                    }).then((result) => {
-                                                        if (result.isConfirmed) {
-                                                            document.getElementById("miFormulario{{ $usuario->id }}").submit();
-                                                        }
-                                                    });
-                                                }
-                                            </script>
+                                                        Swal.fire({
+                                                            title: "¿Está seguro de borrar?",
+                                                            text: "No podrá revertir esta acción!",
+                                                            icon: "question",
+                                                            showDenyButton: true,
+                                                            confirmButtonText: "Sí, eliminar",
+                                                            confirmButtonColor: "#3085d6",
+                                                            denyButtonText: "No, cancelar",
+                                                            denyButtonColor: "#d33",
+                                                        }).then((result) => {
+                                                            if (result.isConfirmed) {
+                                                                document.getElementById("miFormulario{{ $usuario->id }}").submit();
+                                                            }
+                                                        });
+                                                    }
+                                                </script>
+                                            @else
+                                                <form action="{{ url('/admin/usuario/'.$usuario->id.'/restaurar') }}" method="POST" 
+                                                    class="d-inline"
+                                                    id="miFormulario{{ $usuario->id }}"
+                                                >
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-success btn-sm"
+                                                        onclick="preguntar{{ $usuario->id }}(event)"
+                                                    > 
+                                                        <i class="bi-arrow-clockwise"></i> Restaurar
+                                                    </button>
+                                                </form>
+                                                <script>
+                                                    function preguntar{{ $usuario->id }}(event) {
+                                                        event.preventDefault();
+
+                                                        Swal.fire({
+                                                            title: "¿Restaurar usuario?",
+                                                            text: "El usuario volverá a estar activo en el sistema.",
+                                                            icon: "question",
+                                                            showDenyButton: true,
+                                                            confirmButtonText: "Sí, restaurar",
+                                                            confirmButtonColor: "#3085d6",
+                                                            denyButtonText: "No, cancelar",
+                                                            denyButtonColor: "#d33",
+                                                        }).then((result) => {
+                                                            if (result.isConfirmed) {
+                                                                document.getElementById("miFormulario{{ $usuario->id }}").submit();
+                                                            }
+                                                        });
+                                                    }
+                                                </script>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
