@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <div class="row" style="justify-content: end">
                         <div class="col-md-4 col-sm-6 col-12">
-                            <form action="{{ url('/admin/usuarios') }}" method="GET" class="m-3">
+                            <form action="{{ url('/admin/usuarios') }}" method="GET" style="margin: 0 1rem 1rem 1rem;">
                                 <div class="input-group">
                                     <input type="text" name="buscar" class="form-control" placeholder="Buscar ..." value="{{ $_REQUEST['buscar'] ?? '' }}">
                                     @if (isset($_REQUEST['buscar']))
@@ -48,7 +48,7 @@
                                         <td>{{ $nro++ }}</td>
                                         <td>{{ $usuario->name }}</td>
                                         <td>{{ $usuario->email }}</td>
-                                        <td>{{ $usuario->rol->name ?? 'Sin asignar' }}</td>
+                                        <td>{{ $usuario->roles->pluck('name')->implode(', ') }}</td>
                                         <td>
                                             <a href="{{ url('/admin/usuario/'.$usuario->id) }}" class="btn btn-info btn-sm"><i class="bi-eye-fill"></i></a>
                                             <a href="{{ url('/admin/usuario/'.$usuario->id.'/edit') }}" class="btn btn-warning btn-sm"><i class="bi-pen-fill"></i></a>

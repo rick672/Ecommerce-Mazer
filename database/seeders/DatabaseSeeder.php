@@ -18,12 +18,16 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
+        Role::create(['name' => 'Super Admin']);
+        Role::create(['name' => 'Administrador']);
+        Role::create(['name' => 'Vendedor']);
+        Role::create(['name' => 'Cliente']);
 
         User::create([
-            'name' => 'Super Admin',
+            'name' => 'Ricardo Sanchez',
             'email' => 'superadmin@example.com',
             'password' => bcrypt('password'),
-        ]);
+        ])->assignRole('Super Admin');
 
         Ajuste::create([
             'nombre' => 'NexusMarket Pro',
@@ -38,9 +42,5 @@ class DatabaseSeeder extends Seeder
             'pagina_web' => 'https://www.nexusmarketpro.com',
         ]);
 
-        Role::create(['name' => 'Superadmin']);
-        Role::create(['name' => 'Administrador']);
-        Role::create(['name' => 'Vendedor']);
-        Role::create(['name' => 'Cliente']);
     }
 }

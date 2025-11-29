@@ -13,6 +13,33 @@
                     <form action="{{ url('/admin/usuarios/create') }}" method="POST">
                         @csrf
                         <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="rol" class="form-label">Roles (*)</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="bi-shield-fill-check"></i></span>
+                                        <select 
+                                            name="rol" id="rol" 
+                                            class="form-select"
+                                            required
+                                        >
+                                            <option value="">-- Selecciona una rol --</option>
+                                            @foreach($roles as $rol)
+                                                @if (!($rol->name == 'Super Admin'))
+                                                    <option value="{{ $rol->name }}"
+                                                        {{ old('rol', $usuario->rol ?? '') == $rol->name ? 'selected' : '' }}
+                                                    >
+                                                        {{ $rol->name }}
+                                                    </option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                        @error('rol')
+                                            <small class="form-text text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name" class="form-label">Nombre (*)</label>

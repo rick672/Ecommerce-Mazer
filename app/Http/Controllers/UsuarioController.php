@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UsuarioController extends Controller
 {
@@ -29,7 +30,8 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        return view('admin.usuarios.create');
+        $roles = Role::all();
+        return view('admin.usuarios.create', compact('roles'));
     }
 
     /**
@@ -39,6 +41,7 @@ class UsuarioController extends Controller
     {
         // return response()->json($request->all());
         $request->validate([
+            'rol' => 'required',
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
@@ -50,6 +53,8 @@ class UsuarioController extends Controller
         $usuario->password = Hash::make($request->password);
         $usuario->save();
 
+        $usuario->assignRole($request->rol);
+
         return redirect()->route('admin.usuarios.index')
                         ->with('message', 'Usuario creado correctamente')
                         ->with('icon', 'success');
@@ -58,9 +63,10 @@ class UsuarioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $usuario = User::find($id);
+        return view('admin.usuarios.show', compact('usuario'));
     }
 
     /**
