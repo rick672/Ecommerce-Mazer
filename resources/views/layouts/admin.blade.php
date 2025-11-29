@@ -74,27 +74,35 @@
                 <div class="sidebar-menu">
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
-
+                        {{-- Dashboard --}}
                         <li class="sidebar-item {{ request()->is('admin') ? 'active' : '' }} ">
                             <a href="{{ url('/admin')}}" class='sidebar-link'>
                                 <i class="bi bi-house-fill"></i>
                                 <span>Inicio</span>
                             </a>
                         </li>
-                        
+                        {{-- Roles --}}
                         <li class="sidebar-item {{ request()->is('admin/rol*') ? 'active' : '' }}">
                             <a href="{{ url('/admin/roles')}}" class='sidebar-link'>
                                 <i class="bi bi-shield-lock-fill"></i>
                                 <span>Roles</span>
                             </a>
                         </li>
-                        
+                        {{-- Usuarios --}}
                         <li class="sidebar-item {{ request()->is('admin/usuario*') ? 'active' : '' }}">
                             <a href="{{ url('/admin/usuarios')}}" class='sidebar-link'>
                                 <i class="bi bi-person-fill-add"></i>
                                 <span>Usuarios</span>
                             </a>
                         </li>
+                        {{-- Categorias --}}
+                        <li class="sidebar-item {{ request()->is('admin/categoria*') ? 'active' : '' }}">
+                            <a href="{{ url('/admin/categorias')}}" class='sidebar-link'>
+                                <i class="bi bi-folder-fill"></i>
+                                <span>Categorias</span>
+                            </a>
+                        </li>
+
                         
                         <li class="sidebar-title">Ajustes</li>
                         
