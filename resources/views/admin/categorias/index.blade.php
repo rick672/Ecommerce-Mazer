@@ -14,14 +14,14 @@
                 </div>
                 <div class="card-body">
                     <div class="row" style="justify-content: end">
-                        <div class="col-md-4 col-sm-6 col-12">
+                        <div class="col-lg-4 col-md-6 col-12">
                             <form action="{{ url('/admin/categorias') }}" method="GET" style="margin: 0 1rem 1rem 1rem;">
                                 <div class="input-group">
                                     <input type="text" name="buscar" class="form-control" placeholder="Buscar ..." value="{{ $_REQUEST['buscar'] ?? '' }}">
-                                    @if (isset($_REQUEST['buscar']))
-                                    <a href="{{ url('/admin/categorias') }}" class="btn btn-light">
-                                        <i class="bi-trash-fill"></i>
-                                    </a>
+                                    @if (request('buscar'))
+                                        <a href="{{ url('/admin/categorias') }}" class="btn btn-light">
+                                            <i class="bi-trash-fill"></i>
+                                        </a>
                                     @endif
                                     <button type="submit" class="btn btn-primary"><i class="bi-search"></i></button>
                                 </div>
