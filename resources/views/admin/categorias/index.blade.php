@@ -50,19 +50,21 @@
                                         <td>{{ $categoria->slug }}</td>
                                         <td>{{ $categoria->descripcion }}</td>
                                         <td>
-                                            <a href="{{ url('/admin/categoria/'.$categoria->id) }}" class="btn btn-info btn-sm"><i class="bi-eye-fill"></i></a>
-                                            <a href="{{ url('/admin/categoria/'.$categoria->id.'/edit') }}" class="btn btn-warning btn-sm"><i class="bi-pen-fill"></i></a>
+                                            <div class="btn-group btn-group-sm">
+                                                <a href="{{ url('/admin/categoria/'.$categoria->id) }}" class="btn btn-info btn-sm"><i class="bi-eye-fill"></i></a>
+                                                <a href="{{ url('/admin/categoria/'.$categoria->id.'/edit') }}" class="btn btn-warning btn-sm"><i class="bi-pen-fill"></i></a>
+                                                <button type="submit" class="btn btn-danger btn-sm"
+                                                    onclick="preguntar{{ $categoria->id }}(event)"
+                                                > 
+                                                    <i class="bi-trash-fill"></i>
+                                                </button>
+                                            </div>
                                             <form action="{{ url('/admin/categoria/'.$categoria->id) }}" method="POST" 
                                                 class="d-inline"
                                                 id="miFormulario{{ $categoria->id }}"
                                             >
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm"
-                                                    onclick="preguntar{{ $categoria->id }}(event)"
-                                                > 
-                                                    <i class="bi-trash-fill"></i>
-                                                </button>
                                             </form>
                                             <script>
                                                 function preguntar{{ $categoria->id }}(event) {
