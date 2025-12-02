@@ -94,7 +94,15 @@
                     <h4>Imagenes del Producto</h4>
                 </div>
                 <div class="card-body">
-
+                    <div class="row">
+                        @foreach($producto->imagenes as $imagen)
+                            <div class="col-lg-3 col-md-4 col-12">
+                                <div class="card">
+                                    <img src="{{ asset('storage/'. $imagen->imagen) }}" class="card-img-top" alt="Logo del Login">
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>

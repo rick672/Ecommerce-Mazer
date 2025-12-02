@@ -59,6 +59,7 @@
                                         <td>{{ $producto->stock }}</td>
                                         <td>
                                             <div class="btn-group btn-group-sm">
+                                                <a href="{{ url('/admin/producto/'.$producto->id.'/imagenes') }}" class="btn btn-success btn-sm"><i class="bi-image"></i></a>
                                                 <a href="{{ url('/admin/producto/'.$producto->id) }}" class="btn btn-info btn-sm"><i class="bi-eye-fill"></i></a>
                                                 <a href="{{ url('/admin/producto/'.$producto->id.'/edit') }}" class="btn btn-warning btn-sm"><i class="bi-pen-fill"></i></a>
                                                 <button type="submit" class="btn btn-danger btn-sm"
