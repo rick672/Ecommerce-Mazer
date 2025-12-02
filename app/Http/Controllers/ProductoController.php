@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ajuste;
 use App\Models\Categoria;
 use App\Models\Producto;
 use App\Models\ProductoImagen;
@@ -15,6 +16,7 @@ class ProductoController extends Controller
      */
     public function index(Request $request)
     {
+        $ajuste = Ajuste::first();
         $buscar = $request->get('buscar');
         $query = Producto::query();
 
@@ -26,7 +28,7 @@ class ProductoController extends Controller
         }
 
         $productos = $query->paginate(10);
-        return view('admin.productos.index', compact('productos'));
+        return view('admin.productos.index', compact('productos', 'ajuste'));
     }
 
     /**
@@ -122,24 +124,60 @@ class ProductoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Producto $producto)
+    public function edit($id)
     {
-        //
+        $producto = Producto::findOrFail($id);
+        $categorias = Categoria::all();
+        return view('admin.productos.edit', compact('producto', 'categorias'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Producto $producto)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'codigo' => 'required|string|max:100|unique:productos,codigo,'.$id,
+            'descripcion_corta' => 'required|string|max:255',
+            'descripcion_larga' => 'required|string',
+            'precio_compra' => 'required|numeric|min:1',
+            'precio_venta' => 'required|numeric|min:1',
+            'stock' => 'required|numeric|min:1',
+            'categoria_id' => 'required|exists:categorias,id',
+        ]);
+        $producto = Producto::findOrFail($id);
+        $producto->nombre = $request->nombre;
+        $producto->codigo = $request->codigo;
+        $producto->descripcion_corta = $request->descripcion_corta;
+        $producto->descripcion_larga = $request->descripcion_larga;
+        $producto->precio_compra = $request->precio_compra;
+        $producto->precio_venta = $request->precio_venta;
+        $producto->stock = $request->stock;
+        $producto->categoria_id = $request->categoria_id;
+        $producto->save();
+
+        return redirect()->route('admin.productos.index')
+                        ->with('message', 'Producto actualizado exitosamente')
+                        ->with('icon', 'success');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Producto $producto)
+    public function destroy($id)
     {
-        //
+        $producto = Producto::findOrFail($id);
+        foreach ($producto->imagenes as $imagen) {
+            if ($imagen->imagen && Storage::disk('public')->exists($imagen->imagen)) {
+                Storage::disk('public')->delete($imagen->imagen);
+            }
+            $imagen->delete();
+        }
+        $producto->delete();
+
+        return redirect()->route('admin.productos.index')
+                        ->with('message', 'Producto eliminado exitosamente')
+                        ->with('icon', 'success');
     }
 }
