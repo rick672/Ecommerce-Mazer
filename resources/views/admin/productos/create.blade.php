@@ -109,7 +109,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-text"><i class="bi-currency-dollar"></i></span>
                                                 <input 
-                                                    type="text" name="precio_compra" id="precio_compra" 
+                                                    type="number" name="precio_compra" id="precio_compra" 
                                                     class="form-control"
                                                     value="{{ old('precio_compra') }}"
                                                     placeholder="0.00" step="0.01" min="1"
@@ -128,7 +128,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-text"><i class="bi-currency-dollar"></i></span>
                                                 <input 
-                                                    type="text" name="precio_venta" id="precio_venta" 
+                                                    type="number" name="precio_venta" id="precio_venta" 
                                                     class="form-control"
                                                     value="{{ old('precio_venta') }}"
                                                     placeholder="0.00" step="0.01" min="1"
@@ -222,7 +222,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <a href="{{ url('/admin/productos') }}" class="btn btn-secondary">Volver</a>
+                                    <a href="{{ url('/admin/productos') }}" class="btn btn-secondary">Cancelar</a>
                                     <button type="submit" class="btn btn-primary">Guardar</button>
                                 </div>
                             </div>
