@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Ajuste;
 use App\Models\Categoria;
+use App\Models\Producto;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -43,7 +44,8 @@ class DatabaseSeeder extends Seeder
             'pagina_web' => 'https://www.nexusmarketpro.com',
         ]);
 
-        Categoria::factory(15)->create();
+        Categoria::factory(9)->create();
+        Producto::factory(35)->create();
 
     }
 }
