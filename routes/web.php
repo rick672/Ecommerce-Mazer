@@ -53,3 +53,7 @@ Route::delete('/admin/producto/imagen/{id}/destroy_imagen', [App\Http\Controller
 Route::get('/admin/producto/{id}/edit', [App\Http\Controllers\ProductoController::class, 'edit'])->name('admin.productos.edit')->middleware('auth');
 Route::put('/admin/producto/{id}', [App\Http\Controllers\ProductoController::class, 'update'])->name('admin.productos.update')->middleware('auth');
 Route::delete('/admin/producto/{id}', [App\Http\Controllers\ProductoController::class, 'destroy'])->name('admin.productos.destroy')->middleware('auth');
+
+
+// Rutas para la web
+Route::get('/', [App\Http\Controllers\WebController::class, 'index'])->name('web');
