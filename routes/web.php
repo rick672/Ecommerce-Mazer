@@ -57,3 +57,4 @@ Route::delete('/admin/producto/{id}', [App\Http\Controllers\ProductoController::
 
 // Rutas para la web
 Route::get('/', [App\Http\Controllers\WebController::class, 'index'])->name('web');
+Route::get('/producto/{id}', [App\Http\Controllers\ProductoController::class, 'detalle_producto'])->name('web.detalle_producto');

@@ -47,7 +47,7 @@
         <div class="d-flex py-3 align-items-center justify-content-between">
 
           <!-- Logo -->
-          <a href="index.html" class="logo d-flex align-items-center">
+          <a href="{{ url('/')}}" class="logo d-flex align-items-center">
             <h1 class="sitename">{{ $ajuste->nombre ?? ENV('APP_NAME') }}</h1>
           </a>
 

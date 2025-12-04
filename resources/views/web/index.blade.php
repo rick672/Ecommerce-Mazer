@@ -88,21 +88,24 @@
             <div class="col-lg-3 col-md-6">
               <div class="product-item">
                 <div class="product-image">
-                  <div class="product-badge sale-badge">25% Descuento</div>
-                  <img src="assets/img/product/product-4.webp" alt="Product Image" class="img-fluid" loading="lazy">
+                  @php
+                    $imagen_producto = $producto->imagenes->first();
+                    $imagen = $imagen_producto->imagen ?? '';
+                    @endphp
+                  <img src="{{ asset('storage/'.$imagen) }}" alt="Product Image" class="img-fluid" loading="lazy">
                   <div class="product-actions">
                     <button class="action-btn wishlist-btn">
                       <i class="bi bi-heart"></i>
                     </button>
-                    <button class="action-btn quickview-btn">
+                    <a href="{{ url('/producto/'.$producto->id) }}" class="btn action-btn quickview-btn">
                       <i class="bi bi-zoom-in"></i>
-                    </button>
+                    </a>
                   </div>
                   <button class="cart-btn">Añadir al carrito</button>
                 </div>
                 <div class="product-info">
                   <div class="product-category">{{ $producto->nombre }} </div>
-                  <h4 class="product-name"><a href="product-details.html">Descripción del producto</a></h4>
+                  <h4 class="product-name"><a href="{{ url('/producto/'.$producto->id) }}">{{ $producto->descripcion_corta }}</a></h4>
                   <div class="product-rating">
                     <div class="stars">
                       <i class="bi bi-star-fill"></i>
@@ -112,10 +115,11 @@
                       <i class="bi bi-star-half"></i>
                     </div>
                     <span class="rating-count">(38)</span>
+                    <span class="badge bg-success">{{ $producto->stock }} disponibles</span>
                   </div>
                   <div class="product-price">
                     {{-- <span class="old-price">$240.00</span> --}}
-                    <span class="current-price">$180.00</span>
+                    <span class="current-price">{{ $ajuste->divisa.'. '.$producto->precio_venta }}</span>
                   </div>
                   <div class="color-swatches">
                     <span class="swatch active" style="background-color: #1f2937;"></span>
@@ -127,6 +131,16 @@
             </div>
             <!-- End Product -->
           @endforeach
+          @if ($productos->hasPages())
+            <div class="d-flex justify-content-between aling-items-center mt-4 px-3">
+                <div class="text-muted">
+                    Mostrando {{ $productos->firstItem() }} a {{ $productos->lastItem() }} de {{ $productos->total() }} productos
+                </div>
+                <div>
+                    {{ $productos->links('pagination::bootstrap-4') }}
+                </div>
+            </div>
+          @endif
         </div>
       </div>
     </section><!-- /Best Sellers Section -->

@@ -180,4 +180,11 @@ class ProductoController extends Controller
                         ->with('message', 'Producto eliminado exitosamente')
                         ->with('icon', 'success');
     }
+
+    public function detalle_producto($id)
+    {
+        $ajuste = Ajuste::first();
+        $producto = Producto::findOrFail($id);
+        return view('web.detalle_producto', compact('ajuste', 'producto'));
+    }
 }
