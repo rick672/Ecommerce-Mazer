@@ -91,7 +91,7 @@
                   @php
                     $imagen_producto = $producto->imagenes->first();
                     $imagen = $imagen_producto->imagen ?? '';
-                    @endphp
+                  @endphp
                   <img src="{{ asset('storage/'.$imagen) }}" alt="Product Image" class="img-fluid" loading="lazy">
                   <div class="product-actions">
                     <button class="action-btn wishlist-btn">
