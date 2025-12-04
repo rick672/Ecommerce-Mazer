@@ -117,13 +117,13 @@
                             </div>
 
                             <div class="action-buttons">
-                                <button class="btn primary-action">
+                                <a href="{{ url('/carrito') }}" class="btn primary-action">
                                     <i class="bi bi-bag-plus"></i>
                                     Añadir al carrito
-                                </button>
-                                <button class="btn icon-action" title="Add to Wishlist">
+                                </a>
+                                <a href="{{ url('/dashboard') }}" class="btn icon-action" title="Add to Wishlist">
                                     <i class="bi bi-heart"></i>
-                                </button>
+                                </a>
                             </div>
                         </div>
 

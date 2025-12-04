@@ -58,3 +58,7 @@ Route::delete('/admin/producto/{id}', [App\Http\Controllers\ProductoController::
 // Rutas para la web
 Route::get('/', [App\Http\Controllers\WebController::class, 'index'])->name('web');
 Route::get('/producto/{id}', [App\Http\Controllers\ProductoController::class, 'detalle_producto'])->name('web.detalle_producto');
+Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('web.dashboard');
+Route::get('/carrito', [App\Http\Controllers\DashboardController::class, 'carrito'])->name('web.carrito');
+Route::get('/web/login', [App\Http\Controllers\DashboardController::class, 'login'])->name('web.login');
+Route::post('/web/login', [App\Http\Controllers\DashboardController::class, 'authenticacion'])->name('web.authenticacion');
