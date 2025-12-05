@@ -64,3 +64,15 @@ Route::get('/web/login', [App\Http\Controllers\DashboardController::class, 'logi
 Route::post('/web/login', [App\Http\Controllers\DashboardController::class, 'authenticacion'])->name('web.authenticacion');
 Route::get('/web/registro', [App\Http\Controllers\DashboardController::class, 'registro'])->name('web.registro');
 Route::post('/web/registro', [App\Http\Controllers\DashboardController::class, 'crear_cuenta'])->name('web.crear_cuenta');
+
+
+
+
+
+
+Route::fallback(function () {
+    if(request()->is('admin*')) {
+        return response()->view('errors.404-admin', [], 404);
+    } 
+    return response()->view('errors.404', [], 404);
+});

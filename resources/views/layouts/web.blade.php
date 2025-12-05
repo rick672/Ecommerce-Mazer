@@ -1,3 +1,6 @@
+@php
+    $ajuste = \App\Models\Ajuste::first() ?? '';
+@endphp
 <!DOCTYPE html>
 <html lang="es">
 
