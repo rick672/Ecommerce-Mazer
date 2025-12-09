@@ -23,9 +23,9 @@
                                     $imagen_producto = $producto->imagenes->first();
                                     $imagen = $imagen_producto->imagen ?? '';
                                 @endphp
-                                <img src="{{ asset('storage/'.$imagen) }}" alt="Product Main"
+                                <img src="{{ asset('storage/' . $imagen) }}" alt="Product Main"
                                     class="img-fluid main-product-image drift-zoom" id="main-product-image"
-                                    data-zoom="{{ asset('storage/'.$imagen) }}">
+                                    data-zoom="{{ asset('storage/' . $imagen) }}">
 
                                 <div class="image-navigation">
                                     <button class="nav-arrow prev-image image-nav-btn prev-image" type="button">
@@ -39,10 +39,11 @@
                         </div>
 
                         <div class="thumbnail-grid">
-                             @foreach ($producto->imagenes as $index => $item)
+                            @foreach ($producto->imagenes as $index => $item)
                                 <div class="thumbnail-wrapper thumbnail-item {{ $index === 0 ? 'active' : '' }}"
-                                    data-image="{{ asset('storage/'.$item->imagen) }}">
-                                    <img src="{{ asset('storage/'.$item->imagen) }}" alt="View {{ $index + 1 }}" class="img-fluid">
+                                    data-image="{{ asset('storage/' . $item->imagen) }}">
+                                    <img src="{{ asset('storage/' . $item->imagen) }}" alt="View {{ $index + 1 }}"
+                                        class="img-fluid">
                                 </div>
                             @endforeach
                         </div>
@@ -82,7 +83,7 @@
 
                         <div class="pricing-section">
                             <div class="price-display">
-                                <span class="sale-price">{{ $ajuste->divisa.': '.$producto->precio_venta }}</span>
+                                <span class="sale-price">{{ $ajuste->divisa . ': ' . $producto->precio_venta }}</span>
                             </div>
                         </div>
 
@@ -121,9 +122,13 @@
                                     <i class="bi bi-bag-plus"></i>
                                     Añadir al carrito
                                 </a>
-                                <a href="{{ url('/dashboard') }}" class="btn icon-action" title="Add to Wishlist">
-                                    <i class="bi bi-heart"></i>
-                                </a>
+                                <form action="{{ url('/favoritos') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="producto_id" value="{{ $producto->id }}">
+                                    <button type="submit" class="btn icon-action" title="Add to Wishlist">
+                                        <i class="bi bi-heart-fill"></i>
+                                    </button>
+                                </form>
                             </div>
                         </div>
 
@@ -131,7 +136,8 @@
                         <div class="benefits-list">
                             <div class="benefit-item">
                                 <i class="bi bi-truck"></i>
-                                <span>Entrega gratuita en pedidos superiores a {{ $ajuste->divisa.'. '.$producto->precio_venta*3 }}</span>
+                                <span>Entrega gratuita en pedidos superiores a
+                                    {{ $ajuste->divisa . '. ' . $producto->precio_venta * 3 }}</span>
                             </div>
                             <div class="benefit-item">
                                 <i class="bi bi-arrow-clockwise"></i>
@@ -158,9 +164,11 @@
                             <button class="nav-link active" data-bs-toggle="tab"
                                 data-bs-target="#ecommerce-product-details-5-overview" type="button">Descripción</button>
                             <button class="nav-link" data-bs-toggle="tab"
-                                data-bs-target="#ecommerce-product-details-5-technical" type="button">Detalles técnicos</button>
+                                data-bs-target="#ecommerce-product-details-5-technical" type="button">Detalles
+                                técnicos</button>
                             <button class="nav-link" data-bs-toggle="tab"
-                                data-bs-target="#ecommerce-product-details-5-customer-reviews" type="button">Comentarios (127)</button>
+                                data-bs-target="#ecommerce-product-details-5-customer-reviews" type="button">Comentarios
+                                (127)</button>
                         </nav>
 
                         <div class="tab-content">

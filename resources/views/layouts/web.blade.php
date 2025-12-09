@@ -33,6 +33,7 @@
     <!-- Main CSS File -->
     <link href="{{ asset('/assets/css/main.css') }}" rel="stylesheet">
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- =======================================================
   * Template Name: NiceShop
   * Template URL: https://bootstrapmade.com/niceshop-bootstrap-ecommerce-template/
@@ -45,15 +46,15 @@
 <body class="index-page">
 
     <header id="header" class="header sticky-top">
-      @if ($errors->any())
-          <div class="alert alert-danger">
-              <ul>
-                  @foreach ($errors->all() as $error)
-                      <li>{{ $error }}</li>
-                  @endforeach
-              </ul>
-          </div>
-      @endif
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <!-- Main Header -->
         <div class="main-header">
             <div class="container-fluid container-xl">
@@ -67,11 +68,8 @@
                     <!-- Search -->
                     <form class="search-form desktop-search-form" method="GET" action="{{ url('/buscar') }}">
                         <div class="input-group">
-                            <input 
-                                type="text" class="form-control" 
-                                name="producto" placeholder="Buscar producto ..."
-                                value="{{ $query ?? '' }}"
-                            >
+                            <input type="text" class="form-control" name="producto" placeholder="Buscar producto ..."
+                                value="{{ $query ?? '' }}">
                             <button class="btn" type="submit">
                                 <i class="bi bi-search"></i>
                             </button>
@@ -109,6 +107,10 @@
                                         <i class="bi bi-bag-check me-2"></i>
                                         <span>Mis Pedidos</span>
                                     </a>
+                                    <a class="dropdown-item d-flex align-items-center" href="{{ url('/favoritos') }}">
+                                        <i class="bi bi-heart me-2"></i>
+                                        <span>Mi favoritos</span>
+                                    </a>
                                     <a class="dropdown-item d-flex align-items-center" href="account.html">
                                         <i class="bi bi-gear me-2"></i>
                                         <span>Ajustes</span>
@@ -134,9 +136,14 @@
                         </div>
 
                         <!-- Wishlist -->
-                        <a href="account.html" class="header-action-btn d-none d-md-block">
+                        <a href="{{ url('/favoritos') }}" class="header-action-btn d-none d-md-block">
                             <i class="bi bi-heart"></i>
-                            <span class="badge">0</span>
+                            @php
+                                if (Auth::check()) {
+                                    $cantidad_favoritos = \App\Models\ProductoFavorito::where('usuario_id', Auth::user()->id)->count();
+                                }
+                            @endphp
+                            <span class="badge">{{ $cantidad_favoritos ?? '0' }}</span>
                         </a>
 
                         <!-- Cart -->
@@ -975,6 +982,28 @@
 
     <!-- Main JS File -->
     <script src="{{ asset('/assets/js/main.js') }}"></script>
+
+
+    @if (($mensaje = Session::get('message')) && ($icono = Session::get('icon')))
+        <script>
+            @php
+                $tiempos = [
+                    'success' => 1500, // Eliminación más rápida
+                    'error' => 3000, // Errores más visibles
+                    'warning' => 2500, // Advertencias
+                    'info' => 3500, // Información general
+                ];
+                $timer = $tiempos[$icono] ?? 2000; // Por defecto 2 segundos
+            @endphp
+            Swal.fire({
+                position: "center",
+                icon: "{{ $icono }}",
+                title: "{{ $mensaje }}",
+                showConfirmButton: false,
+                timer: {{ $timer }}
+            });
+        </script>
+    @endif
 
 </body>
 

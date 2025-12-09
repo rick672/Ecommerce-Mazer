@@ -30,4 +30,9 @@ class Producto extends Model
     {
         return $this->hasMany(ProductoImagen::class);
     }
+
+    public function productosFavoritos()
+    {
+        return $this->hasMany(ProductoFavorito::class, 'producto_id');
+    }
 }
