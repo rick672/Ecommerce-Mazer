@@ -109,16 +109,43 @@
                                                     $imagen_producto = $favorito->producto->imagenes->first();
                                                     $imagen = $imagen_producto->imagen ?? '';
                                                 @endphp
-                                                <img src="{{ asset('storage/' . $imagen) }}" alt="Product Image"
-                                                    class="img-fluid" loading="lazy">
-                                                {{-- <img src="assets/img/product/product-1.webp" alt="Product" loading="lazy"> --}}
-                                                <button class="btn-remove" type="button" aria-label="Remove from wishlist">
-                                                    <i class="bi bi-trash"></i>
-                                                </button>
+                                                <img src="{{ asset('storage/' . $imagen) }}" alt="Product Image" class="img-fluid" loading="lazy">
+
+                                                <form action="{{ url('/favorito/' . $favorito->id) }}" method="POST"
+                                                    class="d-inline" id="miFormulario{{ $favorito->id }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn-remove" type="submit"
+                                                        aria-label="Remove from wishlist"
+                                                        onclick="preguntar{{ $favorito->id }}(event)"
+                                                    >
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </form>
+                                                <script>
+                                                    function preguntar{{ $favorito->id }}(event) {
+                                                        event.preventDefault();
+
+                                                        Swal.fire({
+                                                            title: "¿Está seguro de quitar?",
+                                                            text: "Se borrara de su lista de favoritos",
+                                                            icon: "question",
+                                                            showDenyButton: true,
+                                                            confirmButtonText: "Sí, eliminar",
+                                                            confirmButtonColor: "#3085d6",
+                                                            denyButtonText: "No, cancelar",
+                                                            denyButtonColor: "#d33",
+                                                        }).then((result) => {
+                                                            if (result.isConfirmed) {
+                                                                document.getElementById("miFormulario{{ $favorito->id }}").submit();
+                                                            }
+                                                        });
+                                                    }
+                                                </script>
                                                 <div class="sale-badge">{{ $favorito->producto->stock }} Disponible</div>
                                             </div>
                                             <div class="wishlist-content">
-                                                <h4>{{ $favorito->producto->nombre }}</h4>
+                                                <a href="{{ url('/producto/'.$favorito->producto->id) }}"><h4>{{ $favorito->producto->nombre }}</h4></a>
                                                 <div class="product-meta">
                                                     <div class="rating">
                                                         <i class="bi bi-star-fill"></i>
@@ -129,9 +156,9 @@
                                                         <span>(4.5)</span>
                                                     </div>
                                                     <div class="price">
-                                                        <span class="current">{{ $ajuste->divisa . '. ' . $favorito->producto->precio_venta }}</span>
                                                         <span
-                                                            class="original"></span>
+                                                            class="current">{{ $ajuste->divisa . '. ' . $favorito->producto->precio_venta }}</span>
+                                                        <span class="original"></span>
                                                     </div>
                                                 </div>
                                                 <button type="button" class="btn-add-cart">Añadir al carrito</button>

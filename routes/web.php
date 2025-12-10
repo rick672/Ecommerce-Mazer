@@ -68,6 +68,7 @@ Route::get('/buscar', [App\Http\Controllers\WebController::class, 'buscar_produc
 // Favoritos
 Route::get('/favoritos', [App\Http\Controllers\ProductoFavoritoController::class, 'index'])->name('web.favoritos.index');
 Route::post('/favoritos', [App\Http\Controllers\ProductoFavoritoController::class, 'store'])->name('web.favoritos.store');
+Route::delete('/favorito/{id}', [App\Http\Controllers\ProductoFavoritoController::class, 'destroy'])->name('web.favoritos.destroy');
 
 
 
