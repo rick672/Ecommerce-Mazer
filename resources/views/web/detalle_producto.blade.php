@@ -99,37 +99,48 @@
                             <div class="quantity-left">Sólo quedan {{ $producto->stock ?? '0' }} artículos</div>
                         </div>
 
+
                         <!-- Purchase Options -->
                         <div class="purchase-section">
-                            <div class="quantity-control">
-                                <label class="control-label">Cantidad:</label>
-                                <div class="quantity-input-group">
-                                    <div class="quantity-selector">
-                                        <button class="quantity-btn decrease" type="button">
-                                            <i class="bi bi-dash"></i>
-                                        </button>
-                                        <input type="number" class="quantity-input" value="1" min="1"
-                                            max="{{ $producto->stock ?? '0' }}">
-                                        <button class="quantity-btn increase" type="button">
-                                            <i class="bi bi-plus"></i>
-                                        </button>
+                            <form action="{{ url('/carrito/agregar') }}" method="POST" class="w-100">
+                                @csrf
+                                <input type="hidden" name="producto_id" value="{{ $producto->id }}">
+
+                                <div class="quantity-control">
+                                    <label class="control-label">Cantidad:</label>
+                                    <div class="quantity-input-group">
+                                        <div class="quantity-selector">
+                                            <button class="quantity-btn decrease" type="button">
+                                                <i class="bi bi-dash"></i>
+                                            </button>
+                                            <input type="number" name="cantidad" class="quantity-input" value="1"
+                                                min="1" max="{{ $producto->stock ?? '0' }}">
+                                            <button class="quantity-btn increase" type="button">
+                                                <i class="bi bi-plus"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="action-buttons">
-                                <a href="{{ url('/carrito') }}" class="btn primary-action">
-                                    <i class="bi bi-bag-plus"></i>
-                                    Añadir al carrito
-                                </a>
-                                <form action="{{ url('/favoritos') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="producto_id" value="{{ $producto->id }}">
-                                    <button type="submit" class="btn icon-action" title="Add to Wishlist">
+                                <div class="action-buttons">
+                                    <button type="submit" class="btn primary-action w-100">
+                                        <i class="bi bi-bag-plus"></i> Añadir al carrito
+                                    </button>
+
+                                    <!-- Botón de favoritos como un botón separado que activa el otro formulario -->
+                                    <button type="button" class="btn icon-action" title="Add to Wishlist"
+                                        onclick="document.getElementById('favorito-form-{{ $producto->id }}').submit()">
                                         <i class="bi bi-heart-fill"></i>
                                     </button>
-                                </form>
-                            </div>
+                                </div>
+                            </form>
+
+                            <!-- Formulario oculto para favoritos -->
+                            <form id="favorito-form-{{ $producto->id }}" action="{{ url('/favoritos') }}" method="POST"
+                                class="d-none">
+                                @csrf
+                                <input type="hidden" name="producto_id" value="{{ $producto->id }}">
+                            </form>
                         </div>
 
                         <!-- Benefits List -->
