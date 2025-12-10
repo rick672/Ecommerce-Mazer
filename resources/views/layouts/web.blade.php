@@ -147,9 +147,14 @@
                         </a>
 
                         <!-- Cart -->
-                        <a href="cart.html" class="header-action-btn">
+                        <a href="{{ url('/carrito') }}" class="header-action-btn">
                             <i class="bi bi-cart3"></i>
-                            <span class="badge">3</span>
+                            @php
+                                if (Auth::check()) {
+                                    $cantidad_carrito = \App\Models\Carrito::where('usuario_id', Auth::user()->id)->count();
+                                }
+                            @endphp
+                            <span class="badge">{{ $cantidad_carrito ?? '0' }}</span>
                         </a>
 
                         <!-- Mobile Navigation Toggle -->
