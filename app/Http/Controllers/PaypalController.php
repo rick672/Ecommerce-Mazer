@@ -38,16 +38,50 @@ class PaypalController extends Controller
             ],
         ];
 
-        $response = $this->provider->createOrder($data);
-        dd($response);
-        // $paypal = $this->provider->checkout($data);
+        // $response = $this->provider->createOrder($data);
+        try {
+            $response = $this->provider->createOrder($data);
 
-        // return response()->json($paypal);
+            if(isset($response['id']) && $response['status'] == 'CREATED') {
+                // redirect to approve href
+                foreach($response['links'] as $link) {
+                    if($link['rel'] == 'approve') {
+                        return redirect()->away($link['href']);
+                    }
+                }
+                return redirect()->route('web.carrito')->with('message', 'No se pudo redirigir a PayPal, intente nuevamente')->with('icon', 'error');
+            } else {
+                return redirect()->route('web.carrito')->with('message', 'Error al crear la orden en PayPal, intente nuevamente')->with('icon', 'error');
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('web.carrito')
+                            ->with('message', 'Exepción capturada: '. $e->getMessage())
+                            ->with('icon', 'error');
+        }
     }
 
-    public function success()
+    public function success(Request $request)
     {
-        return response()->json(['success' => true]);
+        // return response()->json(['success' => true]);
+        $token = $request->query('token');
+        try {
+            $response = $this->provider->capturePaymentOrder($token);
+            if(isset($response['status']) && $response['status'] == 'COMPLETED') {
+                // redirect to approve href
+                // foreach($response['links'] as $link) {
+                //     if($link['rel'] == 'approve') {
+                //         return redirect()->away($link['href']);
+                //     }
+                // }
+                return redirect()->route('web.carrito')->with('message', 'Pago realizado con éxito, ¡gracias por su compra!')->with('icon', 'success');
+            } else {
+                return redirect()->route('web.carrito')->with('message', 'El pago no se completó correctamente, intente nuevamente')->with('icon', 'error');
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('web.carrito')
+                            ->with('message', 'Exepción capturada: '. $e->getMessage())
+                            ->with('icon', 'error');
+        }
     }
 
     public function cancel()
