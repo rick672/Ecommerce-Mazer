@@ -88,16 +88,38 @@ class CarritoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Carrito $carrito)
+    public function update(Request $request)
     {
-        //
+        // return response()->json($request->all());
+        $request->validate([
+            'carrito_id' => 'required|exists:carritos,id',
+            'cantidad' => 'required|integer|min:1',
+        ]);
+        $carrito = Carrito::findOrFail($request->carrito_id);
+        $carrito->cantidad = $request->cantidad;
+        $carrito->save();
+        return redirect()->route('web.carrito')
+            ->with('message', 'Cantidad actualizada en el carrito')
+            ->with('icon', 'success');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Carrito $carrito)
+    public function destroy($id)
     {
-        //
+        $carrito = Carrito::findOrFail($id);
+        $carrito->delete();
+        return redirect()->route('web.carrito')
+            ->with('message', 'Producto eliminado del carrito')
+            ->with('icon', 'success');
+    }
+
+    public function limpiar()
+    {
+        Carrito::where('usuario_id', Auth::user()->id)->delete();
+        return redirect()->route('web.carrito')
+            ->with('message', 'Carrito vaciado correctamente')
+            ->with('icon', 'success');
     }
 }

@@ -96,7 +96,7 @@
                                 <div class="section-header" data-aos="fade-up">
                                     <h2>Mis listas favoritos</h2>
                                     <div class="header-actions">
-                                        <button type="button" class="btn-add-all">Add All to Cart</button>
+                                        <button type="button" class="btn-add-all">Añadir todos al carrito</button>
                                     </div>
                                 </div>
 
@@ -109,7 +109,8 @@
                                                     $imagen_producto = $favorito->producto->imagenes->first();
                                                     $imagen = $imagen_producto->imagen ?? '';
                                                 @endphp
-                                                <img src="{{ asset('storage/' . $imagen) }}" alt="Product Image" class="img-fluid" loading="lazy">
+                                                <img src="{{ asset('storage/' . $imagen) }}" alt="Product Image"
+                                                    class="img-fluid" loading="lazy">
 
                                                 <form action="{{ url('/favorito/' . $favorito->id) }}" method="POST"
                                                     class="d-inline" id="miFormulario{{ $favorito->id }}">
@@ -117,8 +118,7 @@
                                                     @method('DELETE')
                                                     <button class="btn-remove" type="submit"
                                                         aria-label="Remove from wishlist"
-                                                        onclick="preguntar{{ $favorito->id }}(event)"
-                                                    >
+                                                        onclick="preguntar{{ $favorito->id }}(event)">
                                                         <i class="bi bi-trash"></i>
                                                     </button>
                                                 </form>
@@ -145,7 +145,9 @@
                                                 <div class="sale-badge">{{ $favorito->producto->stock }} Disponible</div>
                                             </div>
                                             <div class="wishlist-content">
-                                                <a href="{{ url('/producto/'.$favorito->producto->id) }}"><h4>{{ $favorito->producto->nombre }}</h4></a>
+                                                <a href="{{ url('/producto/' . $favorito->producto->id) }}">
+                                                    <h4>{{ $favorito->producto->nombre }}</h4>
+                                                </a>
                                                 <div class="product-meta">
                                                     <div class="rating">
                                                         <i class="bi bi-star-fill"></i>
@@ -161,7 +163,13 @@
                                                         <span class="original"></span>
                                                     </div>
                                                 </div>
-                                                <button type="button" class="btn-add-cart">Añadir al carrito</button>
+                                                <form action="{{ url('/carrito/agregar') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="producto_id"
+                                                        value="{{ $favorito->producto->id }}">
+                                                    <input type="hidden" name="cantidad" value="1">
+                                                    <button type="submit" class="btn-add-cart">Añadir al carrito</button>
+                                                </form>
                                             </div>
                                         </div>
                                     @endforeach
