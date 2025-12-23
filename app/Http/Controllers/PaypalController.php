@@ -67,12 +67,7 @@ class PaypalController extends Controller
         try {
             $response = $this->provider->capturePaymentOrder($token);
             if(isset($response['status']) && $response['status'] == 'COMPLETED') {
-                // redirect to approve href
-                // foreach($response['links'] as $link) {
-                //     if($link['rel'] == 'approve') {
-                //         return redirect()->away($link['href']);
-                //     }
-                // }
+                
                 return redirect()->route('web.carrito')->with('message', 'Pago realizado con éxito, ¡gracias por su compra!')->with('icon', 'success');
             } else {
                 return redirect()->route('web.carrito')->with('message', 'El pago no se completó correctamente, intente nuevamente')->with('icon', 'error');
