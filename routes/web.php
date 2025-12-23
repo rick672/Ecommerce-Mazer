@@ -79,7 +79,7 @@ Route::post('/carrito/limpiar', [App\Http\Controllers\CarritoController::class, 
 // PayPal Routes
 Route::post('/paypal/checkout', [App\Http\Controllers\PaypalController::class, 'checkout'])->name('web.paypal.checkout');
 Route::get('/paypal/success', [App\Http\Controllers\PaypalController::class, 'success'])->name('web.paypal.success');
-Route::get('/paypal/orden_completada', [App\Http\Controllers\PaypalController::class, 'orden_completada'])->name('web.paypal.orden_completada');
+Route::get('/paypal/orden_completada/{id}', [App\Http\Controllers\PaypalController::class, 'orden_completada'])->name('web.paypal.orden_completada');
 Route::get('/paypal/cancel', [App\Http\Controllers\PaypalController::class, 'cancel'])->name('web.paypal.cancel');
 
 
