@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class PaypalController extends Controller
@@ -20,6 +21,13 @@ class PaypalController extends Controller
     public function checkout(Request $request)
     {
         // return response()->json($request->all());
+        $request->validate([
+            'direccion_envio' => 'required|string|max:255',
+            'total' => 'required|numeric|min:0.01',
+        ]);
+
+        $direccion_formulario = $request->input('direccion_envio');
+        $request->session()->put('direccion_envio', $direccion_formulario);
         $total = $request->total;
         $data = [
             'intent' => 'CAPTURE',
@@ -63,12 +71,21 @@ class PaypalController extends Controller
     public function success(Request $request)
     {
         // return response()->json(['success' => true]);
+        $usuario_id = Auth::user()->id;
         $token = $request->query('token');
         try {
             $response = $this->provider->capturePaymentOrder($token);
             if(isset($response['status']) && $response['status'] == 'COMPLETED') {
+
+                $DatosPago = $response['purchase_units'][0]['payments']['captures'][0];
+                $total = $DatosPago['amount']['value'];
+                $transaction_id = $DatosPago['id'];
+                $estado_pago = $DatosPago['status'];
+                $divisa = $DatosPago['amount']['currency_code'];
+                $estado_orden = 'Procesando';
+                $direccion_envio = $request->session()->get('direccion_envio', 'No proporcionada');
                 
-                return redirect()->route('web.carrito')->with('message', 'Pago realizado con éxito, ¡gracias por su compra!')->with('icon', 'success');
+                // return redirect()->route('web.carrito')->with('message', 'Pago realizado con éxito, ¡gracias por su compra!')->with('icon', 'success');
             } else {
                 return redirect()->route('web.carrito')->with('message', 'El pago no se completó correctamente, intente nuevamente')->with('icon', 'error');
             }

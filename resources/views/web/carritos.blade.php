@@ -59,7 +59,7 @@
                                                     class="d-inline" id="miFormulario{{ $carrito->id }}">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button 
+                                                    <button
                                                         style="
                                                                 background: none;
                                                                 border: none;
@@ -73,8 +73,7 @@
                                                                 transition: color 0.3s ease;
                                                         "
                                                         class="" type="submit"
-                                                        onclick="preguntar{{ $carrito->id }}(event)"
-                                                    >
+                                                        onclick="preguntar{{ $carrito->id }}(event)">
                                                         <i class="bi bi-trash"></i> Eliminar
                                                     </button>
                                                 </form>
@@ -116,8 +115,9 @@
                                                 <button type="submit" class="quantity-btn decrease">
                                                     <i class="bi bi-dash"></i>
                                                 </button>
-                                                <input type="number" class="quantity-input" value="{{ $carrito->cantidad }}"
-                                                    min="1" max="{{ $carrito->producto->stock }}" name="cantidad">
+                                                <input type="number" class="quantity-input"
+                                                    value="{{ $carrito->cantidad }}" min="1"
+                                                    max="{{ $carrito->producto->stock }}" name="cantidad">
                                                 <button type="submit" class="quantity-btn increase">
                                                     <i class="bi bi-plus"></i>
                                                 </button>
@@ -160,20 +160,27 @@
                     <div class="cart-summary">
                         <h4 class="summary-title">Resumen de la Orden</h4>
 
-                        <div class="summary-total">
-                            <span class="summary-label">Total</span>
-                            <span class="summary-value">{{ $ajuste->divisa . '. ' . $total }}</span>
-                        </div>
+                        <form action="{{ route('web.paypal.checkout') }}" method="POST">
+                            @csrf
+                            {{-- Direccion de envio --}}
+                            <div>
+                                <span class="form-label">Dirección de envio</span>
+                                <input type="text" class="form-control" name="direccion_envio" required
+                                    placeholder="Ingrese su dirección de envío">
+                            </div>
+                            {{-- Total --}}
+                            <div class="summary-total">
+                                <span class="summary-label">Total</span>
+                                <span class="summary-value">{{ $ajuste->divisa . '. ' . $total }}</span>
+                            </div>
 
-                        <div class="checkout-button">
-                            <form action="{{ route('web.paypal.checkout') }}" method="POST">
-                                @csrf
+                            <div class="checkout-button">
                                 <input type="hidden" name="total" value="{{ $total }}">
                                 <button type="submit" class="btn btn-accent w-100">
                                     Proceder a la Compra <i class="bi-paypal"></i>
                                 </button>
-                            </form>
-                        </div>
+                            </div>
+                        </form>
 
                         <div class="continue-shopping">
                             <a href="{{ url('/') }}" class="btn btn-link w-100">
