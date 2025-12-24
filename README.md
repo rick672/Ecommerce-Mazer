@@ -8,4 +8,5 @@ TECNOLOGIAS
 *   Para las alertas usamos sweetalert2 en CDN
 *   Usamos https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js para el editor de contenido
 *   Se uso tambien un template para la parte del lado del cliente el NiceShop.zip de https://bootstrapmade.com/
-*   Usamos https://www.paypal.com/sdk/ para el checkout de pagos
+*   Usamos Paypal para el checkout de pagos
+*   Usamos Mailtrap para el envio de emails
