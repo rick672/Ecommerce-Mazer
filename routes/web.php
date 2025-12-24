@@ -54,6 +54,9 @@ Route::get('/admin/producto/{id}/edit', [App\Http\Controllers\ProductoController
 Route::put('/admin/producto/{id}', [App\Http\Controllers\ProductoController::class, 'update'])->name('admin.productos.update')->middleware('auth');
 Route::delete('/admin/producto/{id}', [App\Http\Controllers\ProductoController::class, 'destroy'])->name('admin.productos.destroy')->middleware('auth');
 
+// Pedidos
+Route::get('/admin/pedidos', [App\Http\Controllers\OrdenController::class, 'index'])->name('admin.pedidos.index')->middleware('auth');
+
 
 // Rutas para la web
 Route::get('/', [App\Http\Controllers\WebController::class, 'index'])->name('web');

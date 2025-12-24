@@ -109,6 +109,13 @@
                                 <span>Productos</span>
                             </a>
                         </li>
+                        {{-- Pedidos --}}
+                        <li class="sidebar-item {{ request()->is('admin/pedido*') ? 'active' : '' }}">
+                            <a href="{{ url('/admin/pedidos')}}" class='sidebar-link'>
+                                <i class="bi bi-ui-checks"></i>
+                                <span>Pedidos</span>
+                            </a>
+                        </li>
 
                         
                         <li class="sidebar-title">Ajustes</li>
