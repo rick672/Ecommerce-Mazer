@@ -56,6 +56,7 @@ Route::delete('/admin/producto/{id}', [App\Http\Controllers\ProductoController::
 
 // Pedidos
 Route::get('/admin/pedidos', [App\Http\Controllers\OrdenController::class, 'index'])->name('admin.pedidos.index')->middleware('auth');
+Route::get('/admin/pedido/{id}', [App\Http\Controllers\OrdenController::class, 'create'])->name('admin.pedidos.create')->middleware('auth');
 
 
 // Rutas para la web

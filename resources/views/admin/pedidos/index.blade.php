@@ -68,7 +68,10 @@
                                         </td>
                                         <td>
                                             <div class="btn-group btn-group-sm">
-                                                <a href="{{ url('/admin/pedido/'.$pedido->id) }}" class="btn btn-success btn-sm"><i class="bi-truck"></i> Tomar Pedido</a>
+                                                <a href="{{ url('/admin/pedido/'.$pedido->id) }}" 
+                                                    class="btn btn-success btn-sm">
+                                                    <i class="bi-truck"></i> Tomar Pedido
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>
