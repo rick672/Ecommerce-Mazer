@@ -40,49 +40,52 @@
                     <hr>
                     <h5>Detalles del pedido</h5>
                     <div class="row">
-                        <table class="table table-bordered table-hover table-sm table-striped">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Imagen</th>
-                                    <th>Producto</th>
-                                    <th>Precio</th>
-                                    <th>Cantidad</th>
-                                    <th>SubTotal</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
-                                    $nro = 1;
-                                    $total = 0;
-                                @endphp
-                                @foreach ($pedido->detalles as $detalle)
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-sm table-striped">
+
+                                <thead>
                                     <tr>
-                                        <td>{{ $nro++ }}</td>
-                                        <td>
-                                            @php
-                                                $imagen_producto = $detalle->producto->imagenes->first();
-                                                $imagen = $imagen_producto->imagen ?? '';
-                                            @endphp
-                                            <img src="{{ asset('storage/' . $imagen) }}" alt="Product Image"
-                                                width="180px" loading="lazy">
-                                        </td>
-                                        <td>
-                                            <b><a href="{{ url('/admin/producto/'. $detalle->producto->id)}}">{{ $detalle->producto->nombre }}</a></b> <br><small>{!! $detalle->producto->descripcion_corta !!}</small>
-                                        </td>
-                                        <td>{{ $pedido->divisa . ' ' . $detalle->precio }}</td>
-                                        <td class="text-center">{{ $detalle->cantidad }}</td>
-                                        <td>{{ $pedido->divisa . ' ' . ($detalle->precio * $detalle->cantidad) }}</td>
+                                        <th>#</th>
+                                        <th>Imagen</th>
+                                        <th>Producto</th>
+                                        <th>Precio</th>
+                                        <th>Cantidad</th>
+                                        <th>SubTotal</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th colspan="5" style="text-align: right">Total: </th>
-                                    <th class="text-center">{{ $pedido->divisa. " " . $pedido->total }}</th>
-                                </tr>
-                            </tfoot>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $nro = 1;
+                                        $total = 0;
+                                    @endphp
+                                    @foreach ($pedido->detalles as $detalle)
+                                        <tr>
+                                            <td>{{ $nro++ }}</td>
+                                            <td>
+                                                @php
+                                                    $imagen_producto = $detalle->producto->imagenes->first();
+                                                    $imagen = $imagen_producto->imagen ?? '';
+                                                @endphp
+                                                <img src="{{ asset('storage/' . $imagen) }}" alt="Product Image"
+                                                    width="180px" loading="lazy">
+                                            </td>
+                                            <td>
+                                                <b><a href="{{ url('/admin/producto/'. $detalle->producto->id)}}">{{ $detalle->producto->nombre }}</a></b> <br><small>{!! $detalle->producto->descripcion_corta !!}</small>
+                                            </td>
+                                            <td>{{ $pedido->divisa . ' ' . $detalle->precio }}</td>
+                                            <td class="text-center">{{ $detalle->cantidad }}</td>
+                                            <td>{{ $pedido->divisa . ' ' . ($detalle->precio * $detalle->cantidad) }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="5" style="text-align: right">Total: </th>
+                                        <th class="text-center">{{ $pedido->divisa. " " . $pedido->total }}</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
                     </div>
                     <hr>
                     <h5>Tomar Pedido</h5>
@@ -96,7 +99,7 @@
                                         <textarea 
                                             name="descripcion_larga" id="descripcion_larga" 
                                             class="form-control ckeditor"
-                                            placeholder="Descripción larga del producto"
+                                            placeholder="Descripción detallada del producto"
                                             rows="3"
                                         >{{ old('descripcion_larga') }}</textarea>
 
@@ -133,9 +136,6 @@
                                 @error('descripcion_larga')
                                     <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
-                                <small class="form-text text-muted">
-                                    La descripción larga debe ser de 1-1000 caracteres.
-                                </small>
                             </div> 
                         </div> 
                     </div>
@@ -145,7 +145,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <a href="{{ url('/admin/productos') }}" class="btn btn-secondary">Cancelar</a>
-                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                <button type="submit" class="btn btn-primary">Tomar Pedido</button>
                             </div>
                         </div>
                     </div>

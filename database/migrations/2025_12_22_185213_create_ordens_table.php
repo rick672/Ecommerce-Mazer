@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('estado_orden');
             $table->string('transaccion_id');
             $table->string('direccion_envio');
+            $table->text('nota')->nullable();
 
             $table->timestamps();
         });
