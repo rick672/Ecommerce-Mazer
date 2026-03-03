@@ -29,9 +29,20 @@ class OrdenController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        //
+        // return response()->json($request->all());
+        $orden = Orden::findOrFail($id);
+        $request->validate([
+            'nota' => 'required',
+        ]);
+        $orden->nota = $request->nota;
+        $orden->estado_orden = 'Enviado';
+        $orden->save();
+
+        return redirect()->route('admin.pedidos.index')
+            ->with('message', 'Pedido tomado correctamente')
+            ->with('icon', 'success');
     }
 
     /**

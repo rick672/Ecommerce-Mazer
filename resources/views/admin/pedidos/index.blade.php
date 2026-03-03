@@ -9,7 +9,7 @@
                 <div class="card-header">
                     <h4 class="d-flex justify-content-between align-items-center">
                         Pedidos registrados
-                        <a href="{{ url('/admin/pedidos/create') }}" class="btn btn-primary"><i class="bi-plus"></i> Nuevo</a>
+                        {{-- <a href="{{ url('/admin/pedidos/create') }}" class="btn btn-primary"><i class="bi-plus"></i> Nuevo</a> --}}
                     </h4>
                 </div>
                 <div class="card-body">
@@ -66,11 +66,15 @@
                                                 @endforeach
                                             </ul>
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             <div class="btn-group btn-group-sm">
                                                 <a href="{{ url('/admin/pedido/'.$pedido->id) }}" 
-                                                    class="btn btn-success btn-sm">
-                                                    <i class="bi-truck"></i> Tomar Pedido
+                                                    class="@if($pedido->estado_orden=="Procesando") btn btn-success btn-sm @else btn btn-secondary @endif">
+                                                    @if($pedido->estado_orden=="Procesando") 
+                                                        <i class="bi-truck"></i> Tomar Pedido 
+                                                    @else 
+                                                        <i class="bi-eye"></i> Ver Pedido 
+                                                    @endif
                                                 </a>
                                             </div>
                                         </td>
