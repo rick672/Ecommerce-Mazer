@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PedidoEnviadoMail;
+use App\Models\Ajuste;
 use App\Models\Orden;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class OrdenController extends Controller
 {
@@ -33,12 +36,16 @@ class OrdenController extends Controller
     {
         // return response()->json($request->all());
         $orden = Orden::findOrFail($id);
+        $ajuste = Ajuste::first();
+
         $request->validate([
             'nota' => 'required',
         ]);
         $orden->nota = $request->nota;
         $orden->estado_orden = 'Enviado';
         $orden->save();
+
+        Mail::to($orden->usuario->email)->send(new PedidoEnviadoMail($orden, $ajuste));
 
         return redirect()->route('admin.pedidos.index')
             ->with('message', 'Pedido tomado correctamente')
