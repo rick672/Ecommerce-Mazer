@@ -13,11 +13,26 @@ class OrdenController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pedidos = Orden::with('detalles')->orderBy('created_at', 'desc')->paginate(5);
+        $buscar = $request->get('buscar');
+        $query = Orden::with('usuario', 'detalles.producto')->orderBy('created_at', 'desc');
         // return response()->json($ordenes);
-        return view('admin.pedidos.index', compact('pedidos'));
+        if ($buscar) {
+            $query->where(function ($q) use ($buscar) {
+
+                $q->whereHas('usuario', function ($userQuery) use ($buscar) {
+                    $userQuery->where('name', 'like', '%' . $buscar . '%')
+                                ->orWhere('email', 'like', '%' . $buscar . '%');
+                });
+                $q->orWhereHas('detalles.producto', function ($productoQuery) use ($buscar) {
+                    $productoQuery->where('nombre', 'like', '%' . $buscar . '%');
+                });
+            });
+        }
+
+        $pedidos = $query->paginate(5);
+        return view('admin.pedidos.index', compact('pedidos', 'buscar'));
     }
 
     /**
