@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ajuste;
+use App\Models\Orden;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +15,10 @@ class DashboardController extends Controller
     {
         // return view('web.dashboard');
         if(Auth::check()){
-            return view('web.dashboard');
+            $ajuste = Ajuste::first();
+            $total_pedidos = Orden::where('usuario_id', Auth::user()->id)->count();
+            $pedidos = Orden::with('usuario', 'detalles')->where('usuario_id', Auth::user()->id)->get();
+            return view('web.dashboard', compact('ajuste', 'total_pedidos', 'pedidos'));
         }else{
             return redirect('/web/login');
         }

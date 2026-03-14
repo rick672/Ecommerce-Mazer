@@ -99,7 +99,7 @@
                                         {{ Auth::user()->email ?? 'Acceder a la cuenta &amp; gestionar pedidos' }}</p>
                                 </div>
                                 <div class="dropdown-body">
-                                    <a class="dropdown-item d-flex align-items-center" href="account.html">
+                                    <a class="dropdown-item d-flex align-items-center" href="{{ url('/dashboard') }}">
                                         <i class="bi bi-person-circle me-2"></i>
                                         <span>Mi Perfil</span>
                                     </a>
