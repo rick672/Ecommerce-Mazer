@@ -49,7 +49,7 @@
                                 @foreach($pedidos as $pedido)
                                     <tr>
                                         <td>{{ $nro++ }}</td>
-                                        <td>{{ $pedido->usuario->name ?? 'Cliente sin nombre' }}</td>
+                                        <td>{{ $pedido->usuario->name ?? 'Cliente sin nombre' }} <br><small>{{ $pedido->usuario->email ?? 'Email sin nombre' }}</small></td>
                                         <td>{{ $pedido->divisa . ' ' . $pedido->total }}</td>
                                         <td>{{ $pedido->estado_pago }}</td>
                                         <td>{{ $pedido->estado_orden }}</td>
