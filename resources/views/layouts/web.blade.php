@@ -103,7 +103,7 @@
                                         <i class="bi bi-person-circle me-2"></i>
                                         <span>Mi Perfil</span>
                                     </a>
-                                    <a class="dropdown-item d-flex align-items-center" href="account.html">
+                                    <a class="dropdown-item d-flex align-items-center" href="{{ url('/dashboard') }}">
                                         <i class="bi bi-bag-check me-2"></i>
                                         <span>Mis Pedidos</span>
                                     </a>
@@ -111,7 +111,7 @@
                                         <i class="bi bi-heart me-2"></i>
                                         <span>Mi favoritos</span>
                                     </a>
-                                    <a class="dropdown-item d-flex align-items-center" href="account.html">
+                                    <a class="dropdown-item d-flex align-items-center" href="{{ url('/ajustes') }}">
                                         <i class="bi bi-gear me-2"></i>
                                         <span>Ajustes</span>
                                     </a>

@@ -35,6 +35,12 @@ class DashboardController extends Controller
         return view('web.login', compact('ajuste'));
     }
 
+    public function ajustes()
+    {
+        $ajuste = Ajuste::first();
+        return view('web.ajustes', compact('ajuste'));
+    }
+
     public function authenticacion(Request $request)
     {
         // return response()->json($request->all());

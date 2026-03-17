@@ -39,6 +39,12 @@ class CarritoController extends Controller
      */
     public function store(Request $request)
     {
+        if (Auth::guest()) {
+            return redirect()->route('web.login')
+                ->with('message', 'Debes iniciar sesión para agregar productos al carrito')
+                ->with('icon', 'warning');
+        }
+
         $request->validate([
             'producto_id' => 'required|exists:productos,id',
             'cantidad' => 'required|integer|min:1',
