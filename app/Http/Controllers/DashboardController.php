@@ -82,4 +82,40 @@ class DashboardController extends Controller
 
         return redirect()->intended('/dashboard');
     }
+
+    public function informacion_personal(Request $request)
+    {
+        // return response()->json($request->all());
+        $request->validate([
+            'name' => 'required|string|min:2|max:255',
+            'email' => 'required|email|unique:users,email,'.Auth::user()->id,
+        ]);
+
+        $user = Auth::user();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+        return redirect()->back()->with('message', 'Informacion actualizada correctamente')
+                                    ->with('icon', 'success');
+    }
+
+    public function actualizar_password(Request $request)
+    {
+        // return response()->json($request->all());
+        $request->validate([
+            'current_password' => 'required|string',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user = Auth::user();
+        // Verificar que la contraseña actual sea correcta
+        if(!password_verify($request->current_password, $user->password)){
+            return redirect()->back()->withErrors(['current_password' => 'La contraseña actual es incorrecta']);
+        }
+        // Actualizar la contraseña
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return redirect()->back()->with('message', 'Contraseña actualizada correctamente')
+                                    ->with('icon', 'success');
+    }
 }

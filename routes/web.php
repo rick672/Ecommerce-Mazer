@@ -66,21 +66,26 @@ Route::get('/producto/{id}', [App\Http\Controllers\ProductoController::class, 'd
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('web.dashboard');
 Route::get('/carrito', [App\Http\Controllers\DashboardController::class, 'carrito'])->name('web.carrito');
 Route::get('/ajustes', [App\Http\Controllers\DashboardController::class, 'ajustes'])->name('web.ajustes');
+Route::put('/ajustes/informacion_personal', [App\Http\Controllers\DashboardController::class, 'informacion_personal'])->name('web.informacion_personal');
+Route::put('/ajustes/actualizar_password', [App\Http\Controllers\DashboardController::class, 'actualizar_password'])->name('web.actualizar_password');
 Route::get('/web/login', [App\Http\Controllers\DashboardController::class, 'login'])->name('web.login');
 Route::post('/web/login', [App\Http\Controllers\DashboardController::class, 'authenticacion'])->name('web.authenticacion');
 Route::get('/web/registro', [App\Http\Controllers\DashboardController::class, 'registro'])->name('web.registro');
 Route::post('/web/registro', [App\Http\Controllers\DashboardController::class, 'crear_cuenta'])->name('web.crear_cuenta');
 Route::get('/buscar', [App\Http\Controllers\WebController::class, 'buscar_producto'])->name('web.buscar_producto');
+
 // Favoritos
 Route::get('/favoritos', [App\Http\Controllers\ProductoFavoritoController::class, 'index'])->name('web.favoritos.index');
 Route::post('/favoritos', [App\Http\Controllers\ProductoFavoritoController::class, 'store'])->name('web.favoritos.store');
 Route::delete('/favorito/{id}', [App\Http\Controllers\ProductoFavoritoController::class, 'destroy'])->name('web.favoritos.destroy');
+
 // Carrito
 Route::get('/carrito', [App\Http\Controllers\CarritoController::class, 'index'])->name('web.carrito');
 Route::post('/carrito/agregar', [App\Http\Controllers\CarritoController::class, 'store'])->name('web.carrito.store');
 Route::put('/carrito/actualizar', [App\Http\Controllers\CarritoController::class, 'update'])->name('web.carrito.update');
 Route::delete('/carrito/{id}', [App\Http\Controllers\CarritoController::class, 'destroy'])->name('web.carrito.destroy');
 Route::post('/carrito/limpiar', [App\Http\Controllers\CarritoController::class, 'limpiar'])->name('web.carrito.limpiar');
+
 
 // PayPal Routes
 Route::post('/paypal/checkout', [App\Http\Controllers\PaypalController::class, 'checkout'])->name('web.paypal.checkout');

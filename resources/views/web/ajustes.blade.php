@@ -66,60 +66,74 @@
                                     <!-- Personal Information -->
                                     <div class="settings-section" data-aos="fade-up">
                                         <h3>Informacion Personal</h3>
-                                        <form class="php-email-form settings-form">
+                                        <form class="settings-form" action="{{ url('/ajustes/informacion_personal') }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('PUT')
                                             <div class="row g-3">
                                                 <div class="col-md-6">
                                                     <label for="firstName" class="form-label">Nombre del usuario</label>
-                                                    <input type="text" class="form-control" id="firstName" value="{{ Auth::user()->name }}"
-                                                        required="">
+                                                    <input type="text" name="name" class="form-control" id="firstName"
+                                                        value="{{ Auth::user()->name }}" required>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="email" class="form-label">Email</label>
-                                                    <input type="email" class="form-control" id="email"
-                                                        value="{{ Auth::user()->email }}" required="">
+                                                    <input type="email" name="email" class="form-control" id="email"
+                                                        value="{{ Auth::user()->email }}" required>
                                                 </div>
                                             </div>
 
                                             <div class="form-buttons">
                                                 <button type="submit" class="btn-save">Guardar cambios</button>
                                             </div>
-
-                                            <div class="loading">Loading</div>
-                                            <div class="error-message"></div>
-                                            <div class="sent-message">Your changes have been saved successfully!</div>
                                         </form>
                                     </div>
 
                                     <!-- Security Settings -->
                                     <div class="settings-section" data-aos="fade-up" data-aos-delay="200">
                                         <h3>Seguridad</h3>
-                                        <form class="php-email-form settings-form">
+                                        <form class="settings-form" action="{{ url('/ajustes/actualizar_password') }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('PUT')
                                             <div class="row g-3">
                                                 <div class="col-md-12">
-                                                    <label for="currentPassword" class="form-label">Contraseña actual</label>
-                                                    <input type="password" class="form-control" id="currentPassword"
-                                                        required="">
+                                                    <label for="currentPassword" class="form-label">Contraseña
+                                                        actual</label>
+                                                    <input type="password" name="current_password" class="form-control"
+                                                        id="currentPassword" required>
+                                                    @error('current_password')
+                                                        <div role="alert">
+                                                            <small class="text-danger">{{ $message }}</small>
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="newPassword" class="form-label">Nueva contraseña</label>
-                                                    <input type="password" class="form-control" id="newPassword"
-                                                        required="">
+                                                    <input type="password" name="password" class="form-control"
+                                                        id="newPassword" required>
+                                                    @error('password')
+                                                        <div role="alert">
+                                                            <small class="text-danger">{{ $message }}</small>
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="confirmPassword" class="form-label">Confirmar
                                                         contraseña</label>
-                                                    <input type="password" class="form-control" id="confirmPassword"
-                                                        required="">
+                                                    <input type="password" name="password_confirmation" class="form-control"
+                                                        id="confirmPassword" required>
+                                                    @error('password_confirmation')
+                                                        <div role="alert">
+                                                            <small class="text-danger">{{ $message }}</small>
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                             </div>
 
                                             <div class="form-buttons">
                                                 <button type="submit" class="btn-save">Actualizar contraseña</button>
                                             </div>
-
-                                            <div class="loading">Cargando</div>
-                                            <div class="error-message"></div>
-                                            <div class="sent-message">¡Tu contraseña ha sido actualizada con éxito!</div>
                                         </form>
                                     </div>
 
@@ -127,7 +141,8 @@
                                     <div class="settings-section danger-zone" data-aos="fade-up" data-aos-delay="300">
                                         <h3>Eliminar cuenta</h3>
                                         <div class="danger-zone-content">
-                                            <p>Una vez que elimines tu cuenta, no hay vuelta atrás. Por favor, asegúrate.</p>
+                                            <p>Una vez que elimines tu cuenta, no hay vuelta atrás. Por favor, asegúrate.
+                                            </p>
                                             <button type="button" class="btn-danger">Eliminar cuenta</button>
                                         </div>
                                     </div>
