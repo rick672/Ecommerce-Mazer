@@ -27,6 +27,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'superadmin@example.com',
             'password' => bcrypt('password'),
         ])->assignRole('Super Admin');
+        
+        User::create([
+            'name' => 'Maria Sanchez',
+            'email' => 'maria@gmail.com',
+            'password' => bcrypt('password'),
+        ])->assignRole('Cliente');
 
         Ajuste::create([
             'nombre' => 'NexusMarket Pro',

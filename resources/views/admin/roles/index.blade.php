@@ -30,13 +30,14 @@
                                     <td>{{ $nro++ }}</td>
                                     <td>{{ $role->name }}</td>
                                     <td>
-                                        <a href="{{ url('/admin/rol/'.$role->id) }}" class="btn btn-info btn-sm"><i class="bi-eye-fill"></i></a>
-                                        <a href="{{ url('/admin/rol/'.$role->id.'/edit') }}" class="btn btn-warning btn-sm"><i class="bi-pen-fill"></i></a>
+                                        <a href="{{ url('/admin/rol/'.$role->id).'/permisos' }}" class="btn btn-light text-sm" title="Permisos"><i class="bi-shield-lock-fill"></i> Permisos</a>
+                                        <a href="{{ url('/admin/rol/'.$role->id) }}" class="btn btn-info text-sm"><i class="bi-eye-fill"></i> Ver</a>
+                                        <a href="{{ url('/admin/rol/'.$role->id.'/edit') }}" class="btn btn-warning text-sm"><i class="bi-pen-fill"></i> Editar</a>
                                         <form action="{{ url('/admin/rol/'.$role->id) }}" class="delete-form" method="POST" style="display: inline-block">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="button" class="btn btn-danger btn-sm delete-btn">
-                                                <i class="bi-trash-fill"></i>
+                                            <button type="button" class="btn btn-danger text-sm delete-btn">
+                                                <i class="bi-trash-fill"></i> Eliminar
                                             </button>
                                         </form>
                                     </td>
