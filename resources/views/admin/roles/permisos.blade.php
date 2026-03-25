@@ -12,15 +12,22 @@
                     </h4>
                 </div>
                 <div class="card-body">
-                    @foreach ($permisos as $permiso)
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="permiso_{{ $permiso->id }}" {{ $rol->hasPermissionTo($permiso) ? 'checked' : '' }} disabled>
-                            <label class="form-check-label" for="permiso_{{ $permiso->id }}">
-                                {{ $permiso->name }}
-                            </label>
-                        </div>
-                    @endforeach
-
+                    <div class="row">
+                        @foreach ($permisos as $modulo => $grupoPermisos)
+                            <div class="col-md-3">
+                                <h4><b>{{ $modulo }}</b></h4>
+                                @foreach ($grupoPermisos as $permiso)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="permisos[]" value="{{ $permiso->id }}" id="permiso_{{ $permiso->id }}" {{ $rol->hasPermissionTo($permiso->name) ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="permiso_{{ $permiso->id }}">
+                                            {{ $permiso->name }}
+                                        </label>
+                                    </div>
+                                @endforeach
+                                <br>
+                            </div>
+                        @endforeach
+                    </div>
                     <div class="table-responsive">
                         
                     </div>

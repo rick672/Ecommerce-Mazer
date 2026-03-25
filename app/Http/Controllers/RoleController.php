@@ -28,7 +28,15 @@ class RoleController extends Controller
     public function permisos($id)
     {
         $rol = Role::find($id);
-        $permisos = Permission::all();
+        $permisos = Permission::all()->groupBy(function($permiso) {
+            if(stripos($permiso->name, 'admin') !== false) { return 'Administrador'; }
+            if(stripos($permiso->name, 'ajuste') !== false) { return 'Ajustes del Sistema'; }
+            if(stripos($permiso->name, 'rol') !== false) { return 'Roles'; }
+            if(stripos($permiso->name, 'usuario') !== false) { return 'Usuarios'; }
+            if(stripos($permiso->name, 'categoria') !== false) { return 'Categorias'; }
+            if(stripos($permiso->name, 'producto') !== false) { return 'Productos'; }
+            if(stripos($permiso->name, 'pedido') !== false) { return 'Pedidos'; }
+        });
         return view('admin.roles.permisos', compact('rol', 'permisos'));
     }
 
