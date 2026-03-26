@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\PermissionRegistrar;
 
 class RoleController extends Controller
 {
@@ -45,6 +46,8 @@ class RoleController extends Controller
         //return response()->json($request->all());
         $rol = Role::find($id);
         $rol->permissions()->sync($request->permisos);
+
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
         return redirect()->route('admin.roles.index')
                         ->with('message', 'Permisos del Rol actualizado exitosamente !!!')
                         ->with('icon', 'success');

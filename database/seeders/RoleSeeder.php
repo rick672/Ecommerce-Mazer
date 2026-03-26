@@ -29,9 +29,9 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'Crear Rol'])->syncRoles($superAdmin);
         Permission::create(['name' => 'Guardar Rol'])->syncRoles($superAdmin);
         Permission::create(['name' => 'Detalles de Rol'])->syncRoles($superAdmin);
+        Permission::create(['name' => 'Editar Rol'])->syncRoles($superAdmin);
         Permission::create(['name' => 'Detalles de Permisos de Rol'])->syncRoles($superAdmin);
         Permission::create(['name' => 'Actualizar Permisos de Rol'])->syncRoles($superAdmin);
-        Permission::create(['name' => 'Editar Rol'])->syncRoles($superAdmin);
         Permission::create(['name' => 'Actualizar Rol'])->syncRoles($superAdmin);
         Permission::create(['name' => 'Eliminar Rol'])->syncRoles($superAdmin);
 
