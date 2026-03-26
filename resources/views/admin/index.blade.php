@@ -20,86 +20,160 @@
     <div class="row">
         <div class="col-12 col-lg-9">
             <div class="row">
-                {{-- Total de roles --}}
-                <div class="col-12 col-sm-6 col-lg-3 col-md-6">
-                    <div class="card">
-                        <div class="card-body px-4 py-4-5">
-                            <div class="row">
-                                <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
-                                    <a href="{{ route('admin.roles.index') }}">
-                                        <div class="stats-icon blue mb-2">
-                                            <i class=""><i class="bi bi-shield-lock-fill"></i></i>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Roles registrados</h6>
-                                    <h6 class="font-extrabold mb-0">{{ $total_roles }}</h6>
-                                </div>
-                            </div> 
+                @can('Listado de Roles')
+                    {{-- Total de roles --}}
+                    <div class="col-12 col-sm-6 col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body px-4 py-4-5">
+                                <div class="row">
+                                    <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                        <a href="{{ route('admin.roles.index') }}">
+                                            <div class="stats-icon blue mb-2">
+                                                <i class=""><i class="bi bi-shield-lock-fill"></i></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                        <h6 class="text-muted font-semibold">Roles registrados</h6>
+                                        <h6 class="font-extrabold mb-0">{{ $total_roles }}</h6>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>                    
+                @endcan
+                @can('Listado de Usuarios')
+                    {{-- Total de usuarios --}}
+                    <div class="col-12 col-sm-6 col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body px-4 py-4-5">
+                                <div class="row">
+                                    <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                        <a href="{{ route('admin.usuarios.index') }}">
+                                            <div class="stats-icon green mb-2">
+                                                <i class=""><i class="bi bi-person-fill-add"></i></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                        <h6 class="text-muted font-semibold">Usuarios registrados</h6>
+                                        <h6 class="font-extrabold mb-0">{{ $total_usuarios }}</h6>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>                    
+                @endcan
+                @can('Listado de Categorias')
+                    {{-- Total de categorias --}}
+                    <div class="col-12 col-sm-6 col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body px-4 py-4-5">
+                                <div class="row">
+                                    <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                        <a href="{{ route('admin.categorias.index') }}">
+                                            <div class="stats-icon red mb-2">
+                                                <i class=""><i class="bi bi-tags-fill"></i></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                        <h6 class="text-muted font-semibold">Categorias registradas</h6>
+                                        <h6 class="font-extrabold mb-0">{{ $total_categorias }}</h6>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>                    
+                @endcan
+                @can('Listado de Productos')
+                    {{-- Total de productos --}}
+                    <div class="col-12 col-sm-6 col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body px-4 py-4-5">
+                                <div class="row">
+                                    <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                        <a href="{{ route('admin.productos.index') }}">
+                                            <div class="stats-icon purple mb-2">
+                                                <i class=""><i class="bi bi-box-seam-fill"></i></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                        <h6 class="text-muted font-semibold">Productos registrados</h6>
+                                        <h6 class="font-extrabold mb-0">{{ $total_productos }}</h6>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>                    
+                @endcan
+                @can('Listado de Pedidos')
+                    {{-- Total de pedidos nuevos --}}
+                    <div class="col-12 col-sm-6 col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body px-4 py-4-5">
+                                <div class="row">
+                                    <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                        <a href="{{ route('admin.pedidos.index') }}">
+                                            <div class="stats-icon red mb-2">
+                                                <i class=""><i class="bi bi-bag-plus-fill"></i></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                        <h6 class="text-muted font-semibold">Pedidos nuevos</h6>
+                                        <h6 class="font-extrabold mb-0">{{ $total_pedidos_nuevos }}</h6>
+                                    </div>
+                                </div> 
+                            </div>
                         </div>
                     </div>
-                </div>
-                {{-- Total de usuarios --}}
-                <div class="col-12 col-sm-6 col-lg-3 col-md-6">
-                    <div class="card">
-                        <div class="card-body px-4 py-4-5">
-                            <div class="row">
-                                <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
-                                    <a href="{{ route('admin.usuarios.index') }}">
-                                        <div class="stats-icon green mb-2">
-                                            <i class=""><i class="bi bi-person-fill-add"></i></i>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Usuarios registrados</h6>
-                                    <h6 class="font-extrabold mb-0">{{ $total_usuarios }}</h6>
-                                </div>
-                            </div> 
+                @endcan
+                @can('Listado de Pedidos')
+                    {{-- Total de pedidos enviados --}}
+                    <div class="col-12 col-sm-6 col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body px-4 py-4-5">
+                                <div class="row">
+                                    <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                        <a href="{{ route('admin.pedidos.index') }}">
+                                            <div class="stats-icon blue mb-2">
+                                                <i class=""><i class="bi bi-truck"></i></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                        <h6 class="text-muted font-semibold">Pedidos enviados</h6>
+                                        <h6 class="font-extrabold mb-0">{{ $total_pedidos_enviados }}</h6>
+                                    </div>
+                                </div> 
+                            </div>
                         </div>
                     </div>
-                </div>
-                {{-- Total de categorias --}}
-                <div class="col-12 col-sm-6 col-lg-3 col-md-6">
-                    <div class="card">
-                        <div class="card-body px-4 py-4-5">
-                            <div class="row">
-                                <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
-                                    <a href="{{ route('admin.categorias.index') }}">
-                                        <div class="stats-icon red mb-2">
-                                            <i class=""><i class="bi bi-tags-fill"></i></i>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Categorias registradas</h6>
-                                    <h6 class="font-extrabold mb-0">{{ $total_categorias }}</h6>
-                                </div>
-                            </div> 
+                @endcan
+                @can('Listado de Pedidos')
+                    {{-- Total de pedidos --}}
+                    <div class="col-12 col-sm-6 col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body px-4 py-4-5">
+                                <div class="row">
+                                    <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                        <a href="{{ route('admin.pedidos.index') }}">
+                                            <div class="stats-icon purple mb-2">
+                                                <i class=""><i class="bi bi-bag-check-fill"></i></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                        <h6 class="text-muted font-semibold">Total de pedidos</h6>
+                                        <h6 class="font-extrabold mb-0">{{ $total_pedidos }}</h6>
+                                    </div>
+                                </div> 
+                            </div>
                         </div>
                     </div>
-                </div>
-                {{-- Total de productos --}}
-                <div class="col-12 col-sm-6 col-lg-3 col-md-6">
-                    <div class="card">
-                        <div class="card-body px-4 py-4-5">
-                            <div class="row">
-                                <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
-                                    <a href="{{ route('admin.productos.index') }}">
-                                        <div class="stats-icon purple mb-2">
-                                            <i class=""><i class="bi bi-box-seam-fill"></i></i>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Productos registrados</h6>
-                                    <h6 class="font-extrabold mb-0">{{ $total_productos }}</h6>
-                                </div>
-                            </div> 
-                        </div>
-                    </div>
-                </div>
+                @endcan
             </div>
         </div>
         <div class="col-12 col-lg-3">
@@ -112,74 +186,6 @@
                         <div class="ms-3 name">
                             <h5 class="font-bold">John Duck</h5>
                             <h6 class="text-muted mb-0">@johnducky</h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 col-lg-9">
-            <div class="row">
-                {{-- Total de pedidos nuevos --}}
-                <div class="col-12 col-sm-6 col-lg-3 col-md-6">
-                    <div class="card">
-                        <div class="card-body px-4 py-4-5">
-                            <div class="row">
-                                <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
-                                    <a href="{{ route('admin.pedidos.index') }}">
-                                        <div class="stats-icon red mb-2">
-                                            <i class=""><i class="bi bi-bag-plus-fill"></i></i>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Pedidos nuevos</h6>
-                                    <h6 class="font-extrabold mb-0">{{ $total_pedidos_nuevos }}</h6>
-                                </div>
-                            </div> 
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Total de pedidos enviados --}}
-                <div class="col-12 col-sm-6 col-lg-3 col-md-6">
-                    <div class="card">
-                        <div class="card-body px-4 py-4-5">
-                            <div class="row">
-                                <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
-                                    <a href="{{ route('admin.pedidos.index') }}">
-                                        <div class="stats-icon blue mb-2">
-                                            <i class=""><i class="bi bi-truck"></i></i>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Pedidos enviados</h6>
-                                    <h6 class="font-extrabold mb-0">{{ $total_pedidos_enviados }}</h6>
-                                </div>
-                            </div> 
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Total de pedidos --}}
-                <div class="col-12 col-sm-6 col-lg-3 col-md-6">
-                    <div class="card">
-                        <div class="card-body px-4 py-4-5">
-                            <div class="row">
-                                <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
-                                    <a href="{{ route('admin.pedidos.index') }}">
-                                        <div class="stats-icon purple mb-2">
-                                            <i class=""><i class="bi bi-bag-check-fill"></i></i>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                    <h6 class="text-muted font-semibold">Total de pedidos</h6>
-                                    <h6 class="font-extrabold mb-0">{{ $total_pedidos }}</h6>
-                                </div>
-                            </div> 
                         </div>
                     </div>
                 </div>

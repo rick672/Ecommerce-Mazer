@@ -74,58 +74,78 @@
                 <div class="sidebar-menu">
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
-                        {{-- Dashboard --}}
-                        <li class="sidebar-item {{ request()->is('admin') ? 'active' : '' }} ">
-                            <a href="{{ url('/admin')}}" class='sidebar-link'>
-                                <i class="bi bi-house-fill"></i>
-                                <span>Inicio</span>
-                            </a>
-                        </li>
-                        {{-- Roles --}}
-                        <li class="sidebar-item {{ request()->is('admin/rol*') ? 'active' : '' }}">
-                            <a href="{{ url('/admin/roles')}}" class='sidebar-link'>
-                                <i class="bi bi-shield-lock-fill"></i>
-                                <span>Roles</span>
-                            </a>
-                        </li>
-                        {{-- Usuarios --}}
-                        <li class="sidebar-item {{ request()->is('admin/usuario*') ? 'active' : '' }}">
-                            <a href="{{ url('/admin/usuarios')}}" class='sidebar-link'>
-                                <i class="bi bi-person-fill-add"></i>
-                                <span>Usuarios</span>
-                            </a>
-                        </li>
-                        {{-- Categorias --}}
-                        <li class="sidebar-item {{ request()->is('admin/categoria*') ? 'active' : '' }}">
-                            <a href="{{ url('/admin/categorias')}}" class='sidebar-link'>
-                                <i class="bi bi-folder-fill"></i>
-                                <span>Categorias</span>
-                            </a>
-                        </li>
-                        {{-- Productos --}}
-                        <li class="sidebar-item {{ request()->is('admin/producto*') ? 'active' : '' }}">
-                            <a href="{{ url('/admin/productos')}}" class='sidebar-link'>
-                                <i class="bi bi-box-seam-fill"></i>
-                                <span>Productos</span>
-                            </a>
-                        </li>
-                        {{-- Pedidos --}}
-                        <li class="sidebar-item {{ request()->is('admin/pedido*') ? 'active' : '' }}">
-                            <a href="{{ url('/admin/pedidos')}}" class='sidebar-link'>
-                                <i class="bi bi-ui-checks"></i>
-                                <span>Pedidos</span>
-                            </a>
-                        </li>
+
+                        @can('Dashboard del Administrador')
+                            {{-- Dashboard --}}
+                            <li class="sidebar-item {{ request()->is('admin') ? 'active' : '' }} ">
+                                <a href="{{ url('/admin')}}" class='sidebar-link'>
+                                    <i class="bi bi-house-fill"></i>
+                                    <span>Inicio</span>
+                                </a>
+                            </li>
+                        @endcan
+                        
+                        @can('Listado de Roles')
+                            {{-- Roles --}}
+                            <li class="sidebar-item {{ request()->is('admin/rol*') ? 'active' : '' }}">
+                                <a href="{{ url('/admin/roles')}}" class='sidebar-link'>
+                                    <i class="bi bi-shield-lock-fill"></i>
+                                    <span>Roles</span>
+                                </a>
+                            </li>
+                        @endcan
+
+                        @can('Listado de Usuarios')
+                            {{-- Usuarios --}}
+                            <li class="sidebar-item {{ request()->is('admin/usuario*') ? 'active' : '' }}">
+                                <a href="{{ url('/admin/usuarios')}}" class='sidebar-link'>
+                                    <i class="bi bi-person-fill-add"></i>
+                                    <span>Usuarios</span>
+                                </a>
+                            </li>
+                        @endcan
+
+                        @can('Listado de Categorias')
+                            {{-- Categorias --}}
+                            <li class="sidebar-item {{ request()->is('admin/categoria*') ? 'active' : '' }}">
+                                <a href="{{ url('/admin/categorias')}}" class='sidebar-link'>
+                                    <i class="bi bi-folder-fill"></i>
+                                    <span>Categorias</span>
+                                </a>
+                            </li>
+                        @endcan
+
+                        @can('Listado de Productos')
+                            {{-- Productos --}}
+                            <li class="sidebar-item {{ request()->is('admin/producto*') ? 'active' : '' }}">
+                                <a href="{{ url('/admin/productos')}}" class='sidebar-link'>
+                                    <i class="bi bi-box-seam-fill"></i>
+                                    <span>Productos</span>
+                                </a>
+                            </li>                            
+                        @endcan
+
+                        @can('Listado de Pedidos')
+                            {{-- Pedidos --}}
+                            <li class="sidebar-item {{ request()->is('admin/pedido*') ? 'active' : '' }}">
+                                <a href="{{ url('/admin/pedidos')}}" class='sidebar-link'>
+                                    <i class="bi bi-ui-checks"></i>
+                                    <span>Pedidos</span>
+                                </a>
+                            </li>                            
+                        @endcan
 
                         
                         <li class="sidebar-title">Ajustes</li>
                         
-                        <li class="sidebar-item {{ request()->is('admin/ajuste*') ? 'active' : '' }}">
-                            <a href="{{ url('/admin/ajustes')}}" class='sidebar-link'>
-                                <i class="bi bi-gear-fill"></i>
-                                <span>Configuración</span>
-                            </a>
-                        </li>
+                        @can('Ajustes del Sistema')
+                            <li class="sidebar-item {{ request()->is('admin/ajuste*') ? 'active' : '' }}">
+                                <a href="{{ url('/admin/ajustes')}}" class='sidebar-link'>
+                                    <i class="bi bi-gear-fill"></i>
+                                    <span>Configuración</span>
+                                </a>
+                            </li>
+                        @endcan
 
                         <li class="sidebar-item has-sub">
                             <a href="#" class='sidebar-link'>
