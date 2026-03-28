@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ajuste;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -61,6 +62,13 @@ class UsuarioController extends Controller
         return redirect()->route('admin.usuarios.index')
                         ->with('message', 'Usuario creado correctamente')
                         ->with('icon', 'success');
+    }
+
+    public function perfil($id)
+    {
+        $ajuste = Ajuste::find(1);
+        $usuario = User::find($id);
+        return view('admin.usuarios.perfil', compact('usuario', 'ajuste'));
     }
 
     /**

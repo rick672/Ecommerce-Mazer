@@ -39,6 +39,8 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'Listado de Usuarios'])->syncRoles($superAdmin);
         Permission::create(['name' => 'Crear Usuario'])->syncRoles($superAdmin);
         Permission::create(['name' => 'Guardar Usuario'])->syncRoles($superAdmin);
+        Permission::create(['name' => 'Ver Perfil de Usuario'])->syncRoles($superAdmin);
+        Permission::create(['name' => 'Actualizar Perfil de Usuario'])->syncRoles($superAdmin);
         Permission::create(['name' => 'Detalles de Usuario'])->syncRoles($superAdmin);
         Permission::create(['name' => 'Editar Usuario'])->syncRoles($superAdmin);        
         Permission::create(['name' => 'Actualizar Usuario'])->syncRoles($superAdmin);
@@ -58,7 +60,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'Listado de Productos'])->syncRoles($superAdmin);
         Permission::create(['name' => 'Crear Producto'])->syncRoles($superAdmin);
         Permission::create(['name' => 'Guardar Producto'])->syncRoles($superAdmin);
-        Permission::create(['name' => 'Detalles de Producto']);
+        Permission::create(['name' => 'Detalles de Producto'])->syncRoles($superAdmin);
         Permission::create(['name' => 'Gestionar Imagenes de Producto'])->syncRoles($superAdmin);
         Permission::create(['name' => 'Subir Imagenes de Producto'])->syncRoles($superAdmin);
         Permission::create(['name' => 'Eliminar Imagenes de Producto'])->syncRoles($superAdmin);

@@ -154,7 +154,7 @@
                             </a>
                             <ul class="submenu ">
                                 <li class="submenu-item ">
-                                    <a href="{{ url('/admin/settings/profile') }}" class="submenu-link">Perfil</a>
+                                    <a href="{{ url('/admin/usuario/' . Auth::id() . '/perfil') }}" class="submenu-link">Perfil</a>
                                 </li>
                                 <li class="submenu-item ">
                                     <a href="account-security.html" class="submenu-link">Seguridad</a>
