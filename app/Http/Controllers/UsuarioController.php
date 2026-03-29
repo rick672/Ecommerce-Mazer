@@ -71,6 +71,46 @@ class UsuarioController extends Controller
         return view('admin.usuarios.perfil', compact('usuario', 'ajuste'));
     }
 
+    public function update_perfil(Request $request, $id)
+    {
+        //return response()->json($request->all());
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,'.$id,
+        ]);
+
+        $usuario = User::find($id);
+        $usuario->name = $request->name;
+        $usuario->email = $request->email;
+        $usuario->save();
+
+        return redirect()->back()
+                        ->with('message', 'Perfil actualizado correctamente')
+                        ->with('icon', 'success');
+    }
+
+    public function update_password(Request $request, $id)
+    {
+        // return response()->json($request->all());
+
+        $request->validate([
+            'current_password' => 'required',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+        $usuario = User::find($id);
+
+        // Verificar que la contraseña actual sea correcta
+        if(!password_verify($request->current_password, $usuario->password)){
+            return redirect()->back()->withErrors(['current_password' => 'La contraseña actual es incorrecta']);
+        }
+        $usuario->password = Hash::make($request->password);
+        $usuario->save();
+
+        return redirect()->back()
+                        ->with('message', 'Contraseña actualizada correctamente')
+                        ->with('icon', 'success');
+    }
+
     /**
      * Display the specified resource.
      */
