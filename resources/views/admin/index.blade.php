@@ -37,10 +37,10 @@
                                         <h6 class="text-muted font-semibold">Roles registrados</h6>
                                         <h6 class="font-extrabold mb-0">{{ $total_roles }}</h6>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                 @endcan
                 @can('Listado de Usuarios')
                     {{-- Total de usuarios --}}
@@ -59,10 +59,10 @@
                                         <h6 class="text-muted font-semibold">Usuarios registrados</h6>
                                         <h6 class="font-extrabold mb-0">{{ $total_usuarios }}</h6>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                 @endcan
                 @can('Listado de Categorias')
                     {{-- Total de categorias --}}
@@ -81,10 +81,10 @@
                                         <h6 class="text-muted font-semibold">Categorias registradas</h6>
                                         <h6 class="font-extrabold mb-0">{{ $total_categorias }}</h6>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                 @endcan
                 @can('Listado de Productos')
                     {{-- Total de productos --}}
@@ -103,10 +103,10 @@
                                         <h6 class="text-muted font-semibold">Productos registrados</h6>
                                         <h6 class="font-extrabold mb-0">{{ $total_productos }}</h6>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                 @endcan
                 @can('Listado de Pedidos')
                     {{-- Total de pedidos nuevos --}}
@@ -125,7 +125,7 @@
                                         <h6 class="text-muted font-semibold">Pedidos nuevos</h6>
                                         <h6 class="font-extrabold mb-0">{{ $total_pedidos_nuevos }}</h6>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -147,7 +147,7 @@
                                         <h6 class="text-muted font-semibold">Pedidos enviados</h6>
                                         <h6 class="font-extrabold mb-0">{{ $total_pedidos_enviados }}</h6>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -169,11 +169,23 @@
                                         <h6 class="text-muted font-semibold">Total de pedidos</h6>
                                         <h6 class="font-extrabold mb-0">{{ $total_pedidos }}</h6>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                         </div>
                     </div>
                 @endcan
+            </div>
+            <div class="row">
+                <div class="col col-xl-8 col-lg-12 col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Total de pedidos</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="chart"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-12 col-lg-3">
@@ -192,4 +204,23 @@
             </div>
         </div>
     </div>
+
+    <script>
+        var options = {
+            chart: {
+                type: 'area'
+            },
+            series: [{
+                name: 'sales',
+                data: [30, 40, 45, 50, 49, 60, 70, 91, 125]
+            }],
+            xaxis: {
+                categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+            }
+        }
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+
+        chart.render();
+    </script>
 @endsection

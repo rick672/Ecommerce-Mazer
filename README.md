@@ -10,3 +10,4 @@ TECNOLOGIAS
 *   Se uso tambien un template para la parte del lado del cliente el NiceShop.zip de https://bootstrapmade.com/
 *   Usamos Paypal para el checkout de pagos
 *   Usamos Mailtrap para el envio de emails
+*   Usamos apexcharts para los graficos
