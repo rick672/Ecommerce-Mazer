@@ -16,12 +16,12 @@
 
 
     <link rel="stylesheet" href="{{ asset('/assets/compiled/css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('/assets/compiled/css/app-dark.css')}}">
-    <link rel="stylesheet" href="{{ asset('/assets/compiled/css/iconly.css')}}">
+    <link rel="stylesheet" href="{{ asset('/assets/compiled/css/app-dark.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/compiled/css/iconly.css') }}">
 </head>
 
 <body>
-    <script src="{{ asset('assets/static/js/initTheme.js')}}"></script>
+    <script src="{{ asset('assets/static/js/initTheme.js') }}"></script>
     {{-- Via CDN sweetalert2 --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <div id="app">
@@ -30,8 +30,8 @@
                 <div class="sidebar-header position-relative">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="logo">
-                            <a href="{{ url('/admin')}}">
-                                <img src="{{ url('/assets/compiled/svg/favicon.svg')}}" alt="Logo" srcset="">
+                            <a href="{{ url('/admin') }}">
+                                <img src="{{ url('/assets/compiled/svg/favicon.svg') }}" alt="Logo" srcset="">
                                 Rick
                             </a>
                         </div>
@@ -78,17 +78,17 @@
                         @can('Dashboard del Administrador')
                             {{-- Dashboard --}}
                             <li class="sidebar-item {{ request()->is('admin') ? 'active' : '' }} ">
-                                <a href="{{ url('/admin')}}" class='sidebar-link'>
+                                <a href="{{ url('/admin') }}" class='sidebar-link'>
                                     <i class="bi bi-house-fill"></i>
                                     <span>Inicio</span>
                                 </a>
                             </li>
                         @endcan
-                        
+
                         @can('Listado de Roles')
                             {{-- Roles --}}
                             <li class="sidebar-item {{ request()->is('admin/rol*') ? 'active' : '' }}">
-                                <a href="{{ url('/admin/roles')}}" class='sidebar-link'>
+                                <a href="{{ url('/admin/roles') }}" class='sidebar-link'>
                                     <i class="bi bi-shield-lock-fill"></i>
                                     <span>Roles</span>
                                 </a>
@@ -97,8 +97,8 @@
 
                         @can('Listado de Usuarios')
                             {{-- Usuarios --}}
-                            <li class="sidebar-item {{ request()->is('admin/usuario*') ? 'active' : '' }}">
-                                <a href="{{ url('/admin/usuarios')}}" class='sidebar-link'>
+                            <li class="sidebar-item {{ request()->routeIs('admin.usuarios.*') ? 'active' : '' }}">
+                                <a href="{{ url('/admin/usuarios') }}" class='sidebar-link'>
                                     <i class="bi bi-person-fill-add"></i>
                                     <span>Usuarios</span>
                                 </a>
@@ -108,7 +108,7 @@
                         @can('Listado de Categorias')
                             {{-- Categorias --}}
                             <li class="sidebar-item {{ request()->is('admin/categoria*') ? 'active' : '' }}">
-                                <a href="{{ url('/admin/categorias')}}" class='sidebar-link'>
+                                <a href="{{ url('/admin/categorias') }}" class='sidebar-link'>
                                     <i class="bi bi-folder-fill"></i>
                                     <span>Categorias</span>
                                 </a>
@@ -118,64 +118,81 @@
                         @can('Listado de Productos')
                             {{-- Productos --}}
                             <li class="sidebar-item {{ request()->is('admin/producto*') ? 'active' : '' }}">
-                                <a href="{{ url('/admin/productos')}}" class='sidebar-link'>
+                                <a href="{{ url('/admin/productos') }}" class='sidebar-link'>
                                     <i class="bi bi-box-seam-fill"></i>
                                     <span>Productos</span>
                                 </a>
-                            </li>                            
+                            </li>
                         @endcan
 
                         @can('Listado de Pedidos')
                             {{-- Pedidos --}}
                             <li class="sidebar-item {{ request()->is('admin/pedido*') ? 'active' : '' }}">
-                                <a href="{{ url('/admin/pedidos')}}" class='sidebar-link'>
+                                <a href="{{ url('/admin/pedidos') }}" class='sidebar-link'>
                                     <i class="bi bi-ui-checks"></i>
                                     <span>Pedidos</span>
                                 </a>
-                            </li>                            
+                            </li>
                         @endcan
 
-                        
+
                         <li class="sidebar-title">Ajustes</li>
-                        
+
                         @can('Ajustes del Sistema')
                             <li class="sidebar-item {{ request()->is('admin/ajuste*') ? 'active' : '' }}">
-                                <a href="{{ url('/admin/ajustes')}}" class='sidebar-link'>
+                                <a href="{{ url('/admin/ajustes') }}" class='sidebar-link'>
                                     <i class="bi bi-gear-fill"></i>
                                     <span>Configuración</span>
                                 </a>
                             </li>
                         @endcan
 
-                        <li class="sidebar-item has-sub">
-                            <a href="#" class='sidebar-link'>
+                        <li class="sidebar-item {{ request()->routeIs('admin.cuenta.*') ? 'active' : '' }} has-sub">
+                            <a href="javascript:void(0)" class='sidebar-link'>
                                 <i class="bi bi-person-circle"></i>
-                                <span>{{ Auth::user()->name ?? 'No registrado' }}</span>
+                                <span>Mi Cuenta</span>
                             </a>
-                            <ul class="submenu ">
-                                <li class="submenu-item ">
-                                    <a href="{{ url('/admin/usuario/' . Auth::id() . '/perfil') }}" class="submenu-link">Perfil</a>
+                            <ul class="submenu {{ request()->routeIs('admin.cuenta.*') ? 'active' : '' }}">
+                                <li class="submenu-item {{ request()->routeIs('admin.cuenta.perfil') ? 'active' : '' }}">
+                                    <a href="{{ route('admin.cuenta.perfil', Auth::id()) }}" class="submenu-link">Mi Perfil</a>
                                 </li>
                                 <li class="submenu-item ">
-                                    <a 
-                                        href="{{ route('logout') }}" 
-                                        class="submenu-link"
-                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                    >
-                                        Cerrar sesión
+                                    <a href="{{ route('logout') }}" class="submenu-link"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        Cerrar Sesión
                                     </a>
-                                    <form 
-                                        id="logout-form" 
-                                        action="{{ route('logout') }}" 
-                                        method="POST" 
-                                        style="display: none;"
-                                    >
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        style="display: none;">
                                         @csrf
                                         @method('POST')
                                     </form>
                                 </li>
                             </ul>
                         </li>
+
+                        {{-- <li class="sidebar-item has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-person-circle"></i>
+                                <span>{{ Auth::user()->name ?? 'No registrado' }}</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="{{ url('/admin/usuario/' . Auth::id() . '/perfil') }}"
+                                        class="submenu-link">Perfil</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="{{ route('logout') }}" class="submenu-link"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        Cerrar sesión
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        style="display: none;">
+                                        @csrf
+                                        @method('POST')
+                                    </form>
+                                </li>
+                            </ul>
+                        </li> --}}
                     </ul>
                 </div>
             </div>
@@ -191,17 +208,17 @@
                 <h3>Dashboard</h3>
             </div>
             <div class="page-content">
-                @yield('content')  {{-- Aquí va el contenido HTML --}}
-                
-                @stack('scripts')   {{-- Aquí se acumulan TODOS los scripts --}}
+                @yield('content') {{-- Aquí va el contenido HTML --}}
+
+                @stack('scripts') {{-- Aquí se acumulan TODOS los scripts --}}
             </div>
         </div>
     </div>
-    <script src="{{ url('/assets/static/js/components/dark.js')}}"></script>
-    <script src="{{ url('/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+    <script src="{{ url('/assets/static/js/components/dark.js') }}"></script>
+    <script src="{{ url('/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
 
 
-    <script src="{{ url('/assets/compiled/js/app.js')}}"></script>
+    <script src="{{ url('/assets/compiled/js/app.js') }}"></script>
 
 
 
@@ -214,10 +231,10 @@
         <script>
             @php
                 $tiempos = [
-                    'success' => 1500,  // Eliminación más rápida
-                    'error' => 3000,    // Errores más visibles
-                    'warning' => 2500,  // Advertencias
-                    'info' => 2000      // Información general
+                    'success' => 1500, // Eliminación más rápida
+                    'error' => 3000, // Errores más visibles
+                    'warning' => 2500, // Advertencias
+                    'info' => 2000, // Información general
                 ];
                 $timer = $tiempos[$icono] ?? 2000; // Por defecto 2 segundos
             @endphp
@@ -230,7 +247,7 @@
             });
         </script>
     @endif
-    
+
 </body>
 
 </html>
