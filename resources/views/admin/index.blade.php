@@ -196,13 +196,33 @@
                         </div>
                     </div>
                 </div>
-                <div class="col col-lg-6 col-12">
+                <div class="col col-lg-4 col-12">
                     <div class="card">
                         <div class="card-header">
                             <h5>Porcentaje de pedidos</h5>
                         </div>
                         <div class="card-body">
                             <div id="chart3"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-lg-4 col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Productos con stock bajo</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="chart4"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-lg-4 col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Productos con stock alto</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="chart5"></div>
                         </div>
                     </div>
                 </div>
@@ -292,5 +312,45 @@
         };
         var chart3 = new ApexCharts(document.querySelector("#chart3"), options3);
         chart3.render();
+
+        // Productos con stock bajo
+        var options4 = {
+            series: [{{ $porcentajeStockBajo }}],
+            chart: {
+                height: 213,
+                type: 'radialBar',
+            },
+            plotOptions: {
+                radialBar: {
+                    hollow: {
+                        size: '70%',
+                    }
+                },
+            },
+            labels: ['Productos'],
+        };
+
+        var chart4 = new ApexCharts(document.querySelector("#chart4"), options4);
+        chart4.render();
+
+        // Productos con stock alto
+        var options5 = {
+            series: [{{ $porcentajeStockAlto }}],
+            chart: {
+                height: 213,
+                type: 'radialBar',
+            },
+            plotOptions: {
+                radialBar: {
+                    hollow: {
+                        size: '70%',
+                    }
+                },
+            },
+            labels: ['Productos'],
+        };
+
+        var chart5 = new ApexCharts(document.querySelector("#chart5"), options5);
+        chart5.render();
     </script>
 @endsection

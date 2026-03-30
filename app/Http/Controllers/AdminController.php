@@ -56,7 +56,17 @@ class AdminController extends Controller
             $ordenes_data[$orden['mes']] = $orden['total_monto'];
         }
 
+        // Productos con stock bajo y alto
+        $limiteStockBajo = 10;
+        $limiteStockAlto = 30;
+
+        $stockBajo = Producto::where('stock', '<=', $limiteStockBajo)->count();
+        $porcentajeStockBajo = $total_productos > 0 ? round(($stockBajo / $total_productos) * 100) : 0;
+
+        $stockAlto = Producto::where('stock', '>=', $limiteStockAlto)->count();
+        $porcentajeStockAlto = $total_productos > 0 ? round(($stockAlto / $total_productos) * 100) : 0;
+
         // print_r($usuarios_data);
-        return view('admin.index', compact('total_roles', 'total_usuarios', 'total_categorias', 'total_productos', 'total_pedidos_nuevos', 'total_pedidos_enviados', 'total_pedidos', 'usuarios_data', 'ordenes_data'));
+        return view('admin.index', compact('total_roles', 'total_usuarios', 'total_categorias', 'total_productos', 'total_pedidos_nuevos', 'total_pedidos_enviados', 'total_pedidos', 'usuarios_data', 'ordenes_data', 'porcentajeStockBajo', 'porcentajeStockAlto'));
     }
 }
