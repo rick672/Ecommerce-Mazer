@@ -25,6 +25,8 @@ class AdminController extends Controller
         $total_pedidos_enviados = Orden::where('estado_orden', 'Enviado')->count();
         $total_pedidos = Orden::count();
 
+        // Charts
+        // Clientes registrados por mes
         $usuarios_mensuales = User::select(
             DB::raw('MONTH(created_at) as mes'),
             DB::raw('COUNT(*) as total')
@@ -38,8 +40,23 @@ class AdminController extends Controller
         foreach ($usuarios_mensuales as $usuario) {
             $usuarios_data[$usuario['mes']] = $usuario['total'];
         }
+        
+        // Pedidos por mes
+        $ordenes_mensuales = Orden::select(
+            DB::raw('MONTH(created_at) as mes'),
+            DB::raw('SUM(total) as total_monto')
+        )->groupBy('mes')
+        ->orderBy('mes')
+        ->get()
+        ->toArray();
+
+        $ordenes_data = array_fill(1, 12, 0);
+
+        foreach ($ordenes_mensuales as $orden) {
+            $ordenes_data[$orden['mes']] = $orden['total_monto'];
+        }
 
         // print_r($usuarios_data);
-        return view('admin.index', compact('total_roles', 'total_usuarios', 'total_categorias', 'total_productos', 'total_pedidos_nuevos', 'total_pedidos_enviados', 'total_pedidos', 'usuarios_data'));
+        return view('admin.index', compact('total_roles', 'total_usuarios', 'total_categorias', 'total_productos', 'total_pedidos_nuevos', 'total_pedidos_enviados', 'total_pedidos', 'usuarios_data', 'ordenes_data'));
     }
 }

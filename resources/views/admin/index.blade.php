@@ -176,13 +176,23 @@
                 @endcan
             </div>
             <div class="row">
-                <div class="col col-xl-8 col-lg-12 col-12">
+                <div class="col col-lg-6 col-12">
                     <div class="card">
                         <div class="card-header">
                             <h5>Clientes registrados por mes</h5>
                         </div>
                         <div class="card-body">
                             <div id="chart"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-lg-6 col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Pedidos por mes</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="chart2"></div>
                         </div>
                     </div>
                 </div>
@@ -206,6 +216,7 @@
     </div>
 
     <script>
+        // Clientes registrados por mes
         const usuariosData = @json(array_values($usuarios_data));
         var options = {
             chart: {
@@ -222,9 +233,29 @@
                 categories: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
             }
         }
-
         var chart = new ApexCharts(document.querySelector("#chart"), options);
-
         chart.render();
+        
+        // Pedidos por mes
+        const ordenesData = @json(array_values($ordenes_data));
+        var options2 = {
+            chart: {
+                type: 'bar',
+                zoom: {
+                    enabled: false
+                }
+            },
+            series: [{
+                name: 'sales',
+                data: ordenesData
+            }],
+            xaxis: {
+                categories: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+            }
+        }
+
+        var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
+
+        chart2.render();
     </script>
 @endsection
