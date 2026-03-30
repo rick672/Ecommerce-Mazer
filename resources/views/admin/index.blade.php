@@ -196,6 +196,16 @@
                         </div>
                     </div>
                 </div>
+                <div class="col col-lg-6 col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Porcentaje de pedidos</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="chart3"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-12 col-lg-3">
@@ -230,12 +240,14 @@
                 data: usuariosData
             }],
             xaxis: {
-                categories: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+                categories: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre",
+                    "Octubre", "Noviembre", "Diciembre"
+                ]
             }
         }
         var chart = new ApexCharts(document.querySelector("#chart"), options);
         chart.render();
-        
+
         // Pedidos por mes
         const ordenesData = @json(array_values($ordenes_data));
         var options2 = {
@@ -250,12 +262,35 @@
                 data: ordenesData
             }],
             xaxis: {
-                categories: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+                categories: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre",
+                    "Octubre", "Noviembre", "Diciembre"
+                ]
             }
         }
-
         var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
-
         chart2.render();
+
+        // Porcentaje de pedidos nuevos vs enviados
+        var options3 = {
+            series: [{{ $total_pedidos_nuevos }}, {{ $total_pedidos_enviados }}],
+            chart: {
+                width: 380,
+                type: 'pie',
+            },
+            labels: ['Pedidos Nuevos', 'Pedidos Enviados'],
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 200
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+        var chart3 = new ApexCharts(document.querySelector("#chart3"), options3);
+        chart3.render();
     </script>
 @endsection
