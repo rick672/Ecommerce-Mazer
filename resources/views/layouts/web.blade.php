@@ -96,7 +96,7 @@
                                     <h6>Bienvenid@ a <span
                                             class="sitename">{{ $ajuste->nombre ?? ENV('APP_NAME') }}</span></h6>
                                     <p class="mb-0">
-                                        {{ Auth::user()->email ?? 'Acceder a la cuenta &amp; gestionar pedidos' }}</p>
+                                        {{ Auth::user()->email ?? 'Acceder a la cuenta y gestionar tus pedidos.' }}
                                 </div>
                                 <div class="dropdown-body">
                                     <a class="dropdown-item d-flex align-items-center" href="{{ url('/dashboard') }}">
@@ -170,34 +170,9 @@
             <div class="container-fluid container-xl position-relative">
                 <nav id="navmenu" class="navmenu">
                     <ul>
-                        <li><a href="index.html" class="active">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="category.html">Category</a></li>
-                        <li><a href="product-details.html">Product Details</a></li>
-                        <li><a href="cart.html">Cart</a></li>
-                        <li><a href="checkout.html">Checkout</a></li>
-                        <li class="dropdown"><a href="#"><span>Dropdown</span> <i
-                                    class="bi bi-chevron-down toggle-dropdown"></i></a>
-                            <ul>
-                                <li><a href="#">Dropdown 1</a></li>
-                                <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i
-                                            class="bi bi-chevron-down toggle-dropdown"></i></a>
-                                    <ul>
-                                        <li><a href="#">Deep Dropdown 1</a></li>
-                                        <li><a href="#">Deep Dropdown 2</a></li>
-                                        <li><a href="#">Deep Dropdown 3</a></li>
-                                        <li><a href="#">Deep Dropdown 4</a></li>
-                                        <li><a href="#">Deep Dropdown 5</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Dropdown 2</a></li>
-                                <li><a href="#">Dropdown 3</a></li>
-                                <li><a href="#">Dropdown 4</a></li>
-                            </ul>
-                        </li>
-
+                        <li><a href="/" class="active">Inicio</a></li>
                         <!-- Products Mega Menu 1 -->
-                        <li class="products-megamenu-1"><a href="#"><span>Megamenu 1</span> <i
+                        <li class="products-megamenu-1"><a href="#"><span>Productos</span> <i
                                     class="bi bi-chevron-down toggle-dropdown"></i></a>
 
                             <!-- Products Mega Menu 1 Mobile View -->
@@ -261,24 +236,23 @@
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link active" id="featured-tab" data-bs-toggle="tab"
                                                 data-bs-target="#featured-content-1862" type="button"
-                                                aria-selected="true" role="tab">Featured</button>
+                                                aria-selected="true" role="tab">Destacados</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link" id="new-tab" data-bs-toggle="tab"
                                                 data-bs-target="#new-content-1862" type="button"
-                                                aria-selected="false" tabindex="-1" role="tab">New
-                                                Arrivals</button>
+                                                aria-selected="false" tabindex="-1" role="tab">Novedades</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link" id="sale-tab" data-bs-toggle="tab"
                                                 data-bs-target="#sale-content-1862" type="button"
-                                                aria-selected="false" tabindex="-1" role="tab">Sale</button>
+                                                aria-selected="false" tabindex="-1" role="tab">Venta</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link" id="category-tab" data-bs-toggle="tab"
                                                 data-bs-target="#category-content-1862" type="button"
                                                 aria-selected="false" tabindex="-1"
-                                                role="tab">Categories</button>
+                                                role="tab">Categorias</button>
                                         </li>
                                     </ul>
                                 </div>
@@ -504,7 +478,7 @@
 
                         </li><!-- End Products Mega Menu 1 -->
                         <!-- Products Mega Menu 2 -->
-                        <li class="products-megamenu-2"><a href="#"><span>Megamenu 2</span> <i
+                        <li class="products-megamenu-2"><a href="#"><span>Categorias</span> <i
                                     class="bi bi-chevron-down toggle-dropdown"></i></a>
 
                             <!-- Products Mega Menu 2 Mobile View -->
@@ -803,9 +777,7 @@
                             </div><!-- End Products Mega Menu 2 Desktop View -->
 
                         </li><!-- End Products Mega Menu 2 -->
-
-                        <li><a href="contact.html">Contact</a></li>
-
+                        <li><a href="contact.html">Contacto</a></li>
                     </ul>
                 </nav>
             </div>
@@ -840,13 +812,12 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="footer-widget footer-about">
                             <a href="index.html" class="logo">
-                                <span class="sitename">NiceShop</span>
+                                <span class="sitename">{{ $ajuste->nombre ?? ENV('APP_NAME') }}</span>
                             </a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in nibh vehicula,
-                                facilisis magna ut, consectetur lorem. Proin eget tortor risus.</p>
+                            <p>{{ $ajuste->descripcion ?? '' }}</p>
 
                             <div class="social-links mt-4">
-                                <h5>Connect With Us</h5>
+                                <h5>Conecta con nosotros</h5>
                                 <div class="social-icons">
                                     <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
                                     <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
@@ -861,35 +832,33 @@
 
                     <div class="col-lg-2 col-md-6 col-sm-6">
                         <div class="footer-widget">
-                            <h4>Shop</h4>
+                            <h4>Tienda</h4>
                             <ul class="footer-links">
-                                <li><a href="category.html">New Arrivals</a></li>
-                                <li><a href="category.html">Bestsellers</a></li>
-                                <li><a href="category.html">Women's Clothing</a></li>
-                                <li><a href="category.html">Men's Clothing</a></li>
-                                <li><a href="category.html">Accessories</a></li>
-                                <li><a href="category.html">Sale</a></li>
+                                <li><a href="category.html">Novedades</a></li>
+                                <li><a href="category.html">Mejores Vendedores</a></li>
+                                <li><a href="category.html">Ropa para Mujeres</a></li>
+                                <li><a href="category.html">Ropa para Hombres</a></li>
+                                <li><a href="category.html">Accesorios</a></li>
+                                <li><a href="category.html">Venta</a></li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="col-lg-2 col-md-6 col-sm-6">
                         <div class="footer-widget">
-                            <h4>Support</h4>
+                            <h4>Soporte</h4>
                             <ul class="footer-links">
-                                <li><a href="support.html">Help Center</a></li>
-                                <li><a href="account.html">Order Status</a></li>
-                                <li><a href="shiping-info.html">Shipping Info</a></li>
-                                <li><a href="return-policy.html">Returns &amp; Exchanges</a></li>
-                                <li><a href="#">Size Guide</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="support.html">Centro de Ayuda</a></li>
+                                <li><a href="account.html">Estado de Pedido</a></li>
+                                <li><a href="shiping-info.html">Información de Envío</a></li>
+                                <li><a href="return-policy.html">Devoluciones &amp; Intercambios</a></li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="col-lg-4 col-md-6">
                         <div class="footer-widget">
-                            <h4>Contact Information</h4>
+                            <h4>Información de Contacto</h4>
                             <div class="footer-contact">
                                 <div class="contact-item">
                                     <i class="bi bi-geo-alt"></i>
@@ -930,15 +899,7 @@
                 <div class="row gy-3 align-items-center">
                     <div class="col-lg-6 col-md-12">
                         <div class="copyright">
-                            <p>© <span>Copyright</span> <strong class="sitename">NiceShop</strong>. All Rights
-                                Reserved.</p>
-                        </div>
-                        <div class="credits mt-1">
-                            <!-- All the links in the footer should remain intact. -->
-                            <!-- You can delete the links only if you've purchased the pro version. -->
-                            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                            <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-                            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                            <p>© <span>Copyright</span> <strong class="sitename">{{ $ajuste->nombre ?? ENV('APP_NAME') }}</strong>. Casi todos los derechos reservados</p>
                         </div>
                     </div>
 
@@ -954,12 +915,6 @@
                                     <i class="bi bi-shop" aria-label="Shop Pay"></i>
                                     <i class="bi bi-cash" aria-label="Cash on Delivery"></i>
                                 </div>
-                            </div>
-
-                            <div class="legal-links">
-                                <a href="tos.html">Terms</a>
-                                <a href="privacy.html">Privacy</a>
-                                <a href="tos.html">Cookies</a>
                             </div>
                         </div>
                     </div>

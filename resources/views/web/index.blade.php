@@ -11,8 +11,8 @@
                         estilo de vida. Desde moda hasta tecnología, encuentra todo lo que necesitas con ofertas exclusivas
                         y envío rápido.</p>
                     <div class="hero-actions" data-aos="fade-up" data-aos-delay="200">
-                        <a href="#products" class="btn-primary">Comprar Ahora</a>
-                        <a href="#categories" class="btn-secondary">Explorar Categorías</a>
+                        <a href="/" class="btn-primary">Comprar Ahora</a>
+                        <a href="/" class="btn-secondary">Explorar Categorías</a>
                     </div>
                     <div class="features-list" data-aos="fade-up" data-aos-delay="300">
                         <div class="feature-item">
@@ -35,9 +35,9 @@
                 <div class="product-showcase" data-aos="fade-left" data-aos-delay="200">
                     <div class="product-card featured">
                         <img src="assets/img/product/product-2.webp" alt="Featured Product" class="img-fluid">
-                        <div class="product-badge">Best Seller</div>
+                        <div class="product-badge">Mejor vendido</div>
                         <div class="product-info">
-                            <h4>Premium Wireless Headphones</h4>
+                            <h4>Auriculares inalámbricos</h4>
                             <div class="price">
                                 <span class="sale-price">$299</span>
                                 <span class="original-price">$399</span>

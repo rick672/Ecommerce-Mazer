@@ -6,7 +6,7 @@ use App\Models\Categoria;
 use App\Models\Orden;
 use App\Models\Producto;
 use App\Models\User;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 
