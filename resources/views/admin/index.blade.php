@@ -176,13 +176,23 @@
                 @endcan
             </div>
             <div class="row">
-                <div class="col col-lg-6 col-12">
+                <div class="col col-lg-7 col-12">
                     <div class="card">
                         <div class="card-header">
                             <h5>Clientes registrados por mes</h5>
                         </div>
                         <div class="card-body">
                             <div id="chart"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-lg-5 col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Porcentaje de pedidos</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="chart3"></div>
                         </div>
                     </div>
                 </div>
@@ -196,17 +206,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="col col-lg-4 col-12">
+                
+            </div>
+        </div>
+        <div class="col-12 col-lg-3">
+            <div class="row">
+                <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">
-                            <h5>Porcentaje de pedidos</h5>
-                        </div>
-                        <div class="card-body">
-                            <div id="chart3"></div>
+                        <div class="card-body py-4 px-4">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar avatar-xl">
+                                    <img src="./assets/compiled/jpg/1.jpg" alt="Face 1">
+                                </div>
+                                <div class="ms-3 name">
+                                    <h5 class="font-bold">John Duck</h5>
+                                    <h6 class="text-muted mb-0">@johnducky</h6>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col col-lg-4 col-12">
+                <div class="col col-md-12">
                     <div class="card">
                         <div class="card-header">
                             <h5>Productos con stock bajo</h5>
@@ -216,28 +236,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col col-lg-4 col-12">
+                <div class="col col-md-12">
                     <div class="card">
                         <div class="card-header">
                             <h5>Productos con stock alto</h5>
                         </div>
                         <div class="card-body">
                             <div id="chart5"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-lg-3">
-            <div class="card">
-                <div class="card-body py-4 px-4">
-                    <div class="d-flex align-items-center">
-                        <div class="avatar avatar-xl">
-                            <img src="./assets/compiled/jpg/1.jpg" alt="Face 1">
-                        </div>
-                        <div class="ms-3 name">
-                            <h5 class="font-bold">John Duck</h5>
-                            <h6 class="text-muted mb-0">@johnducky</h6>
                         </div>
                     </div>
                 </div>

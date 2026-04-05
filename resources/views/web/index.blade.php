@@ -34,7 +34,7 @@
             <div class="hero-visuals">
                 <div class="product-showcase" data-aos="fade-left" data-aos-delay="200">
                     <div class="product-card featured">
-                        <img src="assets/img/product/product-2.webp" alt="Featured Product" class="img-fluid">
+                        <img src="assets/img/product/vendido-001.jpg" alt="Featured Product" class="img-fluid">
                         <div class="product-badge">Mejor vendido</div>
                         <div class="product-info">
                             <h4>Auriculares inalámbricos</h4>
@@ -47,11 +47,11 @@
 
                     <div class="product-grid">
                         <div class="product-mini" data-aos="zoom-in" data-aos-delay="400">
-                            <img src="assets/img/product/product-3.webp" alt="Product" class="img-fluid">
+                            <img src="assets/img/product/vendido-003.jpg" alt="Product" class="img-fluid">
                             <span class="mini-price">$89</span>
                         </div>
                         <div class="product-mini" data-aos="zoom-in" data-aos-delay="500">
-                            <img src="assets/img/product/product-5.webp" alt="Product" class="img-fluid">
+                            <img src="assets/img/product/vendido-002.jpg" alt="Product" class="img-fluid">
                             <span class="mini-price">$149</span>
                         </div>
                     </div>

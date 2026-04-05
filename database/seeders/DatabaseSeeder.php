@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
         ])->assignRole('Super Admin');
         
         User::create([
-            'name' => 'Maria Sanchez',
+            'name' => 'Maria Candia Torres',
             'email' => 'maria@gmail.com',
             'password' => bcrypt('password'),
         ])->assignRole('Cliente');
