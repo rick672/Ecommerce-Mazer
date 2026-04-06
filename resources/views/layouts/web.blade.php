@@ -41,6 +41,212 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
+    <style>
+        /* ============================================
+       PALETA DE COLORES VELORUM - UNIFICADA
+    ============================================ */
+        :root {
+            --velorum-bg: #FAFAFA;
+            --velorum-surface: #FFFFFF;
+            --velorum-gold: #D4AF37;
+            --velorum-gold-dark: #B8960C;
+            --velorum-text: #1E1E1E;
+            --velorum-text-light: #6C6C6C;
+            --velorum-border: #EAEAEA;
+            --velorum-dark: #1A1A1A;
+            --velorum-footer-text: #B0B0B0;
+        }
+
+        /* Fondo general */
+        body {
+            background: var(--velorum-bg);
+            color: var(--velorum-text);
+        }
+
+        /* ========== HEADER ========== */
+        .header {
+            background: var(--velorum-surface);
+            border-bottom: 1px solid var(--velorum-border);
+        }
+
+        .header .sitename {
+            color: var(--velorum-text);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Navegación */
+        .header .header-nav {
+            background: var(--velorum-surface) !important;
+            border-top: 1px solid var(--velorum-border);
+        }
+
+        .navmenu ul li a {
+            color: var(--velorum-text);
+        }
+
+        .navmenu ul li a:hover,
+        .navmenu ul li a.active {
+            color: var(--velorum-gold);
+        }
+
+        /* Botones de acción del header */
+        .header-action-btn {
+            color: var(--velorum-text) !important;
+        }
+
+        .header-action-btn:hover {
+            color: var(--velorum-gold) !important;
+        }
+
+        .header-action-btn .badge {
+            background: var(--velorum-gold) !important;
+            color: var(--velorum-text) !important;
+        }
+
+        /* Buscador */
+        .search-form .form-control {
+            border-color: var(--velorum-border) !important;
+            background: var(--velorum-surface);
+            color: var(--velorum-text) !important;
+        }
+
+        .search-form .form-control:focus {
+            border-color: var(--velorum-gold) !important;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1) !important;
+        }
+
+        .search-form .btn {
+            background-color: var(--velorum-gold) !important;
+            color: var(--velorum-surface) !important;
+        }
+        
+        .search-form .btn:hover {
+            background: var(--velorum-gold-dark) !important;
+            color: var(--velorum-text) !important;
+        }
+
+        /* Dropdown */
+        .dropdown-menu {
+            background-color: var(--velorum-surface) !important;
+            border: 1px solid var(--velorum-border) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .dropdown-header {
+            border-bottom-color: var(--velorum-border);
+        }
+
+        .dropdown-item {
+            color: var(--velorum-text) !important;
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--velorum-bg) !important;
+            color: var(--velorum-gold-dark) !important;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: var(--velorum-dark) !important;
+            color: var(--velorum-footer-text) !important;
+        }
+
+        .footer .sitename {
+            color: var(--velorum-gold) !important;
+        }
+
+        .footer h4 {
+            color: var(--velorum-gold) !important;
+        }
+
+        .footer p {
+            color: var(--velorum-footer-text) !important;
+        }
+
+        .footer a {
+            color: var(--velorum-footer-text) !important;
+            transition: color 0.2s;
+        }
+
+        .footer a:hover {
+            color: var(--velorum-gold) !important;
+        }
+
+        .footer .social-icons a:hover {
+            color: var(--velorum-gold) !important;
+        }
+
+        .footer .contact-item i {
+            color: var(--velorum-gold) !important;
+        }
+        
+        .footer .contact-item span {
+            color: var(--velorum-footer-text) !important;
+        }
+
+        .footer-bottom {
+            border-top-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        .footer-bottom strong {
+            color: var(--velorum-gold) !important;
+        }
+
+        /* ========== BOTONES GENERALES ========== */
+        .btn-primary {
+            background: var(--velorum-gold) !important;
+            border: none !important;
+            color: var(--velorum-text) !important;
+        }
+
+        .btn-primary:hover {
+            background: var(--velorum-gold-dark) !important;
+        }
+
+        .btn-outline-primary {
+            border-color: var(--velorum-gold) !important;
+            color: var(--velorum-gold) !important;
+        }
+
+        .btn-outline-primary:hover {
+            background: var(--velorum-gold) !important;
+            color: var(--velorum-text) !important;
+        }
+
+        /* ========== ENLACES ========== */
+        a {
+            color: var(--velorum-text);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--velorum-gold);
+        }
+
+        /* ========== BORDES Y TARJETAS ========== */
+        .card,
+        .product-card {
+            background: var(--velorum-surface);
+            border-color: var(--velorum-border);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .header .sitename {
+                font-size: 1.2rem;
+            }
+
+            .header-action-btn span.d-none.d-md-inline {
+                display: none !important;
+            }
+
+            .header-action-btn i {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
 </head>
 
 <body class="index-page">
@@ -55,14 +261,15 @@
                 </ul>
             </div>
         @endif
+
         <!-- Main Header -->
         <div class="main-header">
             <div class="container-fluid container-xl">
                 <div class="d-flex py-3 align-items-center justify-content-between">
 
-                    <!-- Logo -->
+                    <!-- Logo - Siempre muestra el nombre -->
                     <a href="{{ url('/') }}" class="logo d-flex align-items-center">
-                        <h1 class="sitename">{{ $ajuste->nombre ?? ENV('APP_NAME') }}</h1>
+                        <h1 class="sitename">{{ $ajuste->nombre ?? env('APP_NAME') }}</h1>
                     </a>
 
                     <!-- Search -->
@@ -86,17 +293,19 @@
                             <i class="bi bi-search"></i>
                         </button>
 
-                        <!-- Account -->
+                        <!-- Account Dropdown -->
                         <div class="dropdown account-dropdown">
                             <button class="header-action-btn" data-bs-toggle="dropdown">
-                                <i class="bi bi-person"></i> {{ Auth::user()->name ?? '' }}
+                                <i class="bi bi-person"></i>
+                                <span class="d-none d-md-inline">{{ Auth::user()->name ?? '' }}</span>
                             </button>
                             <div class="dropdown-menu">
                                 <div class="dropdown-header">
                                     <h6>Bienvenid@ a <span
-                                            class="sitename">{{ $ajuste->nombre ?? ENV('APP_NAME') }}</span></h6>
+                                            class="sitename">{{ $ajuste->nombre ?? env('APP_NAME') }}</span></h6>
                                     <p class="mb-0">
                                         {{ Auth::user()->email ?? 'Acceder a la cuenta y gestionar tus pedidos.' }}
+                                    </p>
                                 </div>
                                 <div class="dropdown-body">
                                     <a class="dropdown-item d-flex align-items-center" href="{{ url('/dashboard') }}">
@@ -109,7 +318,7 @@
                                     </a>
                                     <a class="dropdown-item d-flex align-items-center" href="{{ url('/favoritos') }}">
                                         <i class="bi bi-heart me-2"></i>
-                                        <span>Mi favoritos</span>
+                                        <span>Mis favoritos</span>
                                     </a>
                                     <a class="dropdown-item d-flex align-items-center" href="{{ url('/ajustes') }}">
                                         <i class="bi bi-gear me-2"></i>
@@ -126,10 +335,10 @@
                                             </button>
                                         </form>
                                     @else
-                                        <a href="{{ url('/web/login') }}" class="btn btn-primary w-100 mb-2">Iniciar
+                                        <a href="{{ route('login') }}" class="btn btn-primary w-100 mb-2">Iniciar
                                             Sesión</a>
-                                        <a href="{{ url('/web/registro') }}"
-                                            class="btn btn-outline-primary w-100">Crear Cuenta</a>
+                                        <a href="{{ route('register') }}" class="btn btn-outline-primary w-100">Crear
+                                            Cuenta</a>
                                     @endif
                                 </div>
                             </div>
@@ -139,22 +348,22 @@
                         <a href="{{ url('/favoritos') }}" class="header-action-btn d-none d-md-block">
                             <i class="bi bi-heart"></i>
                             @php
-                                if (Auth::check()) {
-                                    $cantidad_favoritos = \App\Models\ProductoFavorito::where('usuario_id', Auth::user()->id)->count();
-                                }
+                                $cantidad_favoritos = Auth::check()
+                                    ? \App\Models\ProductoFavorito::where('usuario_id', Auth::user()->id)->count()
+                                    : 0;
                             @endphp
-                            <span class="badge">{{ $cantidad_favoritos ?? '0' }}</span>
+                            <span class="badge">{{ $cantidad_favoritos }}</span>
                         </a>
 
                         <!-- Cart -->
                         <a href="{{ url('/carrito') }}" class="header-action-btn">
                             <i class="bi bi-cart3"></i>
                             @php
-                                if (Auth::check()) {
-                                    $cantidad_carrito = \App\Models\Carrito::where('usuario_id', Auth::user()->id)->count();
-                                }
+                                $cantidad_carrito = Auth::check()
+                                    ? \App\Models\Carrito::where('usuario_id', Auth::user()->id)->count()
+                                    : 0;
                             @endphp
-                            <span class="badge">{{ $cantidad_carrito ?? '0' }}</span>
+                            <span class="badge">{{ $cantidad_carrito }}</span>
                         </a>
 
                         <!-- Mobile Navigation Toggle -->
@@ -170,614 +379,11 @@
             <div class="container-fluid container-xl position-relative">
                 <nav id="navmenu" class="navmenu">
                     <ul>
-                        <li><a href="/" class="active">Inicio</a></li>
-                        <!-- Products Mega Menu 1 -->
-                        <li class="products-megamenu-1"><a href="#"><span>Productos</span> <i
-                                    class="bi bi-chevron-down toggle-dropdown"></i></a>
-
-                            <!-- Products Mega Menu 1 Mobile View -->
-                            <ul class="mobile-megamenu">
-
-                                <li><a href="#">Featured Products</a></li>
-                                <li><a href="#">New Arrivals</a></li>
-                                <li><a href="#">Sale Items</a></li>
-
-                                <li class="dropdown"><a href="#"><span>Clothing</span> <i
-                                            class="bi bi-chevron-down toggle-dropdown"></i></a>
-                                    <ul>
-                                        <li><a href="#">Men's Wear</a></li>
-                                        <li><a href="#">Women's Wear</a></li>
-                                        <li><a href="#">Kids Collection</a></li>
-                                        <li><a href="#">Sportswear</a></li>
-                                        <li><a href="#">Accessories</a></li>
-                                    </ul>
-                                </li>
-
-                                <li class="dropdown"><a href="#"><span>Electronics</span> <i
-                                            class="bi bi-chevron-down toggle-dropdown"></i></a>
-                                    <ul>
-                                        <li><a href="#">Smartphones</a></li>
-                                        <li><a href="#">Laptops</a></li>
-                                        <li><a href="#">Audio Devices</a></li>
-                                        <li><a href="#">Smart Home</a></li>
-                                        <li><a href="#">Accessories</a></li>
-                                    </ul>
-                                </li>
-
-                                <li class="dropdown"><a href="#"><span>Home &amp; Living</span> <i
-                                            class="bi bi-chevron-down toggle-dropdown"></i></a>
-                                    <ul>
-                                        <li><a href="#">Furniture</a></li>
-                                        <li><a href="#">Decor</a></li>
-                                        <li><a href="#">Kitchen</a></li>
-                                        <li><a href="#">Bedding</a></li>
-                                        <li><a href="#">Lighting</a></li>
-                                    </ul>
-                                </li>
-
-                                <li class="dropdown"><a href="#"><span>Beauty</span> <i
-                                            class="bi bi-chevron-down toggle-dropdown"></i></a>
-                                    <ul>
-                                        <li><a href="#">Skincare</a></li>
-                                        <li><a href="#">Makeup</a></li>
-                                        <li><a href="#">Haircare</a></li>
-                                        <li><a href="#">Fragrances</a></li>
-                                        <li><a href="#">Personal Care</a></li>
-                                    </ul>
-                                </li>
-
-                            </ul><!-- End Products Mega Menu 1 Mobile View -->
-
-                            <!-- Products Mega Menu 1 Desktop View -->
-                            <div class="desktop-megamenu">
-
-                                <div class="megamenu-tabs">
-                                    <ul class="nav nav-tabs" id="productMegaMenuTabs" role="tablist">
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link active" id="featured-tab" data-bs-toggle="tab"
-                                                data-bs-target="#featured-content-1862" type="button"
-                                                aria-selected="true" role="tab">Destacados</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="new-tab" data-bs-toggle="tab"
-                                                data-bs-target="#new-content-1862" type="button"
-                                                aria-selected="false" tabindex="-1" role="tab">Novedades</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="sale-tab" data-bs-toggle="tab"
-                                                data-bs-target="#sale-content-1862" type="button"
-                                                aria-selected="false" tabindex="-1" role="tab">Venta</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="category-tab" data-bs-toggle="tab"
-                                                data-bs-target="#category-content-1862" type="button"
-                                                aria-selected="false" tabindex="-1"
-                                                role="tab">Categorias</button>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <!-- Tabs Content -->
-                                <div class="megamenu-content tab-content">
-
-                                    <!-- Featured Tab -->
-                                    <div class="tab-pane fade show active" id="featured-content-1862" role="tabpanel"
-                                        aria-labelledby="featured-tab">
-                                        <div class="product-grid">
-                                            <div class="product-card">
-                                                <div class="product-image">
-                                                    <img src="assets/img/product/product-1.webp"
-                                                        alt="Featured Product" loading="lazy">
-                                                </div>
-                                                <div class="product-info">
-                                                    <h5>Premium Headphones</h5>
-                                                    <p class="price">$129.99</p>
-                                                    <a href="#" class="btn-view">View Product</a>
-                                                </div>
-                                            </div>
-                                            <div class="product-card">
-                                                <div class="product-image">
-                                                    <img src="assets/img/product/product-2.webp"
-                                                        alt="Featured Product" loading="lazy">
-                                                </div>
-                                                <div class="product-info">
-                                                    <h5>Smart Watch</h5>
-                                                    <p class="price">$199.99</p>
-                                                    <a href="#" class="btn-view">View Product</a>
-                                                </div>
-                                            </div>
-                                            <div class="product-card">
-                                                <div class="product-image">
-                                                    <img src="assets/img/product/product-3.webp"
-                                                        alt="Featured Product" loading="lazy">
-                                                </div>
-                                                <div class="product-info">
-                                                    <h5>Wireless Earbuds</h5>
-                                                    <p class="price">$89.99</p>
-                                                    <a href="#" class="btn-view">View Product</a>
-                                                </div>
-                                            </div>
-                                            <div class="product-card">
-                                                <div class="product-image">
-                                                    <img src="assets/img/product/product-4.webp"
-                                                        alt="Featured Product" loading="lazy">
-                                                </div>
-                                                <div class="product-info">
-                                                    <h5>Bluetooth Speaker</h5>
-                                                    <p class="price">$79.99</p>
-                                                    <a href="#" class="btn-view">View Product</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- New Arrivals Tab -->
-                                    <div class="tab-pane fade" id="new-content-1862" role="tabpanel"
-                                        aria-labelledby="new-tab">
-                                        <div class="product-grid">
-                                            <div class="product-card">
-                                                <div class="product-image">
-                                                    <img src="assets/img/product/product-5.webp" alt="New Arrival"
-                                                        loading="lazy">
-                                                    <span class="badge-new">New</span>
-                                                </div>
-                                                <div class="product-info">
-                                                    <h5>Fitness Tracker</h5>
-                                                    <p class="price">$69.99</p>
-                                                    <a href="#" class="btn-view">View Product</a>
-                                                </div>
-                                            </div>
-                                            <div class="product-card">
-                                                <div class="product-image">
-                                                    <img src="assets/img/product/product-6.webp" alt="New Arrival"
-                                                        loading="lazy">
-                                                    <span class="badge-new">New</span>
-                                                </div>
-                                                <div class="product-info">
-                                                    <h5>Wireless Charger</h5>
-                                                    <p class="price">$39.99</p>
-                                                    <a href="#" class="btn-view">View Product</a>
-                                                </div>
-                                            </div>
-                                            <div class="product-card">
-                                                <div class="product-image">
-                                                    <img src="assets/img/product/product-7.webp" alt="New Arrival"
-                                                        loading="lazy">
-                                                    <span class="badge-new">New</span>
-                                                </div>
-                                                <div class="product-info">
-                                                    <h5>Smart Bulb Set</h5>
-                                                    <p class="price">$49.99</p>
-                                                    <a href="#" class="btn-view">View Product</a>
-                                                </div>
-                                            </div>
-                                            <div class="product-card">
-                                                <div class="product-image">
-                                                    <img src="assets/img/product/product-8.webp" alt="New Arrival"
-                                                        loading="lazy">
-                                                    <span class="badge-new">New</span>
-                                                </div>
-                                                <div class="product-info">
-                                                    <h5>Portable Power Bank</h5>
-                                                    <p class="price">$59.99</p>
-                                                    <a href="#" class="btn-view">View Product</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Sale Tab -->
-                                    <div class="tab-pane fade" id="sale-content-1862" role="tabpanel"
-                                        aria-labelledby="sale-tab">
-                                        <div class="product-grid">
-                                            <div class="product-card">
-                                                <div class="product-image">
-                                                    <img src="assets/img/product/product-9.webp" alt="Sale Product"
-                                                        loading="lazy">
-                                                    <span class="badge-sale">-30%</span>
-                                                </div>
-                                                <div class="product-info">
-                                                    <h5>Wireless Keyboard</h5>
-                                                    <p class="price"><span class="original-price">$89.99</span>
-                                                        $62.99</p>
-                                                    <a href="#" class="btn-view">View Product</a>
-                                                </div>
-                                            </div>
-                                            <div class="product-card">
-                                                <div class="product-image">
-                                                    <img src="assets/img/product/product-10.webp" alt="Sale Product"
-                                                        loading="lazy">
-                                                    <span class="badge-sale">-25%</span>
-                                                </div>
-                                                <div class="product-info">
-                                                    <h5>Gaming Mouse</h5>
-                                                    <p class="price"><span class="original-price">$59.99</span>
-                                                        $44.99</p>
-                                                    <a href="#" class="btn-view">View Product</a>
-                                                </div>
-                                            </div>
-                                            <div class="product-card">
-                                                <div class="product-image">
-                                                    <img src="assets/img/product/product-11.webp" alt="Sale Product"
-                                                        loading="lazy">
-                                                    <span class="badge-sale">-40%</span>
-                                                </div>
-                                                <div class="product-info">
-                                                    <h5>Desk Lamp</h5>
-                                                    <p class="price"><span class="original-price">$49.99</span>
-                                                        $29.99</p>
-                                                    <a href="#" class="btn-view">View Product</a>
-                                                </div>
-                                            </div>
-                                            <div class="product-card">
-                                                <div class="product-image">
-                                                    <img src="assets/img/product/product-12.webp" alt="Sale Product"
-                                                        loading="lazy">
-                                                    <span class="badge-sale">-20%</span>
-                                                </div>
-                                                <div class="product-info">
-                                                    <h5>USB-C Hub</h5>
-                                                    <p class="price"><span class="original-price">$39.99</span>
-                                                        $31.99</p>
-                                                    <a href="#" class="btn-view">View Product</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Categories Tab -->
-                                    <div class="tab-pane fade" id="category-content-1862" role="tabpanel"
-                                        aria-labelledby="category-tab">
-                                        <div class="category-grid">
-                                            <div class="category-column">
-                                                <h4>Clothing</h4>
-                                                <ul>
-                                                    <li><a href="#">Men's Wear</a></li>
-                                                    <li><a href="#">Women's Wear</a></li>
-                                                    <li><a href="#">Kids Collection</a></li>
-                                                    <li><a href="#">Sportswear</a></li>
-                                                    <li><a href="#">Accessories</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="category-column">
-                                                <h4>Electronics</h4>
-                                                <ul>
-                                                    <li><a href="#">Smartphones</a></li>
-                                                    <li><a href="#">Laptops</a></li>
-                                                    <li><a href="#">Audio Devices</a></li>
-                                                    <li><a href="#">Smart Home</a></li>
-                                                    <li><a href="#">Accessories</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="category-column">
-                                                <h4>Home &amp; Living</h4>
-                                                <ul>
-                                                    <li><a href="#">Furniture</a></li>
-                                                    <li><a href="#">Decor</a></li>
-                                                    <li><a href="#">Kitchen</a></li>
-                                                    <li><a href="#">Bedding</a></li>
-                                                    <li><a href="#">Lighting</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="category-column">
-                                                <h4>Beauty</h4>
-                                                <ul>
-                                                    <li><a href="#">Skincare</a></li>
-                                                    <li><a href="#">Makeup</a></li>
-                                                    <li><a href="#">Haircare</a></li>
-                                                    <li><a href="#">Fragrances</a></li>
-                                                    <li><a href="#">Personal Care</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div><!-- End Products Mega Menu 1 Desktop View -->
-
-                        </li><!-- End Products Mega Menu 1 -->
-                        <!-- Products Mega Menu 2 -->
-                        <li class="products-megamenu-2"><a href="#"><span>Categorias</span> <i
-                                    class="bi bi-chevron-down toggle-dropdown"></i></a>
-
-                            <!-- Products Mega Menu 2 Mobile View -->
-                            <ul class="mobile-megamenu">
-
-                                <li><a href="#">Women</a></li>
-                                <li><a href="#">Men</a></li>
-                                <li><a href="#">Kids'</a></li>
-
-                                <li class="dropdown"><a href="#"><span>Clothing</span> <i
-                                            class="bi bi-chevron-down toggle-dropdown"></i></a>
-                                    <ul>
-                                        <li><a href="#">Shirts &amp; Tops</a></li>
-                                        <li><a href="#">Coats &amp; Outerwear</a></li>
-                                        <li><a href="#">Underwear</a></li>
-                                        <li><a href="#">Sweatshirts</a></li>
-                                        <li><a href="#">Dresses</a></li>
-                                        <li><a href="#">Swimwear</a></li>
-                                    </ul>
-                                </li>
-
-                                <li class="dropdown"><a href="#"><span>Shoes</span> <i
-                                            class="bi bi-chevron-down toggle-dropdown"></i></a>
-                                    <ul>
-                                        <li><a href="#">Boots</a></li>
-                                        <li><a href="#">Sandals</a></li>
-                                        <li><a href="#">Heels</a></li>
-                                        <li><a href="#">Loafers</a></li>
-                                        <li><a href="#">Slippers</a></li>
-                                        <li><a href="#">Oxfords</a></li>
-                                    </ul>
-                                </li>
-
-                                <li class="dropdown"><a href="#"><span>Accessories</span> <i
-                                            class="bi bi-chevron-down toggle-dropdown"></i></a>
-                                    <ul>
-                                        <li><a href="#">Handbags</a></li>
-                                        <li><a href="#">Eyewear</a></li>
-                                        <li><a href="#">Hats</a></li>
-                                        <li><a href="#">Watches</a></li>
-                                        <li><a href="#">Jewelry</a></li>
-                                        <li><a href="#">Belts</a></li>
-                                    </ul>
-                                </li>
-
-                                <li class="dropdown"><a href="#"><span>Specialty Sizes</span> <i
-                                            class="bi bi-chevron-down toggle-dropdown"></i></a>
-                                    <ul>
-                                        <li><a href="#">Plus Size</a></li>
-                                        <li><a href="#">Petite</a></li>
-                                        <li><a href="#">Wide Shoes</a></li>
-                                        <li><a href="#">Narrow Shoes</a></li>
-                                    </ul>
-                                </li>
-
-                            </ul><!-- End Products Mega Menu 2 Mobile View -->
-
-                            <!-- Products Mega Menu 2 Desktop View -->
-                            <div class="desktop-megamenu">
-
-                                <div class="megamenu-tabs">
-                                    <ul class="nav nav-tabs" role="tablist">
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link active" id="womens-tab" data-bs-toggle="tab"
-                                                data-bs-target="#womens-content-1883" type="button"
-                                                aria-selected="true" role="tab">WOMEN</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="mens-tab" data-bs-toggle="tab"
-                                                data-bs-target="#mens-content-1883" type="button"
-                                                aria-selected="false" tabindex="-1" role="tab">MEN</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="kids-tab" data-bs-toggle="tab"
-                                                data-bs-target="#kids-content-1883" type="button"
-                                                aria-selected="false" tabindex="-1" role="tab">KIDS</button>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <!-- Tabs Content -->
-                                <div class="megamenu-content tab-content">
-
-                                    <!-- Women Tab -->
-                                    <div class="tab-pane fade show active" id="womens-content-1883" role="tabpanel"
-                                        aria-labelledby="womens-tab">
-                                        <div class="category-layout">
-                                            <div class="categories-section">
-                                                <div class="category-headers">
-                                                    <h4>Clothing</h4>
-                                                    <h4>Shoes</h4>
-                                                    <h4>Accessories</h4>
-                                                    <h4>Specialty Sizes</h4>
-                                                </div>
-
-                                                <div class="category-links">
-                                                    <div class="link-row">
-                                                        <a href="#">Shirts &amp; Tops</a>
-                                                        <a href="#">Boots</a>
-                                                        <a href="#">Handbags</a>
-                                                        <a href="#">Plus Size</a>
-                                                    </div>
-                                                    <div class="link-row">
-                                                        <a href="#">Coats &amp; Outerwear</a>
-                                                        <a href="#">Sandals</a>
-                                                        <a href="#">Eyewear</a>
-                                                        <a href="#">Petite</a>
-                                                    </div>
-                                                    <div class="link-row">
-                                                        <a href="#">Underwear</a>
-                                                        <a href="#">Heels</a>
-                                                        <a href="#">Hats</a>
-                                                        <a href="#">Wide Shoes</a>
-                                                    </div>
-                                                    <div class="link-row">
-                                                        <a href="#">Sweatshirts</a>
-                                                        <a href="#">Loafers</a>
-                                                        <a href="#">Watches</a>
-                                                        <a href="#">Narrow Shoes</a>
-                                                    </div>
-                                                    <div class="link-row">
-                                                        <a href="#">Dresses</a>
-                                                        <a href="#">Slippers</a>
-                                                        <a href="#">Jewelry</a>
-                                                        <a href="#"></a>
-                                                    </div>
-                                                    <div class="link-row">
-                                                        <a href="#">Swimwear</a>
-                                                        <a href="#">Oxfords</a>
-                                                        <a href="#">Belts</a>
-                                                        <a href="#"></a>
-                                                    </div>
-                                                    <div class="link-row">
-                                                        <a href="#">View all</a>
-                                                        <a href="#">View all</a>
-                                                        <a href="#">View all</a>
-                                                        <a href="#"></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="featured-section">
-                                                <div class="featured-image">
-                                                    <img src="assets/img/product/product-f-1.webp"
-                                                        alt="Women's Heels Collection">
-                                                    <div class="featured-content">
-                                                        <h3>Women's<br>Bags<br>Collection</h3>
-                                                        <a href="#" class="btn-shop">Shop now</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Men Tab -->
-                                    <div class="tab-pane fade" id="mens-content-1883" role="tabpanel"
-                                        aria-labelledby="mens-tab">
-                                        <div class="category-layout">
-                                            <div class="categories-section">
-                                                <div class="category-headers">
-                                                    <h4>Clothing</h4>
-                                                    <h4>Shoes</h4>
-                                                    <h4>Accessories</h4>
-                                                    <h4>Specialty Sizes</h4>
-                                                </div>
-
-                                                <div class="category-links">
-                                                    <div class="link-row">
-                                                        <a href="#">Shirts &amp; Polos</a>
-                                                        <a href="#">Sneakers</a>
-                                                        <a href="#">Watches</a>
-                                                        <a href="#">Big &amp; Tall</a>
-                                                    </div>
-                                                    <div class="link-row">
-                                                        <a href="#">Jackets &amp; Coats</a>
-                                                        <a href="#">Boots</a>
-                                                        <a href="#">Belts</a>
-                                                        <a href="#">Slim Fit</a>
-                                                    </div>
-                                                    <div class="link-row">
-                                                        <a href="#">Underwear</a>
-                                                        <a href="#">Loafers</a>
-                                                        <a href="#">Ties</a>
-                                                        <a href="#">Wide Shoes</a>
-                                                    </div>
-                                                    <div class="link-row">
-                                                        <a href="#">Hoodies</a>
-                                                        <a href="#">Dress Shoes</a>
-                                                        <a href="#">Wallets</a>
-                                                        <a href="#">Extended Sizes</a>
-                                                    </div>
-                                                    <div class="link-row">
-                                                        <a href="#">Suits</a>
-                                                        <a href="#">Sandals</a>
-                                                        <a href="#">Sunglasses</a>
-                                                        <a href="#"></a>
-                                                    </div>
-                                                    <div class="link-row">
-                                                        <a href="#">Activewear</a>
-                                                        <a href="#">Slippers</a>
-                                                        <a href="#">Hats</a>
-                                                        <a href="#"></a>
-                                                    </div>
-                                                    <div class="link-row">
-                                                        <a href="#">View all</a>
-                                                        <a href="#">View all</a>
-                                                        <a href="#">View all</a>
-                                                        <a href="#"></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="featured-section">
-                                                <div class="featured-image">
-                                                    <img src="assets/img/product/product-m-4.webp"
-                                                        alt="Men's Footwear Collection">
-                                                    <div class="featured-content">
-                                                        <h3>Men's<br>Footwear<br>Collection</h3>
-                                                        <a href="#" class="btn-shop">Shop now</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Kids Tab -->
-                                    <div class="tab-pane fade" id="kids-content-1883" role="tabpanel"
-                                        aria-labelledby="kids-tab">
-                                        <div class="category-layout">
-                                            <div class="categories-section">
-                                                <div class="category-headers">
-                                                    <h4>Clothing</h4>
-                                                    <h4>Shoes</h4>
-                                                    <h4>Accessories</h4>
-                                                    <h4>By Age</h4>
-                                                </div>
-
-                                                <div class="category-links">
-                                                    <div class="link-row">
-                                                        <a href="#">T-shirts &amp; Tops</a>
-                                                        <a href="#">Sneakers</a>
-                                                        <a href="#">Backpacks</a>
-                                                        <a href="#">Babies (0-24 months)</a>
-                                                    </div>
-                                                    <div class="link-row">
-                                                        <a href="#">Outerwear</a>
-                                                        <a href="#">Boots</a>
-                                                        <a href="#">Hats &amp; Caps</a>
-                                                        <a href="#">Toddlers (2-4 years)</a>
-                                                    </div>
-                                                    <div class="link-row">
-                                                        <a href="#">Pajamas</a>
-                                                        <a href="#">Sandals</a>
-                                                        <a href="#">Socks</a>
-                                                        <a href="#">Kids (4-7 years)</a>
-                                                    </div>
-                                                    <div class="link-row">
-                                                        <a href="#">Sweatshirts</a>
-                                                        <a href="#">Slippers</a>
-                                                        <a href="#">Gloves</a>
-                                                        <a href="#">Older Kids (8-14 years)</a>
-                                                    </div>
-                                                    <div class="link-row">
-                                                        <a href="#">Dresses</a>
-                                                        <a href="#">School Shoes</a>
-                                                        <a href="#">Scarves</a>
-                                                        <a href="#"></a>
-                                                    </div>
-                                                    <div class="link-row">
-                                                        <a href="#">Swimwear</a>
-                                                        <a href="#">Sports Shoes</a>
-                                                        <a href="#">Hair Accessories</a>
-                                                        <a href="#"></a>
-                                                    </div>
-                                                    <div class="link-row">
-                                                        <a href="#">View all</a>
-                                                        <a href="#">View all</a>
-                                                        <a href="#">View all</a>
-                                                        <a href="#"></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="featured-section">
-                                                <div class="featured-image">
-                                                    <img src="assets/img/product/product-9.webp"
-                                                        alt="Kids' New Arrivals">
-                                                    <div class="featured-content">
-                                                        <h3>Kids<br>New<br>Arrivals</h3>
-                                                        <a href="#" class="btn-shop">Shop now</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div><!-- End Products Mega Menu 2 Desktop View -->
-
-                        </li><!-- End Products Mega Menu 2 -->
-                        <li><a href="contact.html">Contacto</a></li>
+                        <li><a href="{{ url('/') }}" class="active">Inicio</a></li>
+                        <li><a href="{{ url('/productos') }}">Relojes</a></li>
+                        <li><a href="{{ url('/colecciones') }}">Colecciones</a></li>
+                        <li><a href="{{ url('/novedades') }}">Novedades</a></li>
+                        <li><a href="{{ url('/contacto') }}">Contacto</a></li>
                     </ul>
                 </nav>
             </div>
@@ -786,9 +392,9 @@
         <!-- Mobile Search Form -->
         <div class="collapse" id="mobileSearch">
             <div class="container">
-                <form class="search-form">
+                <form class="search-form" method="GET" action="{{ url('/buscar') }}">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products">
+                        <input type="text" class="form-control" name="producto" placeholder="Buscar productos">
                         <button class="btn" type="submit">
                             <i class="bi bi-search"></i>
                         </button>
@@ -805,25 +411,28 @@
 
     </main>
 
-    <footer id="footer" class="footer dark-background">
+    <footer id="footer" class="footer">
         <div class="footer-main">
             <div class="container">
                 <div class="row gy-4">
                     <div class="col-lg-4 col-md-6">
                         <div class="footer-widget footer-about">
-                            <a href="index.html" class="logo">
-                                <span class="sitename">{{ $ajuste->nombre ?? ENV('APP_NAME') }}</span>
+                            <a href="{{ url('/') }}" class="logo">
+                                @if ($ajuste && $ajuste->logo)
+                                    <img src="{{ asset('storage/' . $ajuste->logo) }}" alt="VELORUM"
+                                        style="height: 50px; margin-bottom: 1rem;">
+                                @endif
+                                <span class="sitename m-2">{{ $ajuste->nombre ?? env('APP_NAME') }}</span>
                             </a>
-                            <p>{{ $ajuste->descripcion ?? '' }}</p>
+                            <p>{{ $ajuste->descripcion ?? 'Relojes de lujo con diseño atemporal. Precisión y elegancia en cada movimiento.' }}
+                            </p>
 
                             <div class="social-links mt-4">
-                                <h5>Conecta con nosotros</h5>
+                                <h5 class="text-white">Síguenos</h5>
                                 <div class="social-icons">
-                                    <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
                                     <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                                    <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
                                     <a href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
-                                    <a href="#" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
-                                    <a href="#" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
                                     <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
                                 </div>
                             </div>
@@ -832,14 +441,13 @@
 
                     <div class="col-lg-2 col-md-6 col-sm-6">
                         <div class="footer-widget">
-                            <h4>Tienda</h4>
+                            <h4>Relojes</h4>
                             <ul class="footer-links">
-                                <li><a href="category.html">Novedades</a></li>
-                                <li><a href="category.html">Mejores Vendedores</a></li>
-                                <li><a href="category.html">Ropa para Mujeres</a></li>
-                                <li><a href="category.html">Ropa para Hombres</a></li>
-                                <li><a href="category.html">Accesorios</a></li>
-                                <li><a href="category.html">Venta</a></li>
+                                <li><a href="{{ url('/productos') }}">Novedades</a></li>
+                                <li><a href="{{ url('/productos') }}">Colección Premium</a></li>
+                                <li><a href="{{ url('/productos') }}">Edición Limitada</a></li>
+                                <li><a href="{{ url('/productos') }}">Relojes Deportivos</a></li>
+                                <li><a href="{{ url('/productos') }}">Clásicos</a></li>
                             </ul>
                         </div>
                     </div>
@@ -848,21 +456,22 @@
                         <div class="footer-widget">
                             <h4>Soporte</h4>
                             <ul class="footer-links">
-                                <li><a href="support.html">Centro de Ayuda</a></li>
-                                <li><a href="account.html">Estado de Pedido</a></li>
-                                <li><a href="shiping-info.html">Información de Envío</a></li>
-                                <li><a href="return-policy.html">Devoluciones &amp; Intercambios</a></li>
+                                <li><a href="#">Centro de Ayuda</a></li>
+                                <li><a href="#">Estado de Pedido</a></li>
+                                <li><a href="#">Envíos y Garantía</a></li>
+                                <li><a href="#">Devoluciones</a></li>
+                                <li><a href="#">Mantenimiento</a></li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="col-lg-4 col-md-6">
                         <div class="footer-widget">
-                            <h4>Información de Contacto</h4>
+                            <h4>Contacto</h4>
                             <div class="footer-contact">
                                 <div class="contact-item">
                                     <i class="bi bi-geo-alt"></i>
-                                    <span>123 Fashion Street, New York, NY 10001</span>
+                                    <span>Av. Relojera 123, Ciudad</span>
                                 </div>
                                 <div class="contact-item">
                                     <i class="bi bi-telephone"></i>
@@ -870,23 +479,12 @@
                                 </div>
                                 <div class="contact-item">
                                     <i class="bi bi-envelope"></i>
-                                    <span>hello@example.com</span>
+                                    <span>info@velorum.com</span>
                                 </div>
                                 <div class="contact-item">
                                     <i class="bi bi-clock"></i>
-                                    <span>Monday-Friday: 9am-6pm<br>Saturday: 10am-4pm<br>Sunday: Closed</span>
+                                    <span>Lun-Vie: 9am-6pm<br>Sáb: 10am-2pm</span>
                                 </div>
-                            </div>
-
-                            <div class="app-buttons mt-4">
-                                <a href="#" class="app-btn">
-                                    <i class="bi bi-apple"></i>
-                                    <span>App Store</span>
-                                </a>
-                                <a href="#" class="app-btn">
-                                    <i class="bi bi-google-play"></i>
-                                    <span>Google Play</span>
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -899,7 +497,9 @@
                 <div class="row gy-3 align-items-center">
                     <div class="col-lg-6 col-md-12">
                         <div class="copyright">
-                            <p>© <span>Copyright</span> <strong class="sitename">{{ $ajuste->nombre ?? ENV('APP_NAME') }}</strong>. Casi todos los derechos reservados</p>
+                            <p>© <span>Copyright</span> <strong
+                                    class="sitename">{{ $ajuste->nombre ?? env('APP_NAME') }}</strong>. Todos los
+                                derechos reservados</p>
                         </div>
                     </div>
 
@@ -912,21 +512,20 @@
                                     <i class="bi bi-paypal" aria-label="PayPal"></i>
                                     <i class="bi bi-apple" aria-label="Apple Pay"></i>
                                     <i class="bi bi-google" aria-label="Google Pay"></i>
-                                    <i class="bi bi-shop" aria-label="Shop Pay"></i>
-                                    <i class="bi bi-cash" aria-label="Cash on Delivery"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </footer>
 
     <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"
+        style="background: #D4AF37; color: #1A1A1A;">
+        <i class="bi bi-arrow-up-short"></i>
+    </a>
 
     <!-- Preloader -->
     <div id="preloader"></div>
@@ -943,17 +542,16 @@
     <!-- Main JS File -->
     <script src="{{ asset('/assets/js/main.js') }}"></script>
 
-
     @if (($mensaje = Session::get('message')) && ($icono = Session::get('icon')))
         <script>
             @php
                 $tiempos = [
-                    'success' => 1500, // Eliminación más rápida
-                    'error' => 3000, // Errores más visibles
-                    'warning' => 2500, // Advertencias
-                    'info' => 3500, // Información general
+                    'success' => 1500,
+                    'error' => 3000,
+                    'warning' => 2500,
+                    'info' => 3500,
                 ];
-                $timer = $tiempos[$icono] ?? 2000; // Por defecto 2 segundos
+                $timer = $tiempos[$icono] ?? 2000;
             @endphp
             Swal.fire({
                 position: "center",

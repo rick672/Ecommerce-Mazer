@@ -12,7 +12,9 @@ class WebController extends Controller
     {
         $ajuste = Ajuste::first();
         $productos = Producto::paginate(8);
-        return view('web.index', compact('ajuste', 'productos'));
+        $mejor_producto = Producto::with('imagenes')->orderBy('stock', 'asc')->first();
+        $productos_destacados = Producto::orderBy('precio_venta', 'asc')->take(2)->get();
+        return view('web.index', compact('ajuste', 'productos', 'mejor_producto', 'productos_destacados'));
     }
 
     public function buscar_producto(Request $request)
