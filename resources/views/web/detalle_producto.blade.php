@@ -1,12 +1,6 @@
 @extends('layouts.web')
 
 @section('content')
-    <!-- Page Title -->
-    <div class="page-title light-background">
-        <div class="container d-lg-flex justify-content-between align-items-center">
-            <h1 class="mb-2 mb-lg-0">Detalle del producto</h1>
-        </div>
-    </div><!-- End Page Title -->
 
     <!-- Product Details Section -->
     <section id="product-details" class="product-details section">
@@ -15,7 +9,7 @@
 
             <div class="row g-4">
                 <!-- Product Gallery -->
-                <div class="col-lg-7" data-aos="zoom-in" data-aos-delay="150">
+                <div class="col-lg-6 col-sm-12 col-12" data-aos="zoom-in" data-aos-delay="150">
                     <div class="product-gallery">
                         <div class="main-showcase">
                             <div class="image-zoom-container">
@@ -52,9 +46,7 @@
                                 item.addEventListener('click', () => {
                                     document.getElementById('main-product-image').src = item.dataset.image;
                                     document.getElementById('main-product-image').setAttribute('data-zoom', item.dataset.image);
-                                    // remover clase active
                                     document.querySelectorAll('.thumbnail-item').forEach(i => i.classList.remove('active'));
-                                    // poner active al seleccionado
                                     item.classList.add('active');
                                 });
                             });
@@ -63,7 +55,7 @@
                 </div>
 
                 <!-- Product Details -->
-                <div class="col-lg-5" data-aos="fade-left" data-aos-delay="200">
+                <div class="col-lg-6 col-sm-12 col-12" data-aos="fade-left" data-aos-delay="200">
                     <div class="product-details">
                         <div class="product-badge-container">
                             <span class="badge-category">{{ $producto->categoria->nombre }}</span>
@@ -75,7 +67,7 @@
                                     <i class="bi bi-star-fill"></i>
                                     <i class="bi bi-star-half"></i>
                                 </div>
-                                <span class="review-text">(127 reviews)</span>
+                                <span class="review-text">(127 reseñas)</span>
                             </div>
                         </div>
 
@@ -83,7 +75,7 @@
 
                         <div class="pricing-section">
                             <div class="price-display">
-                                <span class="sale-price">{{ $ajuste->divisa . ': ' . $producto->precio_venta }}</span>
+                                <span class="sale-price">{{ $ajuste->divisa . ' ' . number_format($producto->precio_venta, 2) }}</span>
                             </div>
                         </div>
 
@@ -94,9 +86,9 @@
                         <div class="availability-status">
                             <div class="stock-indicator">
                                 <i class="bi bi-check-circle-fill"></i>
-                                <span class="stock-text">Disponible</span>
+                                <span class="stock-text">En stock</span>
                             </div>
-                            <div class="quantity-left">Sólo quedan {{ $producto->stock ?? '0' }} artículos</div>
+                            <div class="quantity-left">Solo {{ $producto->stock ?? '0' }} unidades disponibles</div>
                         </div>
 
 
@@ -127,15 +119,13 @@
                                         <i class="bi bi-bag-plus"></i> Añadir al carrito
                                     </button>
 
-                                    <!-- Botón de favoritos como un botón separado que activa el otro formulario -->
-                                    <button type="button" class="btn icon-action" title="Add to Wishlist"
+                                    <button type="button" class="btn icon-action" title="Añadir a favoritos"
                                         onclick="document.getElementById('favorito-form-{{ $producto->id }}').submit()">
                                         <i class="bi bi-heart-fill"></i>
                                     </button>
                                 </div>
                             </form>
 
-                            <!-- Formulario oculto para favoritos -->
                             <form id="favorito-form-{{ $producto->id }}" action="{{ url('/favoritos') }}" method="POST"
                                 class="d-none">
                                 @csrf
@@ -147,20 +137,15 @@
                         <div class="benefits-list">
                             <div class="benefit-item">
                                 <i class="bi bi-truck"></i>
-                                <span>Entrega gratuita en pedidos superiores a
-                                    {{ $ajuste->divisa . '. ' . $producto->precio_venta * 3 }}</span>
+                                <span>Envío gratuito en pedidos superiores a {{ $ajuste->divisa . ' ' . number_format($producto->precio_venta * 3, 2) }}</span>
                             </div>
                             <div class="benefit-item">
                                 <i class="bi bi-arrow-clockwise"></i>
-                                <span>Devoluciones sin complicaciones durante 45 días</span>
+                                <span>Devoluciones gratuitas hasta 45 días</span>
                             </div>
                             <div class="benefit-item">
                                 <i class="bi bi-shield-check"></i>
-                                <span>Garantía del fabricante de 3 años</span>
-                            </div>
-                            <div class="benefit-item">
-                                <i class="bi bi-headset"></i>
-                                <span>Atención al cliente disponible 24 horas al día, 7 días a la semana</span>
+                                <span>Garantía oficial de 2 años</span>
                             </div>
                         </div>
                     </div>
@@ -175,11 +160,9 @@
                             <button class="nav-link active" data-bs-toggle="tab"
                                 data-bs-target="#ecommerce-product-details-5-overview" type="button">Descripción</button>
                             <button class="nav-link" data-bs-toggle="tab"
-                                data-bs-target="#ecommerce-product-details-5-technical" type="button">Detalles
-                                técnicos</button>
+                                data-bs-target="#ecommerce-product-details-5-technical" type="button">Especificaciones</button>
                             <button class="nav-link" data-bs-toggle="tab"
-                                data-bs-target="#ecommerce-product-details-5-customer-reviews" type="button">Comentarios
-                                (127)</button>
+                                data-bs-target="#ecommerce-product-details-5-customer-reviews" type="button">Reseñas (127)</button>
                         </nav>
 
                         <div class="tab-content">
@@ -189,7 +172,7 @@
                                     <div class="row g-4">
                                         <div class="col-lg-12">
                                             <div class="package-contents">
-                                                <h4>Detalles de {{ $producto->nombre }}</h4>
+                                                <h4>Acerca de {{ $producto->nombre }}</h4>
                                                 <p>{!! $producto->descripcion_larga !!}</p>
                                             </div>
                                         </div>
@@ -197,33 +180,29 @@
                                 </div>
                             </div>
 
-                            <!-- Technical Details Tab -->
+                            <!-- Technical Details Tab - AHORA PARA RELOJES -->
                             <div class="tab-pane fade" id="ecommerce-product-details-5-technical">
                                 <div class="technical-content">
                                     <div class="row g-4">
                                         <div class="col-md-6">
                                             <div class="tech-group">
-                                                <h4>Audio Specifications</h4>
+                                                <h4>Movimiento</h4>
                                                 <div class="spec-table">
                                                     <div class="spec-row">
-                                                        <span class="spec-name">Frequency Range</span>
-                                                        <span class="spec-value">15Hz - 25kHz</span>
+                                                        <span class="spec-name">Tipo</span>
+                                                        <span class="spec-value">Automático / Cuarzo</span>
                                                     </div>
                                                     <div class="spec-row">
-                                                        <span class="spec-name">Driver Diameter</span>
-                                                        <span class="spec-value">50mm Dynamic</span>
+                                                        <span class="spec-name">Precisión</span>
+                                                        <span class="spec-value">±5 seg/día</span>
                                                     </div>
                                                     <div class="spec-row">
-                                                        <span class="spec-name">Sensitivity</span>
-                                                        <span class="spec-value">98dB SPL</span>
+                                                        <span class="spec-name">Reserva de marcha</span>
+                                                        <span class="spec-value">80 horas</span>
                                                     </div>
                                                     <div class="spec-row">
-                                                        <span class="spec-name">Impedance</span>
-                                                        <span class="spec-value">24 Ohm</span>
-                                                    </div>
-                                                    <div class="spec-row">
-                                                        <span class="spec-name">THD</span>
-                                                        <span class="spec-value">&lt; 0.5%</span>
+                                                        <span class="spec-name">Calibre</span>
+                                                        <span class="spec-value">Calibre V-802</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -231,27 +210,23 @@
 
                                         <div class="col-md-6">
                                             <div class="tech-group">
-                                                <h4>Connectivity &amp; Power</h4>
+                                                <h4>Caja y Cristal</h4>
                                                 <div class="spec-table">
                                                     <div class="spec-row">
-                                                        <span class="spec-name">Wireless Protocol</span>
-                                                        <span class="spec-value">Bluetooth 5.3</span>
+                                                        <span class="spec-name">Material</span>
+                                                        <span class="spec-value">Acero inoxidable 316L</span>
                                                     </div>
                                                     <div class="spec-row">
-                                                        <span class="spec-name">Range</span>
-                                                        <span class="spec-value">Up to 30ft (10m)</span>
+                                                        <span class="spec-name">Diámetro</span>
+                                                        <span class="spec-value">40mm</span>
                                                     </div>
                                                     <div class="spec-row">
-                                                        <span class="spec-name">Battery Capacity</span>
-                                                        <span class="spec-value">800mAh Li-ion</span>
+                                                        <span class="spec-name">Cristal</span>
+                                                        <span class="spec-value">Zafiro antirreflejante</span>
                                                     </div>
                                                     <div class="spec-row">
-                                                        <span class="spec-name">Usage Time</span>
-                                                        <span class="spec-value">35+ hours</span>
-                                                    </div>
-                                                    <div class="spec-row">
-                                                        <span class="spec-name">Charge Time</span>
-                                                        <span class="spec-value">2.5 hours</span>
+                                                        <span class="spec-name">Resistencia al agua</span>
+                                                        <span class="spec-value">10 ATM (100m)</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -259,23 +234,23 @@
 
                                         <div class="col-md-6">
                                             <div class="tech-group">
-                                                <h4>Physical Dimensions</h4>
+                                                <h4>Pulso y Correa</h4>
                                                 <div class="spec-table">
                                                     <div class="spec-row">
-                                                        <span class="spec-name">Weight</span>
-                                                        <span class="spec-value">285g</span>
+                                                        <span class="spec-name">Material correa</span>
+                                                        <span class="spec-value">Piel genuina / Acero</span>
                                                     </div>
                                                     <div class="spec-row">
-                                                        <span class="spec-name">Dimensions</span>
-                                                        <span class="spec-value">190 x 165 x 82mm</span>
+                                                        <span class="spec-name">Ancho de correa</span>
+                                                        <span class="spec-value">20mm</span>
                                                     </div>
                                                     <div class="spec-row">
-                                                        <span class="spec-name">Ear Cup Material</span>
-                                                        <span class="spec-value">Memory Foam</span>
+                                                        <span class="spec-name">Cierre</span>
+                                                        <span class="spec-value">Hebilla desplegable</span>
                                                     </div>
                                                     <div class="spec-row">
-                                                        <span class="spec-name">Headband</span>
-                                                        <span class="spec-value">Adjustable Steel</span>
+                                                        <span class="spec-name">Longitud ajustable</span>
+                                                        <span class="spec-value">145-210mm</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -283,23 +258,23 @@
 
                                         <div class="col-md-6">
                                             <div class="tech-group">
-                                                <h4>Advanced Features</h4>
+                                                <h4>Características</h4>
                                                 <div class="spec-table">
                                                     <div class="spec-row">
-                                                        <span class="spec-name">Noise Cancellation</span>
-                                                        <span class="spec-value">Hybrid ANC</span>
+                                                        <span class="spec-name">Funciones</span>
+                                                        <span class="spec-value">Fecha, Cronógrafo</span>
                                                     </div>
                                                     <div class="spec-row">
-                                                        <span class="spec-name">Voice Assistant</span>
-                                                        <span class="spec-value">Siri &amp; Google</span>
+                                                        <span class="spec-name">Esfera</span>
+                                                        <span class="spec-value">Sunray con índices luminosos</span>
                                                     </div>
                                                     <div class="spec-row">
-                                                        <span class="spec-name">Microphone Type</span>
-                                                        <span class="spec-value">Dual Array</span>
+                                                        <span class="spec-name">Garantía</span>
+                                                        <span class="spec-value">3 años internacional</span>
                                                     </div>
                                                     <div class="spec-row">
-                                                        <span class="spec-name">Water Rating</span>
-                                                        <span class="spec-value">IPX5</span>
+                                                        <span class="spec-name">Incluye</span>
+                                                        <span class="spec-value">Estuche de lujo</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -322,7 +297,7 @@
                                                     <i class="bi bi-star-fill"></i>
                                                     <i class="bi bi-star-half"></i>
                                                 </div>
-                                                <div class="total-reviews">127 customer reviews</div>
+                                                <div class="total-reviews">127 reseñas de clientes</div>
                                             </div>
 
                                             <div class="rating-distribution">
@@ -365,9 +340,9 @@
                                         </div>
 
                                         <div class="write-review-cta">
-                                            <h4>Share Your Experience</h4>
-                                            <p>Help others make informed decisions</p>
-                                            <button class="btn review-btn">Write Review</button>
+                                            <h4>Comparte tu experiencia</h4>
+                                            <p>Ayuda a otros a elegir el mejor reloj</p>
+                                            <button class="btn review-btn">Escribir reseña</button>
                                         </div>
                                     </div>
 
@@ -377,7 +352,7 @@
                                                 <img src="assets/img/person/person-f-3.webp" alt="Customer"
                                                     class="profile-pic">
                                                 <div class="profile-details">
-                                                    <div class="customer-name">Sarah Martinez</div>
+                                                    <div class="customer-name">María González</div>
                                                     <div class="review-meta">
                                                         <div class="review-stars">
                                                             <i class="bi bi-star-fill"></i>
@@ -386,21 +361,17 @@
                                                             <i class="bi bi-star-fill"></i>
                                                             <i class="bi bi-star-fill"></i>
                                                         </div>
-                                                        <span class="review-date">March 28, 2024</span>
+                                                        <span class="review-date">28 marzo, 2024</span>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <h5 class="review-headline">Outstanding audio quality and comfort</h5>
+                                            <h5 class="review-headline">Elegante y preciso</h5>
                                             <div class="review-text">
-                                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                                                    accusantium doloremque laudantium, totam rem aperiam. Eaque ipsa quae ab
-                                                    illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-                                                    explicabo.</p>
+                                                <p>Excelente reloj, el diseño es impecable y la precisión es sorprendente. Se ve muy elegante en la muñeca. Totalmente recomendado.</p>
                                             </div>
                                             <div class="review-actions">
-                                                <button class="action-btn"><i class="bi bi-hand-thumbs-up"></i> Helpful
-                                                    (12)</button>
-                                                <button class="action-btn"><i class="bi bi-chat-dots"></i> Reply</button>
+                                                <button class="action-btn"><i class="bi bi-hand-thumbs-up"></i> Útil (12)</button>
+                                                <button class="action-btn"><i class="bi bi-chat-dots"></i> Responder</button>
                                             </div>
                                         </div>
 
@@ -409,7 +380,7 @@
                                                 <img src="assets/img/person/person-m-5.webp" alt="Customer"
                                                     class="profile-pic">
                                                 <div class="profile-details">
-                                                    <div class="customer-name">David Chen</div>
+                                                    <div class="customer-name">Carlos Ruiz</div>
                                                     <div class="review-meta">
                                                         <div class="review-stars">
                                                             <i class="bi bi-star-fill"></i>
@@ -418,20 +389,17 @@
                                                             <i class="bi bi-star-fill"></i>
                                                             <i class="bi bi-star"></i>
                                                         </div>
-                                                        <span class="review-date">March 15, 2024</span>
+                                                        <span class="review-date">15 marzo, 2024</span>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <h5 class="review-headline">Great value, minor connectivity issues</h5>
+                                            <h5 class="review-headline">Buena relación calidad-precio</h5>
                                             <div class="review-text">
-                                                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-                                                    fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem
-                                                    sequi nesciunt. Overall satisfied with the purchase.</p>
+                                                <p>Muy contento con la compra. La correa es cómoda y el mecanismo funciona perfectamente. Llegó en estuche muy bonito.</p>
                                             </div>
                                             <div class="review-actions">
-                                                <button class="action-btn"><i class="bi bi-hand-thumbs-up"></i> Helpful
-                                                    (8)</button>
-                                                <button class="action-btn"><i class="bi bi-chat-dots"></i> Reply</button>
+                                                <button class="action-btn"><i class="bi bi-hand-thumbs-up"></i> Útil (8)</button>
+                                                <button class="action-btn"><i class="bi bi-chat-dots"></i> Responder</button>
                                             </div>
                                         </div>
 
@@ -440,7 +408,7 @@
                                                 <img src="assets/img/person/person-f-7.webp" alt="Customer"
                                                     class="profile-pic">
                                                 <div class="profile-details">
-                                                    <div class="customer-name">Emily Rodriguez</div>
+                                                    <div class="customer-name">Laura Fernández</div>
                                                     <div class="review-meta">
                                                         <div class="review-stars">
                                                             <i class="bi bi-star-fill"></i>
@@ -449,25 +417,22 @@
                                                             <i class="bi bi-star-fill"></i>
                                                             <i class="bi bi-star-fill"></i>
                                                         </div>
-                                                        <span class="review-date">February 22, 2024</span>
+                                                        <span class="review-date">22 febrero, 2024</span>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <h5 class="review-headline">Perfect for work-from-home setup</h5>
+                                            <h5 class="review-headline">Perfecto para regalar</h5>
                                             <div class="review-text">
-                                                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                                                    praesentium voluptatum deleniti atque corrupti quos dolores et quas
-                                                    molestias excepturi sint occaecati cupiditate non provident.</p>
+                                                <p>Lo compré como regalo y fue todo un acierto. La presentación es espectacular y el reloj se ve de alta gama. Sin duda volveré a comprar.</p>
                                             </div>
                                             <div class="review-actions">
-                                                <button class="action-btn"><i class="bi bi-hand-thumbs-up"></i> Helpful
-                                                    (15)</button>
-                                                <button class="action-btn"><i class="bi bi-chat-dots"></i> Reply</button>
+                                                <button class="action-btn"><i class="bi bi-hand-thumbs-up"></i> Útil (15)</button>
+                                                <button class="action-btn"><i class="bi bi-chat-dots"></i> Responder</button>
                                             </div>
                                         </div>
 
                                         <div class="load-more-section">
-                                            <button class="btn load-more-reviews">Show More Reviews</button>
+                                            <button class="btn load-more-reviews">Ver más reseñas</button>
                                         </div>
                                     </div>
                                 </div>
@@ -480,3 +445,84 @@
         </div>
     </section><!-- /Product Details Section -->
 @endsection
+
+<style>
+/* ============================================
+   SOLO CAMBIOS DE COLOR - VELORUM RELOJES
+   ============================================ */
+
+/* Badge categoría */
+.badge-category {
+    background: var(--velorum-gold) !important;
+    color: var(--velorum-text) !important;
+}
+
+/* Estrellas */
+.stars i {
+    color: var(--velorum-gold) !important;
+}
+
+/* Precio */
+.sale-price {
+    color: var(--velorum-gold) !important;
+}
+
+/* Stock */
+.stock-indicator i {
+    color: var(--velorum-gold) !important;
+}
+
+/* Botón principal */
+.primary-action {
+    background: var(--velorum-gold) !important;
+    color: var(--velorum-text) !important;
+    border: none !important;
+}
+
+.primary-action:hover {
+    background: var(--velorum-gold-dark) !important;
+}
+
+/* Botón icono */
+.icon-action {
+    border-color: var(--velorum-gold) !important;
+    color: var(--velorum-gold) !important;
+}
+
+.icon-action:hover {
+    background: var(--velorum-gold) !important;
+    color: var(--velorum-text) !important;
+}
+
+/* Benefits */
+.benefit-item i {
+    color: var(--velorum-gold) !important;
+}
+
+/* Tabs */
+.tabs-navigation .nav-link.active {
+    border-bottom-color: var(--velorum-gold) !important;
+}
+
+/* Progress fill reseñas */
+.progress-fill {
+    background: var(--velorum-gold) !important;
+}
+
+/* Botón reseña */
+.review-btn {
+    background: var(--velorum-gold) !important;
+    color: var(--velorum-text) !important;
+}
+
+/* Thumbnail activo */
+.thumbnail-item.active {
+    border-color: var(--velorum-gold) !important;
+}
+
+/* Navegación imágenes */
+.nav-arrow {
+    background: var(--velorum-gold) !important;
+    color: var(--velorum-text) !important;
+}
+</style>
