@@ -15,6 +15,7 @@ class UsuarioController extends Controller
      */
     public function index(Request $request)
     {
+        $ajuste = Ajuste::first();
         $buscar = $request->get('buscar');
         $query = User::whereDoesntHave('roles', function ($query) {
             $query->where('name', 'Super Admin');
@@ -26,7 +27,7 @@ class UsuarioController extends Controller
         }
 
         $usuarios = $query->paginate(10);
-        return view('admin.usuarios.index', compact('usuarios'));
+        return view('admin.usuarios.index', compact('usuarios', 'ajuste'));
     }
 
     /**

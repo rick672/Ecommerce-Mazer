@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ajuste;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,7 @@ class CategoriaController extends Controller
      */
     public function index(Request $request)
     {
+        $ajuste = Ajuste::first();
         $buscar = $request->get('buscar');
         $query = Categoria::query();
 
@@ -21,7 +23,7 @@ class CategoriaController extends Controller
         }
 
         $categorias = $query->paginate(10);
-        return view('admin.categorias.index', compact('categorias'));
+        return view('admin.categorias.index', compact('categorias', 'ajuste'));
     }
 
     /**

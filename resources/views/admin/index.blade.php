@@ -3,26 +3,16 @@
 @section('content')
     <div class="row">
         <div class="col-12 col-md-6 order-md-1 order-last">
-            <h1>Bienvenid@, {{ Auth::user()->name }}</h1>
+            <h1>Bienvenid@ a <span class="font-bold">{{ $ajuste->nombre ?? env('APP_NAME') }}</span></h1>
             <p class="text-subtitle text-muted"></p>
-        </div>
-        <div class="col-12 col-md-6 order-md-2 order-first">
-            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="">Rol</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">
-                        {{ Auth::user()->roles->pluck('name')->implode(', ') }}
-                    </li>
-                </ol>
-            </nav>
         </div>
     </div>
     <div class="row">
-        <div class="col-12 col-lg-9">
+        <div class="col-12 col-xl-7 col-lg-6 col-sm-12">
             <div class="row">
                 @can('Listado de Roles')
                     {{-- Total de roles --}}
-                    <div class="col-12 col-sm-6 col-lg-3 col-md-6">
+                    <div class="col-12 col-lg-6 col-md-4 col-sm-6">
                         <div class="card">
                             <div class="card-body px-4 py-4-5">
                                 <div class="row">
@@ -44,7 +34,7 @@
                 @endcan
                 @can('Listado de Usuarios')
                     {{-- Total de usuarios --}}
-                    <div class="col-12 col-sm-6 col-lg-3 col-md-6">
+                    <div class="col-12 col-lg-6 col-md-4 col-sm-6">
                         <div class="card">
                             <div class="card-body px-4 py-4-5">
                                 <div class="row">
@@ -66,7 +56,7 @@
                 @endcan
                 @can('Listado de Categorias')
                     {{-- Total de categorias --}}
-                    <div class="col-12 col-sm-6 col-lg-3 col-md-6">
+                    <div class="col-12 col-lg-6 col-md-4 col-sm-6">
                         <div class="card">
                             <div class="card-body px-4 py-4-5">
                                 <div class="row">
@@ -88,7 +78,7 @@
                 @endcan
                 @can('Listado de Productos')
                     {{-- Total de productos --}}
-                    <div class="col-12 col-sm-6 col-lg-3 col-md-6">
+                    <div class="col-12 col-lg-6 col-md-4 col-sm-6">
                         <div class="card">
                             <div class="card-body px-4 py-4-5">
                                 <div class="row">
@@ -110,7 +100,7 @@
                 @endcan
                 @can('Listado de Pedidos')
                     {{-- Total de pedidos nuevos --}}
-                    <div class="col-12 col-sm-6 col-lg-3 col-md-6">
+                    <div class="col-12 col-lg-6 col-md-4 col-sm-6">
                         <div class="card">
                             <div class="card-body px-4 py-4-5">
                                 <div class="row">
@@ -132,7 +122,7 @@
                 @endcan
                 @can('Listado de Pedidos')
                     {{-- Total de pedidos enviados --}}
-                    <div class="col-12 col-sm-6 col-lg-3 col-md-6">
+                    <div class="col-12 col-lg-6 col-md-4 col-sm-6">
                         <div class="card">
                             <div class="card-body px-4 py-4-5">
                                 <div class="row">
@@ -154,7 +144,7 @@
                 @endcan
                 @can('Listado de Pedidos')
                     {{-- Total de pedidos --}}
-                    <div class="col-12 col-sm-6 col-lg-3 col-md-6">
+                    <div class="col-12 col-lg-6 col-md-4 col-sm-6">
                         <div class="card">
                             <div class="card-body px-4 py-4-5">
                                 <div class="row">
@@ -176,57 +166,7 @@
                 @endcan
             </div>
             <div class="row">
-                <div class="col col-lg-7 col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5>Clientes registrados por mes</h5>
-                        </div>
-                        <div class="card-body">
-                            <div id="chart"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col col-lg-5 col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5>Porcentaje de pedidos</h5>
-                        </div>
-                        <div class="card-body">
-                            <div id="chart3"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col col-lg-6 col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5>Pedidos por mes</h5>
-                        </div>
-                        <div class="card-body">
-                            <div id="chart2"></div>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        <div class="col-12 col-lg-3">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-body py-4 px-4">
-                            <div class="d-flex align-items-center">
-                                <div class="avatar avatar-xl">
-                                    <img src="./assets/compiled/jpg/1.jpg" alt="Face 1">
-                                </div>
-                                <div class="ms-3 name">
-                                    <h5 class="font-bold">John Duck</h5>
-                                    <h6 class="text-muted mb-0">@johnducky</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col col-md-12">
+                <div class="col col-md-6 col-sm-12">
                     <div class="card">
                         <div class="card-header">
                             <h5>Productos con stock bajo</h5>
@@ -236,13 +176,63 @@
                         </div>
                     </div>
                 </div>
-                <div class="col col-md-12">
+                <div class="col col-md-6 col-sm-12">
                     <div class="card">
                         <div class="card-header">
                             <h5>Productos con stock alto</h5>
                         </div>
                         <div class="card-body">
                             <div id="chart5"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-xl-8 col-lg-10 col-md-8 col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Porcentaje de pedidos</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="chart3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-xl-5 col-lg-6 col-sm-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body py-4 px-4">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar avatar-xl">
+                                    <img src="{{ asset('storage/' . $ajuste->logo) }}" alt="Logo del sistema">
+                                </div>
+                                <div class="ms-3 name">
+                                    <h5 class="font-bold">{{ Auth::user()->name ?? 'Usuario sin nombre' }}</h5>
+                                    <h6 class="text-muted mb-0">{{ Auth::user()->email ?? 'Usuario sin email' }}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-lg-12 col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Clientes registrados por mes</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="chart"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col col-lg-12 col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Pedidos por mes</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="chart2"></div>
                         </div>
                     </div>
                 </div>

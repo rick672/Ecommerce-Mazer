@@ -15,6 +15,7 @@ class OrdenController extends Controller
      */
     public function index(Request $request)
     {
+        $ajuste = Ajuste::first();
         $buscar = $request->get('buscar');
         $query = Orden::with('usuario', 'detalles.producto')->orderBy('created_at', 'desc');
         // return response()->json($ordenes);
@@ -32,7 +33,7 @@ class OrdenController extends Controller
         }
 
         $pedidos = $query->paginate(5);
-        return view('admin.pedidos.index', compact('pedidos', 'buscar'));
+        return view('admin.pedidos.index', compact('pedidos', 'buscar', 'ajuste'));
     }
 
     /**

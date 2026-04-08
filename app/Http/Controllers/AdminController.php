@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ajuste;
 use App\Models\Categoria;
 use App\Models\Orden;
 use App\Models\Producto;
@@ -67,6 +68,7 @@ class AdminController extends Controller
         $porcentajeStockAlto = $total_productos > 0 ? round(($stockAlto / $total_productos) * 100) : 0;
 
         // print_r($usuarios_data);
-        return view('admin.index', compact('total_roles', 'total_usuarios', 'total_categorias', 'total_productos', 'total_pedidos_nuevos', 'total_pedidos_enviados', 'total_pedidos', 'usuarios_data', 'ordenes_data', 'porcentajeStockBajo', 'porcentajeStockAlto'));
+        $ajuste = Ajuste::first();
+        return view('admin.index', compact('total_roles', 'total_usuarios', 'total_categorias', 'total_productos', 'total_pedidos_nuevos', 'total_pedidos_enviados', 'total_pedidos', 'usuarios_data', 'ordenes_data', 'porcentajeStockBajo', 'porcentajeStockAlto', 'ajuste'));
     }
 }

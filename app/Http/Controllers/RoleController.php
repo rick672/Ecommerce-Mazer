@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ajuste;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -14,8 +15,9 @@ class RoleController extends Controller
      */
     public function index()
     {
+        $ajuste = Ajuste::first();
         $roles = Role::paginate(5);
-        return view('admin.roles.index', compact('roles'));
+        return view('admin.roles.index', compact('roles', 'ajuste'));
     }
 
     /**
